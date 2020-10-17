@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+          "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+          "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+
+<module name = "Checker">
+
+    <!-- 11-->
+    <module name="LineLength">
+        <property name="max" value="120"/>
+    </module>
+
+    <module name="TreeWalker">
+        <!-- 1-->
+        <module name="AnonInnerLength">
+          <property name="max" value="60"/>
+        </module>
+        <!-- 2-->
+        <module name="AvoidInlineConditionals"/>
+        <!-- 3-->
+        <module name="BooleanExpressionComplexity">
+            <property name="max" value="3"/>
+        </module>
+         <!-- 4-->
+        <module name="CovariantEquals"/>
+        <!-- 5-->
+        <module name="ClassTypeParameterName">
+            <property name="format" value="^[a-zA-Z]$"/>
+        </module>
+        <!-- 6-->
+        <module name="CatchParameterName">
+            <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+            <message key="name.invalidPattern"
+            value="Catch parameter name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+        <!-- 7-->
+        <module name="EmptyBlock">
+        </module>
+        <!-- 8-->
+        <module name="EmptyStatement"/>
+        <!-- 9-->
+        <module name="EqualsHashCode"/>
+        <!-- 10-->
+        <module name="CyclomaticComplexity">
+          <property name="max" value="7"/>
+          <property name="tokens" value="LITERAL_WHILE, LITERAL_FOR, LITERAL_DO"/>
+        </module>
+        <!-- 12-->
+        <module name="MethodLength">
+            <property name="tokens" value="METHOD_DEF"/>
+            <property name="max" value="60"/>
+            <property name="countEmpty" value="false"/>
+        </module>
+        <!-- 13-->
+        <module name="MissingSwitchDefault"/>
+        <!-- 14-->
+        <module name="ReturnCount">
+          <property name="max" value="0"/>
+          <property name="tokens" value="CTOR_DEF"/>
+        </module>
+        <module name="ReturnCount">
+          <property name="max" value="3"/>
+          <property name="tokens" value="METHOD_DEF"/>
+        </module>
+         <!-- 15-->
+        <module name="StringLiteralEquality"/>
+        <!-- 16-->
+        <module name="TodoComment">
+            <property name="format" value="(TODO)|(FIXME)"/>
+        </module>
+        <!-- 17-->
+        <module name="ClassFanOutComplexity">
+            <property name="max" value="2"/>
+            <property name="excludedClasses" value="HashMap, HashSet, Place"/>
+            <property name="excludedPackages" value="java.io"/>
+        </module>
+    </module> <!--TreeWalker-->
+</module>

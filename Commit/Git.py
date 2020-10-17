@@ -7,21 +7,21 @@ from Checker.measure import main_measure
 NUMBER_FILE = 0
 
 NAME_PROJECT = "LANG-"
-# FEATURE_LIST = ['commit', 'file', 'AnonInnerLength', 'AvoidInlineConditionals', 'BooleanExpressionComplexity',
-#                 'CovariantEquals', 'ClassTypeParameterName', 'CatchParameterName', 'EmptyBlock',
-#                 'EmptyStatement', 'EqualsHashCode', 'CyclomaticComplexity', 'LineLength', 'MethodLength',
-#                 'MissingSwitchDefault', 'ReturnCount', 'StringLiteralEquality', 'TodoComment',
-#                 'ClassFanOutComplexity', 'Long parameter list', 'Complex method', 'Complex conditional',
-#                 'nested_if_else_dept', 'NCSS', 'File_length', 'NPath_Complexity', 'Number_of_public_methods',
-#                 'Total_number_of_methods', 'wmc', 'loopQty',
-#                 'comparisonsQty', 'maxNestedBlocks', 'lambdasQty', 'cbo', 'variables', 'tryCatchQty',
-#                 'parenthesizedExpsQty', 'stringLiteralsQty', 'numbersQty', 'assignmentsQty', 'mathOperationsQty',
-#                 'uniqueWordsQty', 'modifiers', 'logStatementsQty',
-#                 'difficulty', 'volume', 'getDistinctOperandsCnt', 'getDistinctOperatorsCnt', 'getEffort',
-#                 'getTotalOparandsCnt', 'getTotalOperatorsCnt', 'getVocabulary',
-#                                                      'commit insert bug?']
+FEATURE_LIST = ['commit', 'file', 'AnonInnerLength', 'AvoidInlineConditionals', 'BooleanExpressionComplexity',
+                'CovariantEquals', 'ClassTypeParameterName', 'CatchParameterName', 'EmptyBlock',
+                'EmptyStatement', 'EqualsHashCode', 'CyclomaticComplexity', 'LineLength', 'MethodLength',
+                'MissingSwitchDefault', 'ReturnCount', 'StringLiteralEquality', 'TodoComment',
+                'ClassFanOutComplexity', 'Long parameter list', 'Complex method', 'Complex conditional',
+                'nested_if_else_dept', 'NCSS', 'File_length', 'NPath_Complexity', 'Number_of_public_methods',
+                'Total_number_of_methods', 'wmc', 'loopQty',
+                'comparisonsQty', 'maxNestedBlocks', 'lambdasQty', 'cbo', 'variables', 'tryCatchQty',
+                'parenthesizedExpsQty', 'stringLiteralsQty', 'numbersQty', 'assignmentsQty', 'mathOperationsQty',
+                'uniqueWordsQty', 'modifiers', 'logStatementsQty',
+                'difficulty', 'volume', 'getDistinctOperandsCnt', 'getDistinctOperatorsCnt', 'getEffort',
+                'getTotalOparandsCnt', 'getTotalOperatorsCnt', 'getVocabulary',
+                                                     'commit insert bug?']
 
-FEATURE_LIST = ['commit', 'file', 'row add', 'row remove', "change block", "character change", 'commit insert bug?']
+# FEATURE_LIST = ['commit', 'file', 'row add', 'row remove', "change block", "character change", 'commit insert bug?']
 
 
 # -------------------------------------------Start feature of commit
@@ -44,10 +44,10 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                             continue
                         if change_line.a_path == file_change:
                             try:
-                                # list_feature = main_measure(
-                                #     change_line.a_blob.data_stream.read().decode('utf-8').splitlines(),
-                                #     change_line.b_blob.data_stream.read().decode('utf-8').splitlines())
-                                list_feature = measure_diff(change_line)
+                                list_feature = main_measure(
+                                    change_line.a_blob.data_stream.read().decode('utf-8').splitlines(),
+                                    change_line.b_blob.data_stream.read().decode('utf-8').splitlines())
+                                # list_feature = measure_diff(change_line)
                                 file.write(str(commit))
                                 file.write(',')
                                 file.write(file_change)
@@ -171,6 +171,26 @@ def find_feature(list_feature, file_change, commit):
         except Exception as e:
             # raise e
             pass
+
+import sqlite3
+import pandas as pd
+
+
+def measure_token(commit, file_change):
+    DB_PATH = r"C:\Users\shir0\Commits-Issues-DB\CommitIssueDB.db"
+
+    # Get DB connection
+    db_connection = sqlite3.connect(DB_PATH)
+    print("connection established")
+    query_method_data = "SELECT Meaning FROM MethodData WHERE CommitID=" + commit + "AND NewPath=" + file_change
+    sql_query = pd.read_sql_query(query_method_data, db_connection)
+    # MethodData('CommitID', 'MethodName', 'OldNew', 'LineNumber', 'Content', 'Changed', 'Meaning', 'NewPath')
+    df = pd.DataFrame(sql_query, columns=['Meaning'])
+    # LocalVariableDeclaration , VariableDeclarator,
+# ReturnStatement(expression=MethodInvocation(arguments=[MemberReference(member=str, postfix_operators=[], prefix_operators=[],
+# qualifier=, selectors=[]), Literal(postfix_operators=[], prefix_operators=[], qualifier=None, selectors=[], value="..."), Literal(postfix_operators=[],
+# prefix_operators=[], qualifier=None, selectors=[], value=0), MemberReference(member=maxWidth, postfix_operators=[],
+#                                                                                                                                                                                                                                                                                                                                                                    prefix_operators=[], qualifier=, selectors=[])], member=abbreviate, postfix_operators=[], prefix_operators=[], qualifier=, selectors=[]
 
 
 # -------------------------------------------END feature of commit
@@ -377,9 +397,17 @@ class Git:
 
 
 # repo is a Repo instance pointing to the git-python repository.
-obj_git = Git('C:/Users/shir0/commons-lang')
-obj_git.connect_git()
-# get all commit insert bug
-list_commit_file_bug = obj_git.main_function()
-# feature
-find_feature_all_commit(obj_git.get_all_commit(), list_commit_file_bug)
+
+# TODO list for new programmer:
+# 1. TODO change path in line obj_git = Git('C:/Users/shir0/commons-lang') to path og commons-lang
+# 2. TODO add directory name "Code_lab" from this URL https://github.com/amir9979/repository_mining.git
+# 2. TODO change line DB_PATH = r"C:\Users\shir0\Commits-Issues-DB\CommitIssueDB.db"
+
+
+if __name__ == '__main__':
+    obj_git = Git('C:/Users/shir0/commons-lang')
+    obj_git.connect_git()
+    # get all commit insert bug
+    list_commit_file_bug = obj_git.main_function()
+    # feature
+    find_feature_all_commit(obj_git.get_all_commit(), list_commit_file_bug)
