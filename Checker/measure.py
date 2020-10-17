@@ -440,23 +440,24 @@ def complex_conditional(line_error):
 
 def measure_lab():
     try:
+        number = 0
         d = Designite(Project("commons-lang", "Lang"), '', None)
         d.extract()
-
+        number = 1
         cs = Checkstyle(Project("commons-lang", "Lang"), '', None)
         cs.extract()
-
+        number = 2
         h = Halstead(Project("commons-lang", "Lang"), '', None)
         h.extract()
-
+        number = 3
         c = CK(Project("commons-lang", "Lang"), '', None)
         c.extract()
-
-        # sm = SourceMonitor(Project("commons-lang", "Lang"), '', None)
-        # sm.extract()
+        number = 4
+        sm = SourceMonitor(Project("commons-lang", "Lang"), '', None)
+        sm.extract()
         # TODO Wrong number of items passed 3, placement implies 1
     except Exception as e:
-        print("measure_lab")
+        print("measure_lab ", number)
         print(e)
         pass
 

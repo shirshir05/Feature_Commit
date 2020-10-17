@@ -2,32 +2,39 @@ import difflib
 from git import Repo
 import csv
 from collections import Counter
+
+from Checker.MeasureDiff import MeasureDiff
+from Checker.MeasureToken import MeasureToken
 from Checker.measure import main_measure
 
 NUMBER_FILE = 0
 
 NAME_PROJECT = "LANG-"
-FEATURE_LIST = ['commit', 'file', 'AnonInnerLength', 'AvoidInlineConditionals', 'BooleanExpressionComplexity',
-                'CovariantEquals', 'ClassTypeParameterName', 'CatchParameterName', 'EmptyBlock',
-                'EmptyStatement', 'EqualsHashCode', 'CyclomaticComplexity', 'LineLength', 'MethodLength',
-                'MissingSwitchDefault', 'ReturnCount', 'StringLiteralEquality', 'TodoComment',
-                'ClassFanOutComplexity', 'Long parameter list', 'Complex method', 'Complex conditional',
-                'nested_if_else_dept', 'NCSS', 'File_length', 'NPath_Complexity', 'Number_of_public_methods',
-                'Total_number_of_methods', 'wmc', 'loopQty',
-                'comparisonsQty', 'maxNestedBlocks', 'lambdasQty', 'cbo', 'variables', 'tryCatchQty',
-                'parenthesizedExpsQty', 'stringLiteralsQty', 'numbersQty', 'assignmentsQty', 'mathOperationsQty',
-                'uniqueWordsQty', 'modifiers', 'logStatementsQty',
-                'difficulty', 'volume', 'getDistinctOperandsCnt', 'getDistinctOperatorsCnt', 'getEffort',
-                'getTotalOparandsCnt', 'getTotalOperatorsCnt', 'getVocabulary',
-                                                     'commit insert bug?']
+# FEATURE_LIST = ['commit', 'file', 'AnonInnerLength', 'AvoidInlineConditionals', 'BooleanExpressionComplexity',
+#                 'CovariantEquals', 'ClassTypeParameterName', 'CatchParameterName', 'EmptyBlock',
+#                 'EmptyStatement', 'EqualsHashCode', 'CyclomaticComplexity', 'LineLength', 'MethodLength',
+#                 'MissingSwitchDefault', 'ReturnCount', 'StringLiteralEquality', 'TodoComment',
+#                 'ClassFanOutComplexity', 'Long parameter list', 'Complex method', 'Complex conditional',
+#                 'nested_if_else_dept', 'NCSS', 'File_length', 'NPath_Complexity', 'Number_of_public_methods',
+#                 'Total_number_of_methods', 'wmc', 'loopQty',
+#                 'comparisonsQty', 'maxNestedBlocks', 'lambdasQty', 'cbo', 'variables', 'tryCatchQty',
+#                 'parenthesizedExpsQty', 'stringLiteralsQty', 'numbersQty', 'assignmentsQty', 'mathOperationsQty',
+#                 'uniqueWordsQty', 'modifiers', 'logStatementsQty',
+#                 'difficulty', 'volume', 'getDistinctOperandsCnt', 'getDistinctOperatorsCnt', 'getEffort',
+#                 'getTotalOparandsCnt', 'getTotalOperatorsCnt', 'getVocabulary',
+#                 'commit insert bug?']
 
-# FEATURE_LIST = ['commit', 'file', 'row add', 'row remove', "change block", "character change", 'commit insert bug?']
+FEATURE_LIST = ['commit', 'file', 'row add', 'row remove', "change block", "character change", "Member",
+"FieldDeclaration", "VariableDeclaration", "LocalVariableDeclaration", "VariableDeclarator", "Literal", "This",
+"MemberReference" 'commit insert bug?']
 
 
 # -------------------------------------------Start feature of commit
 def find_feature_all_commit(list_of_commit, list_commit_bug):
     with open('File/feature_of_commit_solve_issue.csv', 'w', newline='', encoding="utf-8") as file:
         writer = csv.writer(file, delimiter=',')
+        measure_diff = MeasureDiff()
+        measure_token = MeasureToken()
         writer.writerow(FEATURE_LIST)
         file.flush()
         # find all commit
@@ -44,10 +51,11 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                             continue
                         if change_line.a_path == file_change:
                             try:
-                                list_feature = main_measure(
-                                    change_line.a_blob.data_stream.read().decode('utf-8').splitlines(),
-                                    change_line.b_blob.data_stream.read().decode('utf-8').splitlines())
-                                # list_feature = measure_diff(change_line)
+                                # list_feature = main_measure(
+                                #     change_line.a_blob.data_stream.read().decode('utf-8').splitlines(),
+                                #     change_line.b_blob.data_stream.read().decode('utf-8').splitlines())
+                                list_feature = measure_diff.measure_diff(change_line)
+                                list_feature += measure_token.get_feature(parent, commit, file_change)
                                 file.write(str(commit))
                                 file.write(',')
                                 file.write(file_change)
@@ -70,131 +78,7 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                                 pass
 
 
-def measure_diff(change_line):
-    """
-    create feature that compare text of file before commit and file after
-    :param change_line:
-    :return: list_feature
-    """
-    list_feature = []
-    character_change(change_line)
-    number_add, number_remove, number_change_block = row_add_remove_block(change_line)
-    list_feature.append(number_add)
-    list_feature.append(number_remove)
-    list_feature.append(number_change_block)
-    character = character_change(change_line)
-    list_feature.append(character)
-    return list_feature
-
-
-def row_add_remove_block(change_line):
-    """
-    return number row add, number row remove and number block change
-    block define  - Distinguished by a line that was not added or removed in commit
-    :param change_line:
-    :return: three feature
-    """
-    diff = difflib.Differ().compare(
-        change_line.a_blob.data_stream.read().decode('utf-8').splitlines(),
-        change_line.b_blob.data_stream.read().decode('utf-8').splitlines())
-    number_add = 0
-    number_remove = 0
-    block = True
-    number_change_block = 0
-    for i in diff:
-        if i.startswith("+"):
-            number_add += 1
-            if block:
-                number_change_block += 1
-                block = False
-        elif i.startswith("-"):
-            number_remove += 1
-            if block:
-                number_change_block += 1
-                block = False
-        elif not i.startswith("?"):
-            block = True
-    return number_add, number_remove, number_change_block
-
-
-def character_change(change_line):
-    """
-    return the number of character that Different between two file
-    remove character: " ", ""
-    :param change_line:
-    :return: one feature
-    """
-    list_before = change_line.a_blob.data_stream.read().decode('utf-8').splitlines()
-    chars_before = []
-    for line in list_before:
-        for c in line:
-            chars_before.append(c)
-
-    list_after = change_line.b_blob.data_stream.read().decode('utf-8').splitlines()
-    chars_after = []
-    for line in list_after:
-        for c in line:
-            chars_after.append(c)
-    dic_after = Counter(chars_after)
-    dic_before = Counter(chars_before)
-    if '' in dic_after:
-        dic_after.pop('')
-    if '' in dic_before:
-        dic_before.pop('')
-    if ' ' in dic_after:
-        dic_after.pop(' ')
-    if ' ' in dic_before:
-        dic_before.pop(' ')
-    list_character = [abs(dic_after[x] - dic_before[x]) for x in dic_after if x in dic_before]
-    keys1 = dic_before.keys()
-    keys2 = dic_after.keys()
-    difference = keys1 - keys2
-    value = 0
-    for i in difference:
-        value += dic_before[i]
-    return value + sum(list_character)
-
-
-def find_feature(list_feature, file_change, commit):
-    with open('File/feature_of_commit_solve_issue.csv', 'a', newline='', encoding="utf-8") as file:
-        writer = csv.writer(file, delimiter='')
-        try:
-            file.write(str(commit))
-            file.write(',')
-            file.write(str(file_change))
-            file.write(',')
-            for feature in list_feature:
-                file.write(str(feature))
-                file.write(',')
-            file.write('\n')
-            file.flush()
-        except Exception as e:
-            # raise e
-            pass
-
-import sqlite3
-import pandas as pd
-
-
-def measure_token(commit, file_change):
-    DB_PATH = r"C:\Users\shir0\Commits-Issues-DB\CommitIssueDB.db"
-
-    # Get DB connection
-    db_connection = sqlite3.connect(DB_PATH)
-    print("connection established")
-    query_method_data = "SELECT Meaning FROM MethodData WHERE CommitID=" + commit + "AND NewPath=" + file_change
-    sql_query = pd.read_sql_query(query_method_data, db_connection)
-    # MethodData('CommitID', 'MethodName', 'OldNew', 'LineNumber', 'Content', 'Changed', 'Meaning', 'NewPath')
-    df = pd.DataFrame(sql_query, columns=['Meaning'])
-    # LocalVariableDeclaration , VariableDeclarator,
-# ReturnStatement(expression=MethodInvocation(arguments=[MemberReference(member=str, postfix_operators=[], prefix_operators=[],
-# qualifier=, selectors=[]), Literal(postfix_operators=[], prefix_operators=[], qualifier=None, selectors=[], value="..."), Literal(postfix_operators=[],
-# prefix_operators=[], qualifier=None, selectors=[], value=0), MemberReference(member=maxWidth, postfix_operators=[],
-#                                                                                                                                                                                                                                                                                                                                                                    prefix_operators=[], qualifier=, selectors=[])], member=abbreviate, postfix_operators=[], prefix_operators=[], qualifier=, selectors=[]
-
-
 # -------------------------------------------END feature of commit
-
 
 # find list of commit that fix bug
 # for all commit
