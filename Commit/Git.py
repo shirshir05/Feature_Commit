@@ -1,11 +1,10 @@
 import difflib
 from git import Repo
 import csv
-from collections import Counter
 
-from Checker.MeasureDiff import MeasureDiff
-from Checker.MeasureToken import MeasureToken
-from Checker.measure import main_measure
+from Feature.MeasureDiff import MeasureDiff
+from Feature.MeasureToken import MeasureToken
+from Feature.MeasureLab import MeasureLab
 
 NUMBER_FILE = 0
 
@@ -24,9 +23,10 @@ NAME_PROJECT = "LANG-"
 #                 'getTotalOparandsCnt', 'getTotalOperatorsCnt', 'getVocabulary',
 #                 'commit insert bug?']
 
+
 FEATURE_LIST = ['commit', 'file', 'row add', 'row remove', "change block", "character change", "Member",
 "FieldDeclaration", "VariableDeclaration", "LocalVariableDeclaration", "VariableDeclarator", "Literal", "This",
-"MemberReference" 'commit insert bug?']
+"MemberReference" ,'commit insert bug?']
 
 
 # -------------------------------------------Start feature of commit
@@ -35,6 +35,7 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
         writer = csv.writer(file, delimiter=',')
         measure_diff = MeasureDiff()
         measure_token = MeasureToken()
+        measure_lab = MeasureLab()
         writer.writerow(FEATURE_LIST)
         file.flush()
         # find all commit
@@ -51,9 +52,10 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                             continue
                         if change_line.a_path == file_change:
                             try:
-                                # list_feature = main_measure(
-                                #     change_line.a_blob.data_stream.read().decode('utf-8').splitlines(),
-                                #     change_line.b_blob.data_stream.read().decode('utf-8').splitlines())
+                                # list_feature += measure_lab.main_measure(
+                                #     change_line.a_blob.data_stream.read().decode('utf-8').splitlines()
+                                #     , change_line.b_blob.data_stream.read().decode('utf-8').splitlines())
+                                # list_feature += measure_diff.measure_diff(change_line)
                                 list_feature = measure_diff.measure_diff(change_line)
                                 list_feature += measure_token.get_feature(parent, commit, file_change)
                                 file.write(str(commit))
