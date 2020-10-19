@@ -1,7 +1,10 @@
 import difflib
+import pathlib
+
 from git import Repo
 import csv
 
+import pandas as pd
 from Feature.MeasureDiff import MeasureDiff
 from Feature.MeasureToken import MeasureToken
 from Feature.MeasureLab import MeasureLab
@@ -24,9 +27,8 @@ NAME_PROJECT = "LANG-"
 #                 'commit insert bug?']
 
 
-FEATURE_LIST = ['commit', 'file', 'row add', 'row remove', "change block", "character change", "Member",
-"FieldDeclaration", "VariableDeclaration", "LocalVariableDeclaration", "VariableDeclarator", "Literal", "This",
-"MemberReference" ,'commit insert bug?']
+FEATURE_LIST = ['commit', 'file',"Member", "FieldDeclaration", "VariableDeclaration", "LocalVariableDeclaration", "VariableDeclarator", "Literal",
+                "This", "MemberReference",  'row add', 'row remove', "row add-row remove", "change block", "character change",  'commit insert bug?']
 
 
 # -------------------------------------------Start feature of commit
@@ -55,9 +57,11 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                                 # list_feature += measure_lab.main_measure(
                                 #     change_line.a_blob.data_stream.read().decode('utf-8').splitlines()
                                 #     , change_line.b_blob.data_stream.read().decode('utf-8').splitlines())
-                                # list_feature += measure_diff.measure_diff(change_line)
-                                list_feature = measure_diff.measure_diff(change_line)
-                                list_feature += measure_token.get_feature(parent, commit, file_change)
+                                # list_feature += measure_token.measure_diff(commit, file_change)
+                                list_feature = measure_token.get_feature(commit, file_change)
+                                if list_feature is None:
+                                    continue
+                                list_feature += measure_diff.measure_diff(change_line)
                                 file.write(str(commit))
                                 file.write(',')
                                 file.write(file_change)
@@ -78,17 +82,24 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                             except Exception as e:
                                 # raise e
                                 pass
+        measure_token.close_connection()
 
 
 # -------------------------------------------END feature of commit
 
-# find list of commit that fix bug
-# for all commit
-# find parent, list(file change),
-# for all line that change
-# find commit that insert bug (last commit that insert line OR lase commit insert line and row top an down)
+
 # main_function: 4
 def operation_on_commit(list_commit_sol_issue, issue):
+    """
+    Strategy to find commit blame
+    1. for commit in list of commit that fix bug
+        1.1. find list of file change
+        1.2 for file in file change
+            1.2.1 find parents of commit in file
+            1.2.2 for paren in parents
+                1.2.2.1 find diff between parent and commit
+    5. find commit that insert bug (last commit that insert line OR lase commit insert line and row top an down)
+    """
     list_commit_insert_bug = list()
     list_file_commit_change = list()
     list_commit_with_file = list()
@@ -116,20 +127,15 @@ def operation_on_commit(list_commit_sol_issue, issue):
                         except Exception as e:
                             # raise e
                             pass
-                        '''
-    with open('File/commit_insert_bug.csv', 'a', newline='', encoding="utf-8") as file:
-        writer = csv.writer(file)
-        for commit_insert_bug in list_commit_insert_bug:
-            writer.writerow([commit_insert_bug])
-     '''
     return list(map(lambda j, y: (j, y), list_file_commit_change, list_commit_with_file))
 
 
-# Main function that parser line from commit.state this format
-# {'src/main/java/org/apache/commons/lang3/BooleanUtils.java': {'insertions': 10, 'deletions': 6, 'lines': 16},
-# to list all file that end .java
 # operation_on_commit: 1
 def parser_line(list_of_file):
+    """
+   :return:
+        list of file.java without Test.java
+    """
     list_file = list()
     for file in list_of_file:
         if file.endswith(".java") and not file.endswith("Test.java"):
@@ -137,10 +143,12 @@ def parser_line(list_of_file):
     return list_file
 
 
-# check if line contain '-' and hence remove
-# return None if the line not remove
-# operation_on_commit: 2
 def diff_between_commit(list_diff):
+    """
+        Get list diff between parent and commit
+        check if line contain '-' and hence remove
+        return None if the line not remove
+    """
     list_line_blame = list()
     list_line_number = list()
     list_diff = list(list_diff)
@@ -226,6 +234,11 @@ def blame_add_line(list_diff, counter_line_number, list_line_blame, list_line_nu
 # return list with all number issue
 # main_function: 1
 def read_issue_from_file():
+    """
+    read all issue that write in jira.csv
+    :return:
+        list issue
+    """
     with open('File/jira.csv') as csv_file:
         list_issue = list()
         read_csv = csv.reader(csv_file, delimiter=',')
@@ -238,22 +251,44 @@ def read_issue_from_file():
 # return string in LANG-123 format
 # main_function: 3
 def parser_issue(issue):
+    """
+    remove []
+    example
+    ['LANG-1608']
+    replace
+    LANG-1608
+    """
     issue = str(issue).replace(']', '')
     issue = str(issue).replace("'", '')
     return str(issue).replace('[', '')
 
 
-class Git:
+def describe_data_frame(path):
+    """
+      Print describe_data_frame of feature
+      """
+
+    data_frame = pd.read_csv(path)
+    pd.options.display.width = 0
+    print("describe data frame in ptah ", path)
+    print(data_frame.describe())
+
+
+class GetCommit:
     connect: Repo
 
     def __init__(self, url):
         self.URL = url
-
-    def connect_git(self):
         self.connect = Repo(self.URL)
-        assert not obj_git.connect.bare
+        assert not self.connect.bare
 
     def main_function(self):
+        """
+        This function classification all commit insert bug by blame the last row that edit.
+        The main function that call all help function.
+        :return:
+            all_commit_insert_bug(list)
+        """
         # for all issue in jira
         all_commit_insert_bug = list()
         with open('File/commit_blame.csv', 'w', newline='', encoding="utf-8") as file:
@@ -266,6 +301,7 @@ class Git:
         for issue in list_of_issue:
             issue = parser_issue(issue)
             list_commit_sol_issue = list()
+            # find all commit solve this issue
             for commit_check in list_of_commit:
                 if str(issue + ' ') in commit_check.summary or str(issue + ')') in commit_check.summary or str(
                         issue + ']') in commit_check.summary or str(issue + ':') in commit_check.summary:
@@ -275,9 +311,14 @@ class Git:
 
     # main_function: 2
     def get_all_commit(self):
+        """
+        Get all commit from url of repository
+        :return:
+            list_all_commit(list)
+        """
         list_all_commit = list()
         commits = list(self.connect.iter_commits('master'))
-        for commit in commits[:500]:
+        for commit in commits:
             list_all_commit.append(commit)
         return list_all_commit
 
@@ -287,13 +328,16 @@ class Git:
 # TODO list for new programmer:
 # 1. TODO change path in line obj_git = Git('C:/Users/shir0/commons-lang') to path og commons-lang
 # 2. TODO add directory name "Code_lab" from this URL https://github.com/amir9979/repository_mining.git
-# 2. TODO change line DB_PATH = r"C:\Users\shir0\Commits-Issues-DB\CommitIssueDB.db"
+# 2. TODO change line DB_PATH = r"C:\Users\shir0\Commits-Issues-DB\CommitIssueDB.db" (you need create DB in this name
+# TODO according to https://github.com/amir9979/Commits-Issues-DB.git
 
 
 if __name__ == '__main__':
-    obj_git = Git('C:/Users/shir0/commons-lang')
-    obj_git.connect_git()
+    obj_git = GetCommit('C:/Users/shir0/commons-lang')
     # get all commit insert bug
     list_commit_file_bug = obj_git.main_function()
     # feature
     find_feature_all_commit(obj_git.get_all_commit(), list_commit_file_bug)
+    describe_data_frame(str(pathlib.Path().absolute()) +'/File/feature_of_commit_solve_issue.csv')
+    describe_data_frame(str(pathlib.Path().absolute()) + '/File/before_token.csv')
+    describe_data_frame(str(pathlib.Path().absolute()) +'/File/after_token.csv')

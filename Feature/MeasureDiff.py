@@ -15,6 +15,7 @@ class MeasureDiff:
         number_add, number_remove, number_change_block = self.row_add_remove_block(change_line)
         list_feature.append(number_add)
         list_feature.append(number_remove)
+        list_feature.append(number_add-number_remove)
         list_feature.append(number_change_block)
         character = self.character_change(change_line)
         list_feature.append(character)
@@ -37,12 +38,18 @@ class MeasureDiff:
         number_change_block = 0
         for i in diff:
             if i.startswith("+"):
-                number_add += 1
+                i = i[1:]
+                i = i.lstrip()
+                if not i.startswith("*") and not i.startswith("/**") and not i.startswith("//"):
+                    number_add += 1
                 if block:
                     number_change_block += 1
                     block = False
             elif i.startswith("-"):
-                number_remove += 1
+                i = i[1:]
+                i = i.lstrip()
+                if not i.startswith("*") and not i.startswith("/**") and not i.startswith("//"):
+                    number_remove += 1
                 if block:
                     number_change_block += 1
                     block = False

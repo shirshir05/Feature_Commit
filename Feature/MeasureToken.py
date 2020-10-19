@@ -1,6 +1,10 @@
+import csv
+import os
+import pathlib
 import sqlite3
 import pandas as pd
 import numpy as np
+
 
 class MeasureToken:
 
@@ -12,8 +16,20 @@ class MeasureToken:
         # Get DB connection
         self.db_connection = sqlite3.connect(DB_PATH)
         print("connection established")
+        if os.path.exists(str(pathlib.Path().absolute()) +"/File/before_token.csv"):
+            os.remove(str(pathlib.Path().absolute()) + "/File/before_token.csv")
+        if os.path.exists(str(pathlib.Path().absolute()) + "/File/after_token.csv"):
+            os.remove(str(pathlib.Path().absolute()) + "/File/after_token.csv")
+        with open(str(pathlib.Path().absolute()) + '/File/after_token.csv', 'w', newline='', encoding="utf-8") as file:
+            writer = csv.writer(file, delimiter=',')
+            writer.writerow(['Member', 'FieldDeclaration', 'VariableDeclaration', 'LocalVariableDeclaration',
+                             'VariableDeclarator', 'Literal', 'This', 'MemberReference'])
+        with open(str(pathlib.Path().absolute()) + '/File/before_token.csv', 'w', newline='', encoding="utf-8") as file:
+            writer = csv.writer(file, delimiter=',')
+            writer.writerow(['Member', 'FieldDeclaration', 'VariableDeclaration', 'LocalVariableDeclaration',
+                             'VariableDeclarator', 'Literal', 'This', 'MemberReference'])
 
-    def get_feature(self, parent, commit, file_change):
+    def get_feature(self, commit, file_change):
         """"
             Main function that return list of feature
             parameter:
@@ -23,15 +39,21 @@ class MeasureToken:
             return:
                 return list of feature
         """
-        dic_before = self.find_meaning(parent, file_change)
-        dic_after = self.find_meaning(commit, file_change)
+        dic_before = self.find_meaning(commit, file_change, "OLD")
+        if dic_before is None:
+            return None
+        self.write_value_without_sub(dic_before, "before_token", commit, file_change)
+        dic_after = self.find_meaning(commit, file_change, "NEW")
+        if dic_after is None:
+            return None
+        self.write_value_without_sub(dic_after, "after_token", commit, file_change)
         feature = {x: dic_after[x] - dic_before[x] for x in dic_before if x in dic_after}
-        list_ans = [feature['Member'], feature['FieldDeclaration'], feature['VariableDeclaration'],
-                    feature['LocalVariableDeclaration'], feature['VariableDeclarator'], feature['Literal'],
-                    feature['This'], feature['MemberReference']]
+        list_ans = [feature["'Member'"], feature["'FieldDeclaration'"], feature["'VariableDeclaration'"],
+                    feature["'LocalVariableDeclaration'"], feature["'VariableDeclarator'"], feature["'Literal'"],
+                    feature["'This'"], feature["'MemberReference'"]]
         return list_ans
 
-    def find_meaning(self, commit, file_change):
+    def find_meaning(self, commit, file_change, new_or_old):
         """"
             help function that return dictionary of measure
             parameter:
@@ -41,8 +63,12 @@ class MeasureToken:
                 return dictionary of measure
         """
         try:
-            query_method_data = "SELECT Meaning FROM MethodData WHERE CommitID='" + str(commit) + "' AND NewPath='" + str(file_change) + "'"
+            query_method_data = "SELECT * FROM MethodData WHERE NewPath =='" + str(file_change) + "'AND CommitID = '" +\
+                                str(commit) + "' AND "  "OldNew == '" + new_or_old + "' "
+
             sql_query = pd.read_sql_query(query_method_data, self.db_connection)
+            if sql_query.empty:
+                return None
             df = pd.DataFrame(sql_query, columns=['Meaning'])
 
             dic = {"'Member'": 0, "'FieldDeclaration'": 0, "'VariableDeclaration'": 0, "'LocalVariableDeclaration'": 0,
@@ -61,3 +87,19 @@ class MeasureToken:
             print(e)
             pass
             return None
+
+    @staticmethod
+    def write_value_without_sub(dic, name_file, commit, file_change):
+        with open('File/' + name_file + '.csv', 'a', newline='', encoding="utf-8") as file:
+            file.write("\n")
+            file.write("%s,%s," % (commit, file_change))
+            for key in dic.keys():
+                file.write(",%s" % (dic[key]))
+
+    def close_connection(self):
+        self.db_connection.close()
+
+
+if __name__ == '__main__':
+    measure_token = MeasureToken()
+    measure_token.get_feature('0b748abd186ea0d9e10b4a5b43ec4f410ebbc64f', 'src/main/java/org/apache/commons/lang3/Conversion.java')
