@@ -3,7 +3,6 @@ import os
 import pathlib
 import sqlite3
 import pandas as pd
-import numpy as np
 
 
 class MeasureToken:
@@ -40,12 +39,10 @@ class MeasureToken:
                 return list of feature
         """
         dic_before = self.find_meaning(commit, file_change, "OLD")
-        if dic_before is None:
+        dic_after = self.find_meaning(commit, file_change, "NEW")
+        if dic_before is None and dic_after is None:
             return None
         self.write_value_without_sub(dic_before, "before_token", commit, file_change)
-        dic_after = self.find_meaning(commit, file_change, "NEW")
-        if dic_after is None:
-            return None
         self.write_value_without_sub(dic_after, "after_token", commit, file_change)
         feature = {x: dic_after[x] - dic_before[x] for x in dic_before if x in dic_after}
         list_ans = [feature["'Member'"], feature["'FieldDeclaration'"], feature["'VariableDeclaration'"],
@@ -90,6 +87,8 @@ class MeasureToken:
 
     @staticmethod
     def write_value_without_sub(dic, name_file, commit, file_change):
+        if dic is None:
+            return
         with open('File/' + name_file + '.csv', 'a', newline='', encoding="utf-8") as file:
             file.write("\n")
             file.write("%s,%s," % (commit, file_change))

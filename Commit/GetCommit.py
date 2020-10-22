@@ -1,15 +1,17 @@
 import difflib
+import os
+
 import pathlib
 
 from git import Repo
 import csv
 
 import pandas as pd
+
+from Commit.Filter import Filter
 from Feature.MeasureDiff import MeasureDiff
 from Feature.MeasureToken import MeasureToken
 from Feature.MeasureLab import MeasureLab
-
-NUMBER_FILE = 0
 
 NAME_PROJECT = "LANG-"
 # FEATURE_LIST = ['commit', 'file', 'AnonInnerLength', 'AvoidInlineConditionals', 'BooleanExpressionComplexity',
@@ -27,8 +29,14 @@ NAME_PROJECT = "LANG-"
 #                 'commit insert bug?']
 
 
-FEATURE_LIST = ['commit', 'file',"Member", "FieldDeclaration", "VariableDeclaration", "LocalVariableDeclaration", "VariableDeclarator", "Literal",
-                "This", "MemberReference",  'row add', 'row remove', "row add-row remove", "change block", "character change",  'commit insert bug?']
+FEATURE_LIST = ['commit', 'file', "Member", "FieldDeclaration", "VariableDeclaration", "LocalVariableDeclaration",
+                "VariableDeclarator", "Literal",
+                "This", "MemberReference", 'row add', 'row remove', "row add-row remove", "change block",
+                "character change", 'commit insert bug?']
+
+# This dictionary contain
+# dict_commit_filter[str(commit)] = [[lines_before, lines_after], [number_lines_before, number_lines_after]]
+dict_commit_filter = {}
 
 
 # -------------------------------------------Start feature of commit
@@ -43,25 +51,40 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
         # find all commit
         for commit in list_of_commit:
             all_file_of_commit = commit.stats.files
-            list_file_that_change = parser_line(all_file_of_commit)
+            list_file_that_change = Filter.find_java_file(all_file_of_commit)
             # find java file
             for file_change in list_file_that_change:
                 # parent of commit
                 for parent in commit.parents:
                     diffs = parent.diff(commit)
-                    for change_line in diffs:
-                        if change_line.new_file or change_line.deleted_file:
+                    for diff in diffs:
+                        if diff.new_file or diff.deleted_file:
                             continue
-                        if change_line.a_path == file_change:
+                        if diff.a_path == file_change:
                             try:
-                                # list_feature += measure_lab.main_measure(
-                                #     change_line.a_blob.data_stream.read().decode('utf-8').splitlines()
-                                #     , change_line.b_blob.data_stream.read().decode('utf-8').splitlines())
-                                # list_feature += measure_token.measure_diff(commit, file_change)
+                                if not str(commit) in dict_commit_filter.keys():
+                                    # filter the source file
+                                    filter_obj = Filter()
+                                    number_lines_before, number_lines_after = filter_obj.get_relevant_lines(diff,
+                                                                                                            parent,
+                                                                                                            commit)
+                                    lines_before = Filter.filter_file_line(number_lines_before,
+                                                                           diff.a_blob.data_stream.read().decode(
+                                                                               'utf-8').splitlines())
+                                    lines_after = Filter.filter_file_line(number_lines_after,
+                                                                          diff.b_blob.data_stream.read().decode(
+                                                                              'utf-8').splitlines())
+                                    dict_commit_filter[str(commit)] = [[lines_before, lines_after],
+                                                                       [number_lines_before, number_lines_after]]
+                                # list_feature += measure_lab.main_measure(dict_commit_filter[str(commit)][0][0],
+                                # dict_commit_filter[str(commit)][0][1]) list_feature += measure_lab.main_measure(
+                                # diff.a_blob.data_stream.read().decode('utf-8').splitlines() ,
+                                # diff.b_blob.data_stream.read().decode('utf-8').splitlines()) list_feature +=
+                                # measure_token.measure_diff(commit, file_change)
                                 list_feature = measure_token.get_feature(commit, file_change)
                                 if list_feature is None:
                                     continue
-                                list_feature += measure_diff.measure_diff(change_line)
+                                list_feature += measure_diff.measure_diff(dict_commit_filter[str(commit)][0])
                                 file.write(str(commit))
                                 file.write(',')
                                 file.write(file_change)
@@ -80,6 +103,7 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                                 file.write('\n')
                                 file.flush()
                             except Exception as e:
+                                print("find_feature_all_commit - error - ", e)
                                 # raise e
                                 pass
         measure_token.close_connection()
@@ -96,58 +120,69 @@ def operation_on_commit(list_commit_sol_issue, issue):
         1.1. find list of file change
         1.2 for file in file change
             1.2.1 find parents of commit in file
-            1.2.2 for paren in parents
+            1.2.2 for parent in parents
                 1.2.2.1 find diff between parent and commit
-    5. find commit that insert bug (last commit that insert line OR lase commit insert line and row top an down)
+                1.2.2.1.2 for all diff in diffs
+                    1.2.2.1.2.1 filter_obj the source file (find only relevant line)
+                    1.2.2.1.2.2 find blame commits
+                    1.2.2.1.2.2 write blame commit to file commit_blame
+    return:
+        list contain tuple of (file_commit_change, commit_with_file)
     """
     list_commit_insert_bug = list()
     list_file_commit_change = list()
     list_commit_with_file = list()
     for commit in list_commit_sol_issue:
         all_file_of_commit = commit.stats.files
-        list_file_that_change = parser_line(all_file_of_commit)
+        list_file_that_change = Filter.find_java_file(all_file_of_commit)
         for file_change in list_file_that_change:
             for parent in commit.parents:
                 diffs = parent.diff(commit)
-                for change_line in diffs:
-                    if change_line.new_file or change_line.deleted_file:
+                for diff in diffs:
+                    filter_obj = Filter()
+                    if diff.new_file or diff.deleted_file:
                         continue
-                    if change_line.a_path == file_change:
+                    if diff.a_path == file_change:
                         try:
-                            # print(diff.get_changed_methods('C:/Users/TMP467/Desktop/shir - studies/commons-lang',commit,parent))
-                            diff = difflib.Differ().compare(
-                                change_line.a_blob.data_stream.read().decode('utf-8').splitlines(),
-                                change_line.b_blob.data_stream.read().decode('utf-8').splitlines())
-                            lines_guilty = diff_between_commit(diff)
-                            list_commit_bug = write_file(parent, file_change, lines_guilty, commit, issue)
+                            number_lines_before, number_lines_after = filter_obj.get_relevant_lines(diff, parent,
+                                                                                                    commit)
+                            lines_before = Filter.filter_file_line(number_lines_before,
+                                                                   diff.a_blob.data_stream.read().decode(
+                                                                       'utf-8').splitlines())
+                            lines_after = Filter.filter_file_line(number_lines_after,
+                                                                  diff.b_blob.data_stream.read().decode(
+                                                                      'utf-8').splitlines())
+                            dict_commit_filter[str(commit)] = [[lines_before, lines_after],
+                                                               [number_lines_before, number_lines_after]]
+                            diff = difflib.Differ().compare(lines_before, lines_after)
+
+                            lines_guilty = find_blame_commits(diff)
+                            list_commit_bug = write_file_commit_blame(parent, file_change, lines_guilty, commit, issue,
+                                                                      diff)
                             list_commit_insert_bug = list_commit_insert_bug + list_commit_bug
                             for commit_bug in list_commit_bug:
                                 list_commit_with_file.append(file_change)
                                 list_file_commit_change.append(commit_bug)
                         except Exception as e:
+                            print("operation_on_commit function - error - ", e)
                             # raise e
                             pass
     return list(map(lambda j, y: (j, y), list_file_commit_change, list_commit_with_file))
 
 
-# operation_on_commit: 1
-def parser_line(list_of_file):
-    """
-   :return:
-        list of file.java without Test.java
-    """
-    list_file = list()
-    for file in list_of_file:
-        if file.endswith(".java") and not file.endswith("Test.java"):
-            list_file.append(file)
-    return list_file
-
-
-def diff_between_commit(list_diff):
+def find_blame_commits(list_diff):
     """
         Get list diff between parent and commit
-        check if line contain '-' and hence remove
-        return None if the line not remove
+        This function find the number of line need blame.
+        :parameter:
+            list_diff(list) : list of string that contain row -
+                1. start with + -> add
+                2. start with - -> remove
+                3. start with ? -> ignore
+                4. otherwise no change
+         Strategy to find commit blame:
+         1. if line add we blame the line above line add (whiteout line that start with *, { , }, /*)
+         2. if line remove we blame tha line remove (whiteout line that start with *, { , }, /*)
     """
     list_line_blame = list()
     list_line_number = list()
@@ -167,37 +202,61 @@ def diff_between_commit(list_diff):
 
 
 # operation_on_commit: 3
-def write_file(parent, file_change, lines_guilty, commit, issue):
+def write_file_commit_blame(parent, file_change, lines_guilty, commit, issue, diff):
+    """
+    :parameter:
+        parent(commit) -
+        commit(commit) -
+        file_change(str)
+        lines_guilty(list of sublist) - [[line blame , line_number]]
+        issue
+        diff
+    This function find the relevant commit we need blame according to line_number and write file of commit.
+    """
     # blame return tuple commit and line that commit write
     # shir = diff.get_changed_methods('C:/Users/TMP467/Desktop/shir - studies/commons-lang', commit, parent)
-    list_commit_insert_bug = list()
+    list_insert_bug = []
     with open('File/commit_blame.csv', 'a', newline='', encoding="utf-8") as file:
         writer = csv.writer(file)
         try:
             # counter the number of row in list (start 0)
-            counter = -1
+            counter_all_line = -1
+            counter_relevant_line = -1
+            number_lines_before, number_lines_after = dict_commit_filter[str(commit)][1]
             for commit_suspect, list_of_line in obj_git.connect.blame(parent, file_change):
-                for i in range(len(list_of_line)):
-                    counter += 1
+                for i in range(0, len(list_of_line)):
+                    counter_all_line += 1
+                    if counter_all_line in number_lines_before:
+                        counter_relevant_line += 1
                     for line, line_number in lines_guilty:
-                        if line_number == counter:
+                        if line_number == counter_relevant_line:
                             writer.writerow(
-                                [issue, commit, file_change, line, commit_suspect, line_number])
-                            list_commit_insert_bug.append(commit_suspect)
+                                [issue, commit, file_change, line, commit_suspect, counter_all_line,
+                                 counter_relevant_line])
+                            list_insert_bug.append(commit_suspect)
         except Exception as e:
+            print("write_file_commit_blame function - error - ", e)
             # raise e
             pass
-        return list_commit_insert_bug
+    return list_insert_bug
 
 
 # This function blame line that start with -
 # diff_between_commit: 1
 def blame_remove_line(line, current_line_number, list_line_blame, list_line_number):
+    """
+    parameter:
+        line(str) - line remove starst with  -
+        current_line_number(int) = number of line remove
+        list_line_blame(list) - list line blame
+        list_line_number(list) - list line number for save number line
+    if line remove we blame tha line remove (ignore line that start with *, { , }, /*)
+    """
     # remove - and space from start of line
     line_parser = (line.replace('- ', '', 1)).lstrip()
     # if the line is comment ignore
     if not line_parser.startswith("*") and not line_parser.startswith("}") and not line_parser.startswith(
-            "/**") and line_parser != "" and not line_parser.startswith("//"):
+            "/**") and line_parser != "" and not line_parser.startswith("//") and line_parser != " ":
         # blame the line that change or remove
         list_line_blame.append("line remove " + line_parser)
         list_line_number.append(current_line_number)
@@ -205,6 +264,14 @@ def blame_remove_line(line, current_line_number, list_line_blame, list_line_numb
 
 # diff_between_commit: 2
 def blame_add_line(list_diff, counter_line_number, list_line_blame, list_line_number, i):
+    """
+    parameter:
+        line(str) - line add starst with  +
+        current_line_number(int) = number of line add
+        list_line_blame(list) - list line blame
+        list_line_number(list) - list line number for save number line
+    if line add we blame the line above line add (whiteout line that start with *, { , }, /*)
+    """
     if i == 0:
         return
     list_line_blame.append("line add " + list_diff[i])
@@ -219,8 +286,9 @@ def blame_add_line(list_diff, counter_line_number, list_line_blame, list_line_nu
             i -= 1
             line_blame = list_diff[i].lstrip()
             continue
+        # line that not blame - for example {, //, }
         if (line_blame.startswith("*") or line_blame.startswith("}") or line_blame.startswith(
-                "/**") or line_blame == "" or line_blame.startswith("//")):
+                "/*") or line_blame == "" or line_blame.startswith("//")):
             index += 1
             i -= 1
             line_blame = list_diff[i].lstrip()
@@ -266,8 +334,7 @@ def parser_issue(issue):
 def describe_data_frame(path):
     """
       Print describe_data_frame of feature
-      """
-
+    """
     data_frame = pd.read_csv(path)
     pd.options.display.width = 0
     print("describe data frame in ptah ", path)
@@ -278,9 +345,19 @@ class GetCommit:
     connect: Repo
 
     def __init__(self, url):
+        """
+        This function init tha GetCommit class.
+        connect to project in github
+        init file
+        :parameter:
+            url(string) - fot project in github
+        """
         self.URL = url
         self.connect = Repo(self.URL)
         assert not self.connect.bare
+        self.list_of_commit = self.get_all_commit()
+        if os.path.exists("File/commit_blame.csv"):
+            os.remove("File/commit_blame.csv")
 
     def main_function(self):
         """
@@ -293,19 +370,21 @@ class GetCommit:
         all_commit_insert_bug = list()
         with open('File/commit_blame.csv', 'w', newline='', encoding="utf-8") as file:
             writer = csv.writer(file)
-            writer.writerow(['issue', 'ID commit', 'file', 'line change', 'previous commit', 'line number'])
+            writer.writerow(['issue', 'ID commit', 'file', 'line change', 'previous commit', 'line number',
+                             'number relevant line number'])
         # get list all issue that start with LANG-XXXX
         list_of_issue = read_issue_from_file()
         # get list of commit
-        list_of_commit = self.get_all_commit()
         for issue in list_of_issue:
             issue = parser_issue(issue)
             list_commit_sol_issue = list()
             # find all commit solve this issue
-            for commit_check in list_of_commit:
+            for commit_check in self.list_of_commit:
                 if str(issue + ' ') in commit_check.summary or str(issue + ')') in commit_check.summary or str(
                         issue + ']') in commit_check.summary or str(issue + ':') in commit_check.summary:
                     list_commit_sol_issue.append(commit_check)
+
+                    # operation_on_commit find all commit that insert bug of this issue
             all_commit_insert_bug = all_commit_insert_bug + operation_on_commit(list_commit_sol_issue, issue)
         return all_commit_insert_bug
 
@@ -318,12 +397,10 @@ class GetCommit:
         """
         list_all_commit = list()
         commits = list(self.connect.iter_commits('master'))
-        for commit in commits:
+        for commit in commits[:1000]:
             list_all_commit.append(commit)
         return list_all_commit
 
-
-# repo is a Repo instance pointing to the git-python repository.
 
 # TODO list for new programmer:
 # 1. TODO change path in line obj_git = Git('C:/Users/shir0/commons-lang') to path og commons-lang
@@ -335,9 +412,10 @@ class GetCommit:
 if __name__ == '__main__':
     obj_git = GetCommit('C:/Users/shir0/commons-lang')
     # get all commit insert bug
-    list_commit_file_bug = obj_git.main_function()
+    list_of_commit_insert_bug = obj_git.main_function()
     # feature
-    find_feature_all_commit(obj_git.get_all_commit(), list_commit_file_bug)
-    describe_data_frame(str(pathlib.Path().absolute()) +'/File/feature_of_commit_solve_issue.csv')
+    find_feature_all_commit(obj_git.list_of_commit, list_of_commit_insert_bug)
+
+    describe_data_frame(str(pathlib.Path().absolute()) + '/File/feature_of_commit_solve_issue.csv')
     describe_data_frame(str(pathlib.Path().absolute()) + '/File/before_token.csv')
-    describe_data_frame(str(pathlib.Path().absolute()) +'/File/after_token.csv')
+    describe_data_frame(str(pathlib.Path().absolute()) + '/File/after_token.csv')

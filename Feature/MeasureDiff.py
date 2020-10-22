@@ -11,6 +11,8 @@ class MeasureDiff:
         :return: list_feature
         """
         list_feature = []
+        if change_line is None:
+            return None
         self.character_change(change_line)
         number_add, number_remove, number_change_block = self.row_add_remove_block(change_line)
         list_feature.append(number_add)
@@ -29,9 +31,7 @@ class MeasureDiff:
         :param change_line:
         :return: three feature
         """
-        diff = difflib.Differ().compare(
-            change_line.a_blob.data_stream.read().decode('utf-8').splitlines(),
-            change_line.b_blob.data_stream.read().decode('utf-8').splitlines())
+        diff = difflib.Differ().compare(change_line[0], change_line[1])
         number_add = 0
         number_remove = 0
         block = True
@@ -65,13 +65,14 @@ class MeasureDiff:
         :param change_line:
         :return: one feature
         """
-        list_before = change_line.a_blob.data_stream.read().decode('utf-8').splitlines()
+
+        list_before = change_line[0]
         chars_before = []
         for line in list_before:
             for c in line:
                 chars_before.append(c)
 
-        list_after = change_line.b_blob.data_stream.read().decode('utf-8').splitlines()
+        list_after = change_line[1]
         chars_after = []
         for line in list_after:
             for c in line:
