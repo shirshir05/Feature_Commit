@@ -86,48 +86,48 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                             try:
                                 measure_refactoring = Refactoring()
                                 list_feature = measure_refactoring.feature_refactoring(commit, file_change)
-                            #     before_contents = []
-                            #     after_contents = []
-                            #     if not (str(commit), str(file_change)) in dict_commit_filter.keys():
-                            #         # filter the source file
-                            #         filter_obj = Filter()
-                            #         number_lines_before, number_lines_after = filter_obj.get_relevant_lines(diff,
-                            #                                                                                 parent,
-                            #                                                                                 commit)
-                            #         before_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
-                            #                                    diff.a_blob.data_stream.stream.readlines()))
-                            #         lines_before = Filter.filter_file_line(number_lines_before, before_contents)
-                            #         after_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
-                            #                                   diff.b_blob.data_stream.stream.readlines()))
-                            #         lines_after = Filter.filter_file_line(number_lines_after, after_contents)
-                            #         # no relevant change in commit
-                            #         if len(list(difflib.context_diff(lines_before,
-                            #                                          lines_after))) == 0:
-                            #             continue
-                            #         dict_commit_filter[(str(commit), str(file_change))] = [[lines_before, lines_after],
-                            #                                                                [number_lines_before,
-                            #                                                                 number_lines_after]]
-                            #     list_feature_tokens = measure_tokens.get_feature(commit, file_change)
-                            #     if list_feature_tokens is None:
-                            #         continue
-                            #     list_feature_meaning = measure_meaning.get_feature(commit, file_change)
-                            #     if list_feature_meaning is None:
-                            #         continue
-                            #     if after_contents == []:
-                            #         before_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
-                            #                                        diff.a_blob.data_stream.stream.readlines()))
-                            #         after_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
-                            #                                   diff.b_blob.data_stream.stream.readlines()))
-                            #     list_feature_lab = measure_lab.main_measure(before_contents, after_contents)
-                            #     if list_feature_lab is None:
-                            #         continue
-                            #     list_feature_diff = measure_diff.measure_diff(dict_commit_filter[(str(commit),
-                            #                                                                       str(file_change))][0])
-                            #     if list_feature_diff is None:
-                            #         continue
-                            #     # todo all
-                            #     list_feature = list_feature_meaning + list_feature_lab + list_feature_diff + list_feature_tokens
-                            #     list_feature = list_feature_meaning + list_feature_diff + list_feature_tokens
+                                before_contents = []
+                                after_contents = []
+                                if not (str(commit), str(file_change)) in dict_commit_filter.keys():
+                                    # filter the source file
+                                    filter_obj = Filter()
+                                    number_lines_before, number_lines_after = filter_obj.get_relevant_lines(diff,
+                                                                                                            parent,
+                                                                                                            commit)
+                                    before_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
+                                                               diff.a_blob.data_stream.stream.readlines()))
+                                    lines_before = Filter.filter_file_line(number_lines_before, before_contents)
+                                    after_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
+                                                              diff.b_blob.data_stream.stream.readlines()))
+                                    lines_after = Filter.filter_file_line(number_lines_after, after_contents)
+                                    # no relevant change in commit
+                                    if len(list(difflib.context_diff(lines_before,
+                                                                     lines_after))) == 0:
+                                        continue
+                                    dict_commit_filter[(str(commit), str(file_change))] = [[lines_before, lines_after],
+                                                                                           [number_lines_before,
+                                                                                            number_lines_after]]
+                                list_feature_tokens = measure_tokens.get_feature(commit, file_change)
+                                if list_feature_tokens is None:
+                                    continue
+                                list_feature_meaning = measure_meaning.get_feature(commit, file_change)
+                                if list_feature_meaning is None:
+                                    continue
+                                if after_contents == []:
+                                    before_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
+                                                                   diff.a_blob.data_stream.stream.readlines()))
+                                    after_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
+                                                              diff.b_blob.data_stream.stream.readlines()))
+                                list_feature_lab = measure_lab.main_measure(before_contents, after_contents)
+                                if list_feature_lab is None:
+                                    continue
+                                list_feature_diff = measure_diff.measure_diff(dict_commit_filter[(str(commit),
+                                                                                                  str(file_change))][0])
+                                if list_feature_diff is None:
+                                    continue
+                                # todo all
+                                list_feature = list_feature_meaning + list_feature_lab + list_feature_diff + list_feature_tokens
+                                # list_feature = list_feature_meaning + list_feature_diff + list_feature_tokens
                                 file.write(str(commit))
                                 file.write(',')
                                 file.write(file_change)
