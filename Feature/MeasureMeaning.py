@@ -1,32 +1,33 @@
+import copy
 import csv
+import json
 import os
 import pathlib
 import sqlite3
 import pandas as pd
 
 
-class MeasureToken:
+DIC = {}
+
+
+class MeasureMeaning:
 
     def __init__(self):
         """"
             Init the connection of DB
         """
+        # todo change DB name!!!!!!!!
         DB_PATH = r"C:\Users\shir0\Commits-Issues-DB\CommitIssueDB.db"
         # Get DB connection
         self.db_connection = sqlite3.connect(DB_PATH)
         print("connection established")
+        self.init_dic()
         if os.path.exists(str(pathlib.Path().absolute()) +"/File/before_token.csv"):
             os.remove(str(pathlib.Path().absolute()) + "/File/before_token.csv")
         if os.path.exists(str(pathlib.Path().absolute()) + "/File/after_token.csv"):
             os.remove(str(pathlib.Path().absolute()) + "/File/after_token.csv")
-        with open(str(pathlib.Path().absolute()) + '/File/after_token.csv', 'w', newline='', encoding="utf-8") as file:
-            writer = csv.writer(file, delimiter=',')
-            writer.writerow(['Member', 'FieldDeclaration', 'VariableDeclaration', 'LocalVariableDeclaration',
-                             'VariableDeclarator', 'Literal', 'This', 'MemberReference'])
-        with open(str(pathlib.Path().absolute()) + '/File/before_token.csv', 'w', newline='', encoding="utf-8") as file:
-            writer = csv.writer(file, delimiter=',')
-            writer.writerow(['Member', 'FieldDeclaration', 'VariableDeclaration', 'LocalVariableDeclaration',
-                             'VariableDeclarator', 'Literal', 'This', 'MemberReference'])
+        if os.path.exists(str(pathlib.Path().absolute()) + "/File/NOT_in_DB.csv"):
+            os.remove(str(pathlib.Path().absolute()) + "/File/NOT_in_DB.csv")
 
     def get_feature(self, commit, file_change):
         """"
@@ -41,13 +42,21 @@ class MeasureToken:
         dic_before = self.find_meaning(commit, file_change, "OLD")
         dic_after = self.find_meaning(commit, file_change, "NEW")
         if dic_before is None and dic_after is None:
+            # self.write_NOT_in_DB(0, 0, str(commit), file_change)
             return None
-        self.write_value_without_sub(dic_before, "before_token", commit, file_change)
-        self.write_value_without_sub(dic_after, "after_token", commit, file_change)
+        # self.write_value_without_sub(dic_before, "before_token", commit, file_change)
+        # self.write_value_without_sub(dic_after, "after_token", commit, file_change)
+        if dic_before is None:
+            # self.write_NOT_in_DB(0, 1, str(commit), file_change)
+            dic_before = copy.copy(DIC)
+        elif dic_after is None:
+            # self.write_NOT_in_DB(1, 0, str(commit), file_change)
+            dic_after = dic_before = copy.copy(DIC)
+
         feature = {x: dic_after[x] - dic_before[x] for x in dic_before if x in dic_after}
-        list_ans = [feature["'Member'"], feature["'FieldDeclaration'"], feature["'VariableDeclaration'"],
-                    feature["'LocalVariableDeclaration'"], feature["'VariableDeclarator'"], feature["'Literal'"],
-                    feature["'This'"], feature["'MemberReference'"]]
+        list_ans = []
+        for i in feature.keys():
+            list_ans.append(feature[i])
         return list_ans
 
     def find_meaning(self, commit, file_change, new_or_old):
@@ -61,24 +70,20 @@ class MeasureToken:
         """
         try:
             query_method_data = "SELECT * FROM MethodData WHERE NewPath =='" + str(file_change) + "'AND CommitID = '" +\
-                                str(commit) + "' AND "  "OldNew == '" + new_or_old + "' "
+                                str(commit) + "' AND "  "OldNew == '" + new_or_old + "' AND Changed=1"
 
             sql_query = pd.read_sql_query(query_method_data, self.db_connection)
             if sql_query.empty:
                 return None
             df = pd.DataFrame(sql_query, columns=['Meaning'])
-
-            dic = {"'Member'": 0, "'FieldDeclaration'": 0, "'VariableDeclaration'": 0, "'LocalVariableDeclaration'": 0,
-                   "'VariableDeclarator'": 0, "'Literal'": 0, "'This'": 0, "'MemberReference'": 0}
+            dic = copy.copy(DIC)
             for index, line in df.iterrows():
+                if line.values == "": continue
                 # remove{'BlockStatement': 1, 'LocalVariableDeclaration': 1}
-                line = str(line.values)
-                line = line[3:len(line) - 3]
-                split_line = line.split(", ")
-                for meaning in split_line:
-                    get_number = meaning.split(": ")
-                    if get_number[0] in dic.keys():
-                        dic[get_number[0]] += int(get_number[1])
+                json_line = json.loads(str(line.values).replace("\\\'", '"')[3:-3])
+                for meaning in json_line.keys():
+                    if meaning in dic.keys():
+                        dic[meaning] += json_line[meaning]
             return dic
         except Exception as e:
             print(e)
@@ -98,7 +103,22 @@ class MeasureToken:
     def close_connection(self):
         self.db_connection.close()
 
+    @staticmethod
+    def write_NOT_in_DB(dic_before, dic_after, commit, file_change):
+        with open('File/NOT_in_DB.csv', 'a', newline='', encoding="utf-8") as file:
+            file.write("\n")
+            file.write("%s,%s, %d,%d" % (commit, file_change,  dic_before, dic_after))
+
+    @staticmethod
+    def init_dic():
+        with open(str(pathlib.Path().absolute()) + '/../Feature/dic_meaning.txt', 'r') as f:
+            for token in f:
+                DIC[token.replace(" \n", "")] = 0
+
 
 if __name__ == '__main__':
-    measure_token = MeasureToken()
-    measure_token.get_feature('0b748abd186ea0d9e10b4a5b43ec4f410ebbc64f', 'src/main/java/org/apache/commons/lang3/Conversion.java')
+    measure_token = MeasureMeaning()
+    measure_token.init_dic()
+    # print(DIC)
+    print(measure_token.get_feature('cf4138d7bc1a892295ccd58ea8b42f7c8737239a',
+                                    'src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java' ))

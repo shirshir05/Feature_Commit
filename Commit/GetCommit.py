@@ -1,19 +1,25 @@
 import difflib
+import itertools
+import json
 import os
 
 import pathlib
+import sqlite3
 
 from git import Repo
 import csv
-
+import copy
 import pandas as pd
+import numpy as np
 
 from Commit.Filter import Filter
+from Commit.Refactor.Refactoring import Refactoring
 from Feature.MeasureDiff import MeasureDiff
-from Feature.MeasureToken import MeasureToken
+from Feature.MeasureMeaning import MeasureMeaning
 from Feature.MeasureLab import MeasureLab
+from Feature.MeasureTokens import MeasureTokens
 
-NAME_PROJECT = "LANG-"
+NAME_PROJECT = "MATH-"
 # FEATURE_LIST = ['commit', 'file', 'AnonInnerLength', 'AvoidInlineConditionals', 'BooleanExpressionComplexity',
 #                 'CovariantEquals', 'ClassTypeParameterName', 'CatchParameterName', 'EmptyBlock',
 #                 'EmptyStatement', 'EqualsHashCode', 'CyclomaticComplexity', 'LineLength', 'MethodLength',
@@ -28,23 +34,38 @@ NAME_PROJECT = "LANG-"
 #                 'getTotalOparandsCnt', 'getTotalOperatorsCnt', 'getVocabulary',
 #                 'commit insert bug?']
 
+#
+# FEATURE_LIST = ['commit', 'file', "Member", "FieldDeclaration", "VariableDeclaration", "LocalVariableDeclaration",
+# "VariableDeclarator", "Literal", "This", "MemberReference",'AnonInnerLength', 'AvoidInlineConditionals',
+# 'BooleanExpressionComplexity', 'CovariantEquals', 'ClassTypeParameterName', 'CatchParameterName', 'EmptyBlock',
+# 'EmptyStatement', 'EqualsHashCode', 'CyclomaticComplexity', 'LineLength', 'MethodLength', 'MissingSwitchDefault',
+# 'ReturnCount', 'StringLiteralEquality', 'TodoComment', 'ClassFanOutComplexity', 'Long parameter list',
+# 'Complex method', 'Complex conditional', 'nested_if_else_dept', 'NCSS', 'File_length', 'NPath_Complexity',
+# 'Number_of_public_methods', 'Total_number_of_methods', 'wmc', 'loopQty', 'comparisonsQty', 'maxNestedBlocks',
+# 'lambdasQty', 'cbo', 'variables', 'tryCatchQty', 'parenthesizedExpsQty', 'stringLiteralsQty', 'numbersQty',
+# 'assignmentsQty', 'mathOperationsQty', 'uniqueWordsQty', 'modifiers', 'logStatementsQty', 'difficulty', 'volume',
+# 'getDistinctOperandsCnt', 'getDistinctOperatorsCnt', 'getEffort', 'getTotalOparandsCnt', 'getTotalOperatorsCnt',
+# 'getVocabulary', 'row add', 'row remove', "row add-row remove", "row add+row remove", "change block", "character
+# change", 'commit insert bug?']
 
 FEATURE_LIST = ['commit', 'file', "Member", "FieldDeclaration", "VariableDeclaration", "LocalVariableDeclaration",
                 "VariableDeclarator", "Literal",
-                "This", "MemberReference", 'row add', 'row remove', "row add-row remove", "change block",
+                "This", "MemberReference", 'row add', 'row remove', "row add-row remove", "row add+row remove",
+                "change block",
                 "character change", 'commit insert bug?']
 
 # This dictionary contain
-# dict_commit_filter[str(commit)] = [[lines_before, lines_after], [number_lines_before, number_lines_after]]
+# dict_commit_filter[(str(commit),str(file)) ]=[[lines_before, lines_after], [number_lines_before, number_lines_after]]
 dict_commit_filter = {}
 
 
 # -------------------------------------------Start feature of commit
 def find_feature_all_commit(list_of_commit, list_commit_bug):
-    with open('File/feature_of_commit_solve_issue.csv', 'w', newline='', encoding="utf-8") as file:
+    with open('File/feature_of_commit_solve_issue_new.csv', 'w', newline='', encoding="utf-8") as file:
         writer = csv.writer(file, delimiter=',')
         measure_diff = MeasureDiff()
-        measure_token = MeasureToken()
+        measure_meaning = MeasureMeaning()
+        measure_tokens = MeasureTokens()
         measure_lab = MeasureLab()
         writer.writerow(FEATURE_LIST)
         file.flush()
@@ -60,31 +81,53 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                     for diff in diffs:
                         if diff.new_file or diff.deleted_file:
                             continue
-                        if diff.a_path == file_change:
+                        if diff.b_path == file_change:
+
                             try:
-                                if not str(commit) in dict_commit_filter.keys():
-                                    # filter the source file
-                                    filter_obj = Filter()
-                                    number_lines_before, number_lines_after = filter_obj.get_relevant_lines(diff,
-                                                                                                            parent,
-                                                                                                            commit)
-                                    lines_before = Filter.filter_file_line(number_lines_before,
-                                                                           diff.a_blob.data_stream.read().decode(
-                                                                               'utf-8').splitlines())
-                                    lines_after = Filter.filter_file_line(number_lines_after,
-                                                                          diff.b_blob.data_stream.read().decode(
-                                                                              'utf-8').splitlines())
-                                    dict_commit_filter[str(commit)] = [[lines_before, lines_after],
-                                                                       [number_lines_before, number_lines_after]]
-                                # list_feature += measure_lab.main_measure(dict_commit_filter[str(commit)][0][0],
-                                # dict_commit_filter[str(commit)][0][1]) list_feature += measure_lab.main_measure(
-                                # diff.a_blob.data_stream.read().decode('utf-8').splitlines() ,
-                                # diff.b_blob.data_stream.read().decode('utf-8').splitlines()) list_feature +=
-                                # measure_token.measure_diff(commit, file_change)
-                                list_feature = measure_token.get_feature(commit, file_change)
-                                if list_feature is None:
-                                    continue
-                                list_feature += measure_diff.measure_diff(dict_commit_filter[str(commit)][0])
+                                measure_refactoring = Refactoring()
+                                list_feature = measure_refactoring.feature_refactoring(commit, file_change)
+                            #     before_contents = []
+                            #     after_contents = []
+                            #     if not (str(commit), str(file_change)) in dict_commit_filter.keys():
+                            #         # filter the source file
+                            #         filter_obj = Filter()
+                            #         number_lines_before, number_lines_after = filter_obj.get_relevant_lines(diff,
+                            #                                                                                 parent,
+                            #                                                                                 commit)
+                            #         before_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
+                            #                                    diff.a_blob.data_stream.stream.readlines()))
+                            #         lines_before = Filter.filter_file_line(number_lines_before, before_contents)
+                            #         after_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
+                            #                                   diff.b_blob.data_stream.stream.readlines()))
+                            #         lines_after = Filter.filter_file_line(number_lines_after, after_contents)
+                            #         # no relevant change in commit
+                            #         if len(list(difflib.context_diff(lines_before,
+                            #                                          lines_after))) == 0:
+                            #             continue
+                            #         dict_commit_filter[(str(commit), str(file_change))] = [[lines_before, lines_after],
+                            #                                                                [number_lines_before,
+                            #                                                                 number_lines_after]]
+                            #     list_feature_tokens = measure_tokens.get_feature(commit, file_change)
+                            #     if list_feature_tokens is None:
+                            #         continue
+                            #     list_feature_meaning = measure_meaning.get_feature(commit, file_change)
+                            #     if list_feature_meaning is None:
+                            #         continue
+                            #     if after_contents == []:
+                            #         before_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
+                            #                                        diff.a_blob.data_stream.stream.readlines()))
+                            #         after_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
+                            #                                   diff.b_blob.data_stream.stream.readlines()))
+                            #     list_feature_lab = measure_lab.main_measure(before_contents, after_contents)
+                            #     if list_feature_lab is None:
+                            #         continue
+                            #     list_feature_diff = measure_diff.measure_diff(dict_commit_filter[(str(commit),
+                            #                                                                       str(file_change))][0])
+                            #     if list_feature_diff is None:
+                            #         continue
+                            #     # todo all
+                            #     list_feature = list_feature_meaning + list_feature_lab + list_feature_diff + list_feature_tokens
+                            #     list_feature = list_feature_meaning + list_feature_diff + list_feature_tokens
                                 file.write(str(commit))
                                 file.write(',')
                                 file.write(file_change)
@@ -93,9 +136,10 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                                     file.write(str(feature))
                                     file.write(',')
                                 ans = 0
-                                for commit_bug, file_bug in list_commit_bug:
-                                    if str(commit) == str(commit_bug) and file_change == file_bug:
-                                        ans = 1
+                                df = list_commit_bug.loc[list_commit_bug["blame commit"] == str(commit)]
+                                df = df.loc[df["file"] == str(file_change)]
+                                if df.size > 0:
+                                    ans = 1
                                 if ans == 0:
                                     file.write("0")
                                 else:
@@ -104,10 +148,13 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                                 file.flush()
                             except Exception as e:
                                 print("find_feature_all_commit - error - ", e)
+                                print("commit ", commit)
+                                print("file ", file_change)
+
                                 # raise e
                                 pass
-        measure_token.close_connection()
-
+        measure_meaning.close_connection()
+        measure_tokens.close_connection()
 
 # -------------------------------------------END feature of commit
 
@@ -130,8 +177,6 @@ def operation_on_commit(list_commit_sol_issue, issue):
         list contain tuple of (file_commit_change, commit_with_file)
     """
     list_commit_insert_bug = list()
-    list_file_commit_change = list()
-    list_commit_with_file = list()
     for commit in list_commit_sol_issue:
         all_file_of_commit = commit.stats.files
         list_file_that_change = Filter.find_java_file(all_file_of_commit)
@@ -142,32 +187,43 @@ def operation_on_commit(list_commit_sol_issue, issue):
                     filter_obj = Filter()
                     if diff.new_file or diff.deleted_file:
                         continue
-                    if diff.a_path == file_change:
+                    # b_blob for rename file
+                    if diff.b_path == file_change:
                         try:
                             number_lines_before, number_lines_after = filter_obj.get_relevant_lines(diff, parent,
                                                                                                     commit)
-                            lines_before = Filter.filter_file_line(number_lines_before,
-                                                                   diff.a_blob.data_stream.read().decode(
-                                                                       'utf-8').splitlines())
-                            lines_after = Filter.filter_file_line(number_lines_after,
-                                                                  diff.b_blob.data_stream.read().decode(
-                                                                      'utf-8').splitlines())
-                            dict_commit_filter[str(commit)] = [[lines_before, lines_after],
-                                                               [number_lines_before, number_lines_after]]
-                            diff = difflib.Differ().compare(lines_before, lines_after)
+                            before_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
+                                                       diff.a_blob.data_stream.stream.readlines()))
+                            lines_before = Filter.filter_file_line(number_lines_before, before_contents)
 
-                            lines_guilty = find_blame_commits(diff)
-                            list_commit_bug = write_file_commit_blame(parent, file_change, lines_guilty, commit, issue,
-                                                                      diff)
+                            after_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
+                                                      diff.b_blob.data_stream.stream.readlines()))
+                            lines_after = Filter.filter_file_line(number_lines_after, after_contents)
+                            dict_commit_filter[(str(commit), str(file_change))] = [[lines_before, lines_after],
+                                                                                   [number_lines_before,
+                                                                                    number_lines_after]]
+                            # no relevant change in commit
+                            if len(list(difflib.context_diff(lines_before, lines_after))) == 0:
+                                continue
+                            diff_content = difflib.Differ().compare(lines_before, lines_after)
+
+                            lines_guilty = find_blame_commits(diff_content)
+                            # send diff.a_path (name of file before change)
+                            list_commit_bug = write_file_commit_blame(parent, diff.a_path, lines_guilty, commit, issue,
+                                                                      diff_content)
                             list_commit_insert_bug = list_commit_insert_bug + list_commit_bug
-                            for commit_bug in list_commit_bug:
-                                list_commit_with_file.append(file_change)
-                                list_file_commit_change.append(commit_bug)
                         except Exception as e:
                             print("operation_on_commit function - error - ", e)
                             # raise e
                             pass
-    return list(map(lambda j, y: (j, y), list_file_commit_change, list_commit_with_file))
+
+
+def commit_suspect_file(commit_suspect, file_change):
+    for file_check in commit_suspect.stats.files.keys():
+        index_suspect = file_check.rfind("/")
+        index_file_change = file_change.rfind("/")
+        if file_check[index_suspect:] == file_change[index_file_change:]:
+            return file_check
 
 
 def find_blame_commits(list_diff):
@@ -196,6 +252,7 @@ def find_blame_commits(list_diff):
         # line that add to code
         elif list_diff[i].startswith('+'):
             blame_add_line(list_diff, counter_line_number, list_line_blame, list_line_number, i)
+        # we count line of tha alo file (before commit)
         if not list_diff[i].startswith('+') and not list_diff[i].startswith('?'):
             counter_line_number += 1
     return list(map(lambda j, y: (j, y), list_line_blame, list_line_number))
@@ -222,7 +279,7 @@ def write_file_commit_blame(parent, file_change, lines_guilty, commit, issue, di
             # counter the number of row in list (start 0)
             counter_all_line = -1
             counter_relevant_line = -1
-            number_lines_before, number_lines_after = dict_commit_filter[str(commit)][1]
+            number_lines_before, number_lines_after = dict_commit_filter[(str(commit), str(file_change))][1]
             for commit_suspect, list_of_line in obj_git.connect.blame(parent, file_change):
                 for i in range(0, len(list_of_line)):
                     counter_all_line += 1
@@ -230,9 +287,15 @@ def write_file_commit_blame(parent, file_change, lines_guilty, commit, issue, di
                         counter_relevant_line += 1
                     for line, line_number in lines_guilty:
                         if line_number == counter_relevant_line:
-                            writer.writerow(
-                                [issue, commit, file_change, line, commit_suspect, counter_all_line,
-                                 counter_relevant_line])
+                            if file_change in commit_suspect.stats.files.keys():
+                                writer.writerow(
+                                    [issue, commit, file_change, line,
+                                     commit_suspect, counter_all_line,
+                                     counter_relevant_line])
+                            else:
+                                writer.writerow(
+                                    [issue, commit, commit_suspect_file(commit_suspect, file_change), line, commit_suspect, counter_all_line,
+                                     counter_relevant_line])
                             list_insert_bug.append(commit_suspect)
         except Exception as e:
             print("write_file_commit_blame function - error - ", e)
@@ -252,8 +315,9 @@ def blame_remove_line(line, current_line_number, list_line_blame, list_line_numb
         list_line_number(list) - list line number for save number line
     if line remove we blame tha line remove (ignore line that start with *, { , }, /*)
     """
+    line_parser = copy.copy(line)
     # remove - and space from start of line
-    line_parser = (line.replace('- ', '', 1)).lstrip()
+    line_parser = (line_parser.replace('- ', '', 1)).lstrip()
     # if the line is comment ignore
     if not line_parser.startswith("*") and not line_parser.startswith("}") and not line_parser.startswith(
             "/**") and line_parser != "" and not line_parser.startswith("//") and line_parser != " ":
@@ -307,7 +371,7 @@ def read_issue_from_file():
     :return:
         list issue
     """
-    with open('File/jira.csv') as csv_file:
+    with open('File/Jira/jira.csv') as csv_file:
         list_issue = list()
         read_csv = csv.reader(csv_file, delimiter=',')
         for row in read_csv:
@@ -336,15 +400,20 @@ def describe_data_frame(path):
       Print describe_data_frame of feature
     """
     data_frame = pd.read_csv(path)
+    df_not_bug = data_frame[data_frame['commit insert bug?'] == 0]
+    df_bug = data_frame[data_frame['commit insert bug?'] == 1]
+
     pd.options.display.width = 0
-    print("describe data frame in ptah ", path)
-    print(data_frame.describe())
+    print("describe data frame")
+    df_not_bug.describe().to_csv(str(pathlib.Path().absolute()) + "/../Commit/File/Describe/df_not_bug_description.csv")
+    df_bug.describe().to_csv(str(pathlib.Path().absolute()) + "/../Commit/File/Describe/df_bug_description.csv")
+    data_frame.describe().to_csv(str(pathlib.Path().absolute()) + "/../Commit/File/Describe/all_description.csv")
 
 
 class GetCommit:
     connect: Repo
 
-    def __init__(self, url):
+    def __init__(self, url, feature_only=False):
         """
         This function init tha GetCommit class.
         connect to project in github
@@ -352,12 +421,28 @@ class GetCommit:
         :parameter:
             url(string) - fot project in github
         """
+        if feature_only is True:
+            self.run_only_feature(url)
+            return
         self.URL = url
         self.connect = Repo(self.URL)
         assert not self.connect.bare
         self.list_of_commit = self.get_all_commit()
         if os.path.exists("File/commit_blame.csv"):
             os.remove("File/commit_blame.csv")
+
+    def run_only_feature(self, url):
+        self.URL = url
+        self.connect = Repo(self.URL)
+        assert not self.connect.bare
+        self.list_of_commit = self.get_all_commit()
+
+    @classmethod
+    def get_commit_by_id(self, url, commit_id):
+        self.URL = url
+        self.connect = Repo(self.URL)
+        assert not self.connect.bare
+        return self.connect.commit(commit_id)
 
     def main_function(self):
         """
@@ -370,7 +455,9 @@ class GetCommit:
         all_commit_insert_bug = list()
         with open('File/commit_blame.csv', 'w', newline='', encoding="utf-8") as file:
             writer = csv.writer(file)
-            writer.writerow(['issue', 'ID commit', 'file', 'line change', 'previous commit', 'line number',
+            # need space
+            writer.writerow([])
+            writer.writerow(['issue', 'commit', 'file', 'line change', 'blame commit', 'line number',
                              'number relevant line number'])
         # get list all issue that start with LANG-XXXX
         list_of_issue = read_issue_from_file()
@@ -385,8 +472,7 @@ class GetCommit:
                     list_commit_sol_issue.append(commit_check)
 
                     # operation_on_commit find all commit that insert bug of this issue
-            all_commit_insert_bug = all_commit_insert_bug + operation_on_commit(list_commit_sol_issue, issue)
-        return all_commit_insert_bug
+            operation_on_commit(list_commit_sol_issue, issue)
 
     # main_function: 2
     def get_all_commit(self):
@@ -397,9 +483,13 @@ class GetCommit:
         """
         list_all_commit = list()
         commits = list(self.connect.iter_commits('master'))
-        for commit in commits[:1000]:
+        for commit in commits:
             list_all_commit.append(commit)
         return list_all_commit
+
+    def read_commit_blame(self):
+        self.dataset = pd.read_csv('File/commit_blame.csv', delimiter=',', skiprows=1)
+        self.dataset = self.dataset[['blame commit', 'file']]
 
 
 # TODO list for new programmer:
@@ -410,12 +500,53 @@ class GetCommit:
 
 
 if __name__ == '__main__':
-    obj_git = GetCommit('C:/Users/shir0/commons-lang')
-    # get all commit insert bug
-    list_of_commit_insert_bug = obj_git.main_function()
-    # feature
-    find_feature_all_commit(obj_git.list_of_commit, list_of_commit_insert_bug)
+    # todo commit blame and feature
+    # obj_git = GetCommit('C:/Users/shir0/commons-math')
+    # # get all commit insert bug
+    # obj_git.main_function()
+    # obj_git.read_commit_blame()
+    # # feature
+    # find_feature_all_commit(obj_git.list_of_commit, obj_git.dataset)
 
-    describe_data_frame(str(pathlib.Path().absolute()) + '/File/feature_of_commit_solve_issue.csv')
-    describe_data_frame(str(pathlib.Path().absolute()) + '/File/before_token.csv')
-    describe_data_frame(str(pathlib.Path().absolute()) + '/File/after_token.csv')
+    # todo run_only_feature
+    obj_git = GetCommit('C:/Users/shir0/commons-math', True)
+    obj_git.read_commit_blame()
+    find_feature_all_commit(obj_git.list_of_commit, obj_git.dataset)
+
+    # todo run one commit in feature
+    # obj_git = GetCommit('C:/Users/shir0/commons-math', True)
+    # obj_git.read_commit_blame()
+    # commit_check = GetCommit.get_commit_by_id('C:/Users/shir0/commons-math', '0207f15a49e4a1c74920d2d1cfc2a8ee6c67969c')
+    # find_feature_all_commit([commit_check], obj_git.dataset)
+
+    # todo describe_data_frame difference bug ot not bug
+    # describe_data_frame(str(pathlib.Path().absolute()) + '/File/feature_of_commit_solve_issue.csv')
+
+
+    # todo describe_data_frame feature_of_commit_solve_issue
+    # describe_data_frame(str(pathlib.Path().absolute()) + '/File/feature_of_commit_solve_issue.csv')
+    # describe_data_frame(str(pathlib.Path().absolute()) + '/File/before_token.csv')
+    # describe_data_frame(str(pathlib.Path().absolute()) + '/File/after_token.csv')
+
+    # todo get all unique meaning
+    # try:
+    #     DB_PATH = r"C:\Users\shir0\Commits-Issues-DB\CommitIssueDB.db"
+    #     # Get DB connection
+    #     db_connection = sqlite3.connect(DB_PATH)
+    #     query_method_data = "select Meaning from MethodData"
+    #     sql_query = pd.read_sql_query(query_method_data, db_connection)
+    #     df = pd.DataFrame(sql_query, columns=['Meaning'])
+    #     list_tokens = []
+    #     with open('../Feature/dic_meaning.txt', 'w') as f:
+    #         for index, line in df.iterrows():
+    #             if line.values == "": continue
+    #             json_line = json.loads(str(line.values).replace("\\\'", '"')[3:-3])
+    #             for i in json_line.keys():
+    #                 if i not in list_tokens:
+    #                     list_tokens.append(i)
+    #                     f.write("%s " % i)
+    #                     f.write("\n")
+    #                     f.flush()
+    # except Exception as e:
+    #     print(e)
+    #     pass

@@ -67,8 +67,8 @@ class MeasureLab:
 
     @staticmethod
     def run_checkstyle(name_file, name_measure):
-        os.system('java -jar ' + str(pathlib.Path().absolute()) + "\..\Checker\checkstyle-8.31-all.jar -c " + str(
-            pathlib.Path().absolute()) + '\..\Checker\\' + name_measure + ".xml File/" + name_file + ".java -o File/" +
+        os.system('java -jar ' + str(pathlib.Path().absolute()) + "\..\Feature\checkstyle-8.31-all.jar -c " + str(
+            pathlib.Path().absolute()) + '\..\Feature\\' + name_measure + ".xml File/" + name_file + ".java -o File/" +
                   name_file + ".txt")
 
     def measure_checkstyle(self, list_before_error, list_after_error):
@@ -120,9 +120,8 @@ class MeasureLab:
                                                                MAX_CyclomaticComplexity))
 
         # 11 - line length
-
-        self.list_sum.append(self.sum_of_found(list_after_error, "[LineLength]") -
-                             self.sum_of_found(list_before_error, "[LineLength]"))
+        self.list_sum.append(self.sum_of_line(list_after_error, "[LineLength]") -
+                             self.sum_of_line(list_before_error, "[LineLength]"))
 
         # 12 -MethodLength
         self.list_sum.append(self.sum_of_method_length(list_after_error, "[MethodLength]", MAX_MethodLength) -
@@ -272,21 +271,21 @@ class MeasureLab:
     def measure_lab_init():
         try:
             number = 0
-            d = Designite(Project("commons-lang", "Lang"), '', None)
-            d.extract()
-            number = 1
             cs = Checkstyle(Project("commons-lang", "Lang"), '', None)
             cs.extract()
+            number = 1
+            c = CK(Project("commons-lang", "Lang"), '', None)
+            c.extract()
             number = 2
             h = Halstead(Project("commons-lang", "Lang"), '', None)
             h.extract()
             number = 3
-            c = CK(Project("commons-lang", "Lang"), '', None)
-            c.extract()
-            number = 4
-            sm = SourceMonitor(Project("commons-lang", "Lang"), '', None)
-            sm.extract()
             # TODO Wrong number of items passed 3, placement implies 1
+            d = Designite(Project("commons-lang", "Lang"), '', None)
+            d.extract()
+            number = 4
+            # sm = SourceMonitor(Project("commons-lang", "Lang"), '', None)
+            # sm.extract()
         except Exception as e:
             print("measure_lab ", number)
             print(e)

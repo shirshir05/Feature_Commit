@@ -18,6 +18,7 @@ class MeasureDiff:
         list_feature.append(number_add)
         list_feature.append(number_remove)
         list_feature.append(number_add-number_remove)
+        list_feature.append(number_add+number_remove)
         list_feature.append(number_change_block)
         character = self.character_change(change_line)
         list_feature.append(character)
@@ -98,7 +99,7 @@ class MeasureDiff:
 
     @staticmethod
     def find_feature(list_feature, file_change, commit):
-        with open('File/feature_of_commit_solve_issue.csv', 'a', newline='', encoding="utf-8") as file:
+        with open('File/feature_of_commit_solve.csv', 'a', newline='', encoding="utf-8") as file:
             writer = csv.writer(file, delimiter='')
             try:
                 file.write(str(commit))

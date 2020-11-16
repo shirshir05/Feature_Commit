@@ -15,7 +15,7 @@ class Jira:
 
     @staticmethod
     def write_file(list_issues):
-        f = open('File/jira.csv', 'a', newline='')
+        f = open('File/Jira/jira.csv', 'a', newline='')
         try:
             writer = csv.writer(f)
             for issue in list_issues:
@@ -33,7 +33,7 @@ class Jira:
         while index < 247045:
             try:
                 start_idx = block_num * block_size
-                issues_in_project = self.connect.search_issues('project = LANG AND (type = Bug) AND (status = Closed '
+                issues_in_project = self.connect.search_issues('project = MATH AND (type = Bug) AND (status = Closed '
                                                                'OR status = Done )',
                                                                start_idx, block_size)
                 if len(issues_in_project) == 0:
@@ -55,4 +55,4 @@ class Jira:
 obj_jira = Jira('https://issues.apache.org/jira')
 obj_jira.connect()
 list_to_write = obj_jira.get_all_issues()
-# obj_jira.write_file(list_to_write)
+obj_jira.write_file(list_to_write)
