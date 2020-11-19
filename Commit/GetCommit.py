@@ -1,11 +1,6 @@
 import difflib
-import itertools
-import json
 import os
-
 import pathlib
-import sqlite3
-
 from git import Repo
 import csv
 import copy
@@ -61,7 +56,7 @@ dict_commit_filter = {}
 
 # -------------------------------------------Start feature of commit
 def find_feature_all_commit(list_of_commit, list_commit_bug):
-    with open('File/feature_of_commit_solve_issue_new.csv', 'w', newline='', encoding="utf-8") as file:
+    with open('File/feature_of_commit_solve_issue.csv', 'w', newline='', encoding="utf-8") as file:
         writer = csv.writer(file, delimiter=',')
         measure_diff = MeasureDiff()
         measure_meaning = MeasureMeaning()
@@ -85,7 +80,7 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
 
                             try:
                                 measure_refactoring = Refactoring()
-                                list_feature = measure_refactoring.feature_refactoring(commit, file_change)
+                                list_refactoring = measure_refactoring.feature_refactoring(commit, file_change)
                                 before_contents = []
                                 after_contents = []
                                 if not (str(commit), str(file_change)) in dict_commit_filter.keys():
@@ -110,24 +105,25 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                                 list_feature_tokens = measure_tokens.get_feature(commit, file_change)
                                 if list_feature_tokens is None:
                                     continue
+                                # todo merge measure_tokens and measure_meaning
                                 list_feature_meaning = measure_meaning.get_feature(commit, file_change)
                                 if list_feature_meaning is None:
                                     continue
-                                if after_contents == []:
-                                    before_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
-                                                                   diff.a_blob.data_stream.stream.readlines()))
-                                    after_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
-                                                              diff.b_blob.data_stream.stream.readlines()))
-                                list_feature_lab = measure_lab.main_measure(before_contents, after_contents)
-                                if list_feature_lab is None:
-                                    continue
+                                # if after_contents == []:
+                                #     before_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
+                                #                                    diff.a_blob.data_stream.stream.readlines()))
+                                #     after_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
+                                #                               diff.b_blob.data_stream.stream.readlines()))
+                                # list_feature_lab = measure_lab.main_measure(before_contents, after_contents)
+                                # if list_feature_lab is None:
+                                #     continue
                                 list_feature_diff = measure_diff.measure_diff(dict_commit_filter[(str(commit),
                                                                                                   str(file_change))][0])
                                 if list_feature_diff is None:
                                     continue
                                 # todo all
-                                list_feature = list_feature_meaning + list_feature_lab + list_feature_diff + list_feature_tokens
-                                # list_feature = list_feature_meaning + list_feature_diff + list_feature_tokens
+                                # list_feature = list_feature_meaning + list_feature_lab + list_feature_diff + list_feature_tokens + list_refactoring
+                                list_feature = list_feature_meaning + list_feature_diff + list_feature_tokens + list_refactoring
                                 file.write(str(commit))
                                 file.write(',')
                                 file.write(file_change)
@@ -205,7 +201,7 @@ def operation_on_commit(list_commit_sol_issue, issue):
                             # no relevant change in commit
                             if len(list(difflib.context_diff(lines_before, lines_after))) == 0:
                                 continue
-                            diff_content = difflib.Differ().compare(lines_before, lines_after)
+                            diff_content = list(difflib.Differ().compare(lines_before, lines_after))
 
                             lines_guilty = find_blame_commits(diff_content)
                             # send diff.a_path (name of file before change)
@@ -371,7 +367,7 @@ def read_issue_from_file():
     :return:
         list issue
     """
-    with open('File/Jira/jira.csv') as csv_file:
+    with open('File/Jira/jira3.csv') as csv_file:
         list_issue = list()
         read_csv = csv.reader(csv_file, delimiter=',')
         for row in read_csv:
@@ -452,7 +448,6 @@ class GetCommit:
             all_commit_insert_bug(list)
         """
         # for all issue in jira
-        all_commit_insert_bug = list()
         with open('File/commit_blame.csv', 'w', newline='', encoding="utf-8") as file:
             writer = csv.writer(file)
             # need space
@@ -467,12 +462,14 @@ class GetCommit:
             list_commit_sol_issue = list()
             # find all commit solve this issue
             for commit_check in self.list_of_commit:
-                if str(issue + ' ') in commit_check.summary or str(issue + ')') in commit_check.summary or str(
-                        issue + ']') in commit_check.summary or str(issue + ':') in commit_check.summary:
+                if issue in commit_check.summary:
+                    # quick fix for short issues
+                    if commit_check.summary.index(issue) + len(issue) < len(commit_check.summary) and commit_check.summary[commit_check.summary.index(issue) + len(issue)].isnumeric():
+                        continue
                     list_commit_sol_issue.append(commit_check)
-
-                    # operation_on_commit find all commit that insert bug of this issue
-            operation_on_commit(list_commit_sol_issue, issue)
+            # operation_on_commit find all commit that insert bug of this issue
+            if list_commit_sol_issue:
+                operation_on_commit(list_commit_sol_issue, issue)
 
     # main_function: 2
     def get_all_commit(self):
@@ -501,17 +498,17 @@ class GetCommit:
 
 if __name__ == '__main__':
     # todo commit blame and feature
-    # obj_git = GetCommit('C:/Users/shir0/commons-math')
+    obj_git = GetCommit('C:/Users/shir0/commons-math')
     # # get all commit insert bug
-    # obj_git.main_function()
-    # obj_git.read_commit_blame()
-    # # feature
-    # find_feature_all_commit(obj_git.list_of_commit, obj_git.dataset)
+    obj_git.main_function()
+    obj_git.read_commit_blame()
+    # feature
+    find_feature_all_commit(obj_git.list_of_commit, obj_git.dataset)
 
     # todo run_only_feature
-    obj_git = GetCommit('C:/Users/shir0/commons-math', True)
-    obj_git.read_commit_blame()
-    find_feature_all_commit(obj_git.list_of_commit, obj_git.dataset)
+    # obj_git = GetCommit('C:/Users/shir0/commons-math', True)
+    # obj_git.read_commit_blame()
+    # find_feature_all_commit(obj_git.list_of_commit, obj_git.dataset)
 
     # todo run one commit in feature
     # obj_git = GetCommit('C:/Users/shir0/commons-math', True)
@@ -522,11 +519,6 @@ if __name__ == '__main__':
     # todo describe_data_frame difference bug ot not bug
     # describe_data_frame(str(pathlib.Path().absolute()) + '/File/feature_of_commit_solve_issue.csv')
 
-
-    # todo describe_data_frame feature_of_commit_solve_issue
-    # describe_data_frame(str(pathlib.Path().absolute()) + '/File/feature_of_commit_solve_issue.csv')
-    # describe_data_frame(str(pathlib.Path().absolute()) + '/File/before_token.csv')
-    # describe_data_frame(str(pathlib.Path().absolute()) + '/File/after_token.csv')
 
     # todo get all unique meaning
     # try:

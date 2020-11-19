@@ -11,48 +11,26 @@ class Jira:
         self.URL = url_arg
 
     def connect(self):
-        self.connect = JIRA(obj_jira.URL)
-
-    @staticmethod
-    def write_file(list_issues):
-        f = open('File/Jira/jira.csv', 'a', newline='')
-        try:
-            writer = csv.writer(f)
-            for issue in list_issues:
-                writer = csv.writer(f)
-                writer.writerow([issue.key])
-        finally:
-            f.close()
-
-    def get_all_issues(self):
-        list_all_issues = list()
-        # Search all issues with Query
-        block_size = 100
-        block_num = 0
-        index = 0
-        while index < 247045:
-            try:
-                start_idx = block_num * block_size
-                issues_in_project = self.connect.search_issues('project = MATH AND (type = Bug) AND (status = Closed '
-                                                               'OR status = Done )',
-                                                               start_idx, block_size)
-                if len(issues_in_project) == 0:
-                    # Retrieve issues until there are no more to come
-                    break
-                if issues_in_project is not None:
-                    for issue in issues_in_project:
-                        list_all_issues.append(issue)
-                self.write_file(list_all_issues)
-                list_all_issues = list()
-                block_num += 1
-                index += 1
-            except:
-                pass
-        return list_all_issues
+        self.connect = JIRA(self.URL)
 
 
+
+
+def get_jira_issues(project_name, url=r"http://issues.apache.org/jira", bunch=100):
+    jira_conn = JIRA(url)
+    all_issues=[]
+    extracted_issues = 0
+    while True:
+        issues = jira_conn.search_issues("project={0} AND (type = Bug) AND (status = Closed OR status = Done OR status = Resolved)".format(project_name), maxResults=bunch, startAt=extracted_issues)
+        all_issues.extend(issues)
+        extracted_issues=extracted_issues+bunch
+        if len(issues) < bunch:
+            break
+    with open('File/Jira/jira3.csv', 'w') as f:
+        f.writelines(list(map(lambda issue: issue.key.strip()+'\n', all_issues)))
+
+
+all_i = get_jira_issues('MATH')
 # Connect project in Jira
-obj_jira = Jira('https://issues.apache.org/jira')
-obj_jira.connect()
-list_to_write = obj_jira.get_all_issues()
-obj_jira.write_file(list_to_write)
+# obj_jira = Jira('https://issues.apache.org/jira')
+# obj_jira.connect()

@@ -1,0 +1,46 @@
+Reorder Parameter
+Move Method
+Extract Attribute
+Rename Variable
+Extract Method
+Inline Method
+Move Class
+Change Variable Type
+Inline Variable
+Rename Attribute
+Extract Variable
+Rename Class
+Rename Method
+Add Method Annotation
+Change Parameter Type
+Extract Interface
+Push Down Method
+Move And Rename Method
+Change Attribute Type
+Change Return Type
+Extract And Move Method
+Rename Parameter
+Add Parameter
+Extract Superclass
+Remove Method Annotation
+Add Class Annotation
+Remove Attribute Annotation
+Move And Inline Method
+Add Attribute Annotation
+Parameterize Variable
+Remove Parameter
+Move Attribute
+Move And Rename Class
+Move Source Folder
+Remove Class Annotation
+Pull Up Method
+Pull Up Attribute
+Merge Parameter
+Extract Class
+Replace Variable With Attribute
+Merge Variable
+Split Attribute
+Merge Attribute
+Push Down Attribute
+Split Parameter
+Extract Subclass

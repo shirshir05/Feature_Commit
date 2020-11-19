@@ -45,14 +45,60 @@ class Filter:
         parser = javalang.parser.Parser(tokens)
         parsed_data = parser.parse()
         list_ans = self.get_methods_by_javalang(tokens, parsed_data)
-        return [item for sublist in list_ans for item in sublist]
+        if list_ans:
+            return [item for sublist in list_ans for item in sublist]
+        return None
 
-    @staticmethod
-    def get_methods_by_javalang(tokens, parsed_data):
+    # @staticmethod
+    # def get_methods_by_javalang(tokens, parsed_data):
+    #     def get_method_end_position(method, seperators):
+    #         method_seperators = seperators[list(map(id, sorted(seperators + [method],
+    #                                                            key=lambda x: (
+    #                                                                x.position.line, x.position.column)))).index(
+    #             id(method)):]
+    #         assert method_seperators[0].value == "{"
+    #         counter = 1
+    #         for seperator in method_seperators[1:]:
+    #             if seperator.value == "{":
+    #                 counter += 1
+    #             elif seperator.value == "}":
+    #                 counter -= 1
+    #             if counter == 0:
+    #                 return seperator.position
+    #
+    #     list_ans = list()
+    #     used_lines = set(map(lambda t: t.position.line - 1, tokens))
+    #     seperators = list(filter(lambda token: isinstance(token, javalang.tokenizer.Separator) and token.value in "{}",
+    #                              tokens))
+    #     classes_full = list(parsed_data.filter(javalang.tree.ClassDeclaration))  # tuple (position,class itself)
+    #     for full_class in classes_full:
+    #         class_path = full_class[0]
+    #         class_declaration = full_class[1]
+    #         if len(class_path) > 2:  # has parent class
+    #             index = class_path.find('.')
+    #             if index != -1:
+    #                 class_name = class_path[0:index]
+    #             class_name = class_name + "." + class_declaration.name
+    #         else:
+    #             class_name = class_declaration.name
+    #         methods = list(map(operator.itemgetter(1), class_declaration.filter(javalang.tree.MethodDeclaration)))
+    #         constructors = list(
+    #             map(operator.itemgetter(1), class_declaration.filter(javalang.tree.ConstructorDeclaration)))
+    #         for method in methods + constructors:
+    #             if not method.body:
+    #                 # skip abstract methods
+    #                 continue
+    #             method_start_position = method.position
+    #             method_end_position = get_method_end_position(method, seperators)
+    #             method_used_lines = list(
+    #                 filter(lambda line: method_start_position.line - 1 <= line <= method_end_position.line, used_lines))
+    #             list_ans.append(method_used_lines)
+    #     return list_ans
+
+    def get_methods_by_javalang(self, tokens, parsed_data, analyze_source_lines=True):
         def get_method_end_position(method, seperators):
             method_seperators = seperators[list(map(id, sorted(seperators + [method],
-                                                               key=lambda x: (
-                                                                   x.position.line, x.position.column)))).index(
+                                                          key=lambda x: (x.position.line, x.position.column)))).index(
                 id(method)):]
             assert method_seperators[0].value == "{"
             counter = 1
@@ -64,24 +110,13 @@ class Filter:
                 if counter == 0:
                     return seperator.position
 
-        list_ans = list()
-        used_lines = set(map(lambda t: t.position.line - 1, tokens))
+        used_lines = set(map(lambda t: t.position.line-1, tokens))
         seperators = list(filter(lambda token: isinstance(token, javalang.tokenizer.Separator) and token.value in "{}",
-                                 tokens))
-        classes_full = list(parsed_data.filter(javalang.tree.ClassDeclaration))  # tuple (position,class itself)
-        for full_class in classes_full:
-            class_path = full_class[0]
-            class_declaration = full_class[1]
-            if len(class_path) > 2:  # has parent class
-                index = class_name.find('.')
-                if index != -1:
-                    class_name = class_name[0:index]
-                class_name = class_name + "." + class_declaration.name
-            else:
-                class_name = class_declaration.name
+                            tokens))
+        list_ans = list()
+        for class_declaration in map(operator.itemgetter(1), parsed_data.filter(javalang.tree.ClassDeclaration)):
             methods = list(map(operator.itemgetter(1), class_declaration.filter(javalang.tree.MethodDeclaration)))
-            constructors = list(
-                map(operator.itemgetter(1), class_declaration.filter(javalang.tree.ConstructorDeclaration)))
+            constructors = list(map(operator.itemgetter(1), class_declaration.filter(javalang.tree.ConstructorDeclaration)))
             for method in methods + constructors:
                 if not method.body:
                     # skip abstract methods
@@ -89,9 +124,9 @@ class Filter:
                 method_start_position = method.position
                 method_end_position = get_method_end_position(method, seperators)
                 method_used_lines = list(
-                    filter(lambda line: method_start_position.line - 1 <= line <= method_end_position.line, used_lines))
+                        filter(lambda line: method_start_position.line - 1 <= line <= method_end_position.line, used_lines))
                 list_ans.append(method_used_lines)
-        return list_ans
+            return list_ans
 
     @staticmethod
     def get_before_content_from_diff(diff, first_commit):
@@ -129,6 +164,8 @@ class Filter:
 
     @staticmethod
     def filter_file_line(relevant_line, source_file):
+        if relevant_line is None:
+            return
         update_source_file = []
         for line_number in range(0, len(source_file)):
             if line_number in relevant_line:

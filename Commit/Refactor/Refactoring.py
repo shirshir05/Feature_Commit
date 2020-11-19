@@ -47,7 +47,7 @@ class Refactoring:
                         for file in type['rightSideLocations']:
                             if file['filePath'] == file_check:
                                 self.dict_ans[type['type']] += 1
-        return self.dict_ans.values()
+        return list(self.dict_ans.values())
 
     @staticmethod
     def init_type():
