@@ -37,11 +37,20 @@ class MeasureTokens:
             dic_before = copy.copy(DIC)
         elif dic_after is None:
             dic_after = copy.copy(DIC)
-        feature = {x: dic_after[x] - dic_before[x] for x in dic_before if x in dic_after}
+
+        list_ans = self.dic_to_list(dic_before)
+        list_ans += self.dic_to_list(dic_after)
+        feature_delta = {x: dic_after[x] - dic_before[x] for x in dic_before if x in dic_after}
+        list_ans += self.dic_to_list(feature_delta)
+        return list_ans
+
+    @staticmethod
+    def dic_to_list(feature):
         list_ans = []
         for i in feature.keys():
             list_ans.append(feature[i])
         return list_ans
+
 
     def find_tokens(self, commit, file_change, new_or_old):
         """"
@@ -53,9 +62,7 @@ class MeasureTokens:
                 return dictionary of measure
         """
         try:
-            query_method_data = "SELECT * FROM MethodData WHERE NewPath =='" + str(
-                file_change) + "'AND CommitID = '" + \
-                                str(commit) + "' AND "  "OldNew == '" + new_or_old + "' AND Changed=1"
+            query_method_data = f"SELECT * FROM MethodData WHERE NewPath ==' {str(file_change)} ' AND CommitID = ' {str(commit)} ' AND OldNew == ' {new_or_old}'"
 
             sql_query = pd.read_sql_query(query_method_data, self.db_connection)
             if sql_query.empty:
@@ -63,13 +70,14 @@ class MeasureTokens:
             df = pd.DataFrame(sql_query, columns=['Tokens'])
             dic = copy.copy(DIC)
             for index, line in df.iterrows():
-                if line.values == "" : continue
-                line = str(line.values)
-                line = line[2:-2]
-                dict_json = json.loads(line)
-                for key in dict_json:
+                if line.values == [None] or line.values is None: continue
+                # line = str(line.values)
+                # line = line[2:-2]
+                json_line =json.loads(str(line.values).replace("\\\'", '"').replace('\\\\"', '')[3:-3])
+                # json_line = json.loads(line)
+                for key in json_line:
                     if key in dic:
-                        dic[key] += dict_json[key]
+                        dic[key] += json_line[key]
             return dic
         except Exception as e:
             print(e)
@@ -88,5 +96,5 @@ class MeasureTokens:
 if __name__ == '__main__':
     test = MeasureTokens()
     test.init_dic()
-    print(test.get_feature('cf4138d7bc1a892295ccd58ea8b42f7c8737239a','src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java'))
+    print(test.get_feature('abdc0631d2856f694dce04a95069372790431ab5','components/camel-direct/src/generated/java/org/apache/camel/component/direct/DirectEndpointConfigurer.java'))
     print(DIC)

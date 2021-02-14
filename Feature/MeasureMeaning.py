@@ -16,12 +16,12 @@ class MeasureMeaning:
         """"
             Init the connection of DB
         """
-        # todo change DB name!!!!!!!!
         DB_PATH = r"C:\Users\shir0\Commits-Issues-DB\CommitIssueDB.db"
         # Get DB connection
         self.db_connection = sqlite3.connect(DB_PATH)
         print("connection established")
         self.init_dic()
+
         if os.path.exists(str(pathlib.Path().absolute()) +"/File/before_token.csv"):
             os.remove(str(pathlib.Path().absolute()) + "/File/before_token.csv")
         if os.path.exists(str(pathlib.Path().absolute()) + "/File/after_token.csv"):
@@ -51,9 +51,16 @@ class MeasureMeaning:
             dic_before = copy.copy(DIC)
         elif dic_after is None:
             # self.write_NOT_in_DB(1, 0, str(commit), file_change)
-            dic_after = dic_before = copy.copy(DIC)
+            dic_after = copy.copy(DIC)
 
-        feature = {x: dic_after[x] - dic_before[x] for x in dic_before if x in dic_after}
+        list_ans = self.dic_to_list(dic_before)
+        list_ans += self.dic_to_list(dic_after)
+        feature_delta = {x: dic_after[x] - dic_before[x] for x in dic_before if x in dic_after}
+        list_ans += self.dic_to_list(feature_delta)
+        return list_ans
+
+    @staticmethod
+    def dic_to_list(feature):
         list_ans = []
         for i in feature.keys():
             list_ans.append(feature[i])
@@ -69,8 +76,7 @@ class MeasureMeaning:
                 return dictionary of measure
         """
         try:
-            query_method_data = "SELECT * FROM MethodData WHERE NewPath =='" + str(file_change) + "'AND CommitID = '" +\
-                                str(commit) + "' AND "  "OldNew == '" + new_or_old + "' AND Changed=1"
+            query_method_data = f"SELECT * FROM MethodData WHERE NewPath ==' {str(file_change)} ' AND CommitID = ' {str(commit)} ' AND OldNew == ' {new_or_old}'"
 
             sql_query = pd.read_sql_query(query_method_data, self.db_connection)
             if sql_query.empty:
@@ -78,7 +84,7 @@ class MeasureMeaning:
             df = pd.DataFrame(sql_query, columns=['Meaning'])
             dic = copy.copy(DIC)
             for index, line in df.iterrows():
-                if line.values == "": continue
+                if line.values == [None] or line.values is None: continue
                 # remove{'BlockStatement': 1, 'LocalVariableDeclaration': 1}
                 json_line = json.loads(str(line.values).replace("\\\'", '"')[3:-3])
                 for meaning in json_line.keys():
@@ -111,7 +117,8 @@ class MeasureMeaning:
 
     @staticmethod
     def init_dic():
-        with open(str(pathlib.Path().absolute()) + '/../Feature/dic_meaning.txt', 'r') as f:
+        # with open(str(pathlib.Path().absolute()) + '/../Feature/dic_meaning.txt', 'r') as f:
+        with open(str(pathlib.Path().absolute()) + '/dic_meaning.txt', 'r') as f:
             for token in f:
                 DIC[token.replace(" \n", "")] = 0
 
@@ -120,5 +127,5 @@ if __name__ == '__main__':
     measure_token = MeasureMeaning()
     measure_token.init_dic()
     # print(DIC)
-    print(measure_token.get_feature('cf4138d7bc1a892295ccd58ea8b42f7c8737239a',
-                                    'src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java' ))
+    print(measure_token.get_feature('b9c19ecf28b2daf2dc1ff3bff72faaf5700e00ac',
+                                    'core/camel-support/src/main/java/org/apache/camel/support/DefaultStartupStepRecorder.java' ))

@@ -4,14 +4,43 @@ import os
 import shutil
 from Code_lab.metrics.version_metrics import SourceMonitor, CK, Designite, Checkstyle, Halstead
 import pathlib
+from git import Repo as Re
 
-# parameter  for checkstyle
+# region parameter  for checkstyle
+from Code_lab.repo import Repo
+
 MAX_AnonInnerLength = 50
 MAX_BooleanExpression = 3
 MAX_CyclomaticComplexity = 7
 MAX_MethodLength = 60
 MAX_ReturnCount = 3
 MAX_ClassFanOutComplexity = 2
+
+list_checkstyle_sum_of_line = ["[AvoidInlineConditionals]", "[CovariantEquals]", "[ClassTypeParameterName]",
+                               "[CatchParameterName]", "[EmptyBlock]", "[EmptyStatement]", "[EqualsHashCode]",
+                               "[LineLength]", "[MissingSwitchDefault]", "[StringLiteralEquality]", "[TodoComment]"]
+# endregion
+
+# region parameter for designite
+parameter_designite = ["Long Parameter List", "Complex Conditional", "Complex Method"]
+string_designite = "designite_implementation"
+# endregion
+
+# region parameter for ck
+string_ck = "ck"
+parameter_ck = ["wmc", "loopQty", "comparisonsQty", "maxNestedBlocks", "lambdasQty", "cbo", "variables",
+                "tryCatchQty", "parenthesizedExpsQty", "stringLiteralsQty", "numbersQty", "assignmentsQty",
+                "mathOperationsQty", "uniqueWordsQty", "modifiers", "logStatementsQty"]
+# endregion
+
+# region parameter for halstead
+string_halstead = "halstead"
+parameter_halstead = ["getDifficulty", "getVolume", "getDistinctOperandsCnt", "getDistinctOperatorsCnt", "getEffort",
+                      "getTotalOparandsCnt", "getTotalOperatorsCnt", "getVocabulary"]
+
+# endregion
+
+NAME_PROJECT = "camel"
 
 
 class MeasureLab:
@@ -31,21 +60,29 @@ class MeasureLab:
         self.run_checkstyle("before", "checkstyle")
         self.run_checkstyle("after", "checkstyle")
         list_before_error, list_after_error = self.get_list_error()
-        self.measure_checkstyle(list_before_error, list_after_error)
+        before, after = self.measure_checkstyle(list_before_error, list_after_error)
+        self.list_before += before
+        self.list_after += after
 
         # metric lab
         self.clean_file_and_directory()
         # before
-        self.write_file(file_before, str(pathlib.Path().absolute()) + "/apache_repos/commons-lang/before")
-        self.measure_lab_init()
-        self.measure_lab(self.list_before)
+        self.write_file(file_before, str(pathlib.Path().absolute()) + "/apache_repos/" + NAME_PROJECT + "/before")
+        project = Project(NAME_PROJECT, NAME_PROJECT.upper())
+        # version for Code_lab/repository_data/metric
+        version_before = 'shir3'
+        self.measure_lab_init(project, version_before)
+        self.measure_lab(self.list_before, version_before)
         self.clean_file_and_directory()
         # after
-        self.write_file(file_after, str(pathlib.Path().absolute()) + "/apache_repos/commons-lang/after")
-        self.measure_lab_init()
-        self.measure_lab(self.list_after)
+        self.write_file(file_after, str(pathlib.Path().absolute()) + "/apache_repos/" + NAME_PROJECT + "/after")
+        version_after = 'shir4'
+        self.measure_lab_init(project, version_after)
+        self.measure_lab(self.list_after, version_after)
         self.clean_file_and_directory()
 
+        self.list_sum += self.list_before
+        self.list_sum += self.list_after
         self.list_sum += [x - y for x, y in zip(self.list_after, self.list_before)]
 
         return self.list_sum
@@ -61,7 +98,7 @@ class MeasureLab:
         try:
             with open(name_file + '.java', 'w') as file:
                 for line in list_java_file:
-                    file.write('%s\n' % line)
+                    file.write('%s' % line)
         except Exception as e:
             pass
 
@@ -72,82 +109,52 @@ class MeasureLab:
                   name_file + ".txt")
 
     def measure_checkstyle(self, list_before_error, list_after_error):
+        def checkstyle_call_function(list_after, list_before, name, function, param, before_add, after_add):
+            before_arg = function(list_before, name, param)
+            after_arg = function(list_after, name, param)
+            before_add.append(before_arg)
+            after_add.append(after_arg)
+
         """
           get all feature of checkstyle
         """
-        # 1 - AnonInnerLength
-        self.list_sum.append(self.sum_of_anonymous_inner_class(list_after_error, "[AnonInnerLength]", MAX_AnonInnerLength)
-                             - self.sum_of_anonymous_inner_class(list_before_error, "[AnonInnerLength]", MAX_AnonInnerLength))
 
-        # 2 - AvoidInlineConditionals
-        self.list_sum.append(self.sum_of_line(list_after_error, "[AvoidInlineConditionals]") -
-                             self.sum_of_line(list_before_error, "[AvoidInlineConditionals]"))
+        before_list = []
+        after_list = []
+        for i in list_checkstyle_sum_of_line:
+            before = self.sum_of_line(list_before_error, i)
+            after = self.sum_of_line(list_after_error, i)
+            before_list.append(before)
+            after_list.append(after)
+
+        checkstyle_call_function(list_after_error, list_before_error, "[AnonInnerLength]",
+                                 self.sum_of_anonymous_inner_class, MAX_AnonInnerLength, before_list, after_list)
 
         # 3 - BooleanExpressionComplexity
-        self.list_sum.append(self.sum_of_boolean_expression_complexity(list_after_error, "[BooleanExpressionComplexity]",
-                                                              MAX_BooleanExpression)
-                             - self.sum_of_boolean_expression_complexity(list_before_error, "[BooleanExpressionComplexity]",
-                                                               MAX_BooleanExpression))
-
-        # 4 - CovariantEquals
-        self.list_sum.append(self.sum_of_line(list_after_error, "[CovariantEquals]")
-                             - self.sum_of_line(list_before_error, "[CovariantEquals]"))
-
-        # 5 - ClassTypeParameterName
-        self.list_sum.append(self.sum_of_line(list_after_error, "[ClassTypeParameterName]") -
-                             self.sum_of_line(list_before_error, "[ClassTypeParameterName]"))
-
-        # 6 - CatchParameterName
-        self.list_sum.append(self.sum_of_line(list_after_error, "[CatchParameterName]") -
-                             self.sum_of_line(list_before_error, "[CatchParameterName]"))
-
-        # 7 - EmptyBlock
-        self.list_sum.append(self.sum_of_line(list_after_error, "[EmptyBlock]") -
-                             self.sum_of_line(list_before_error, "[EmptyBlock]"))
-
-        # 8 - EmptyStatement
-        self.list_sum.append(self.sum_of_line(list_after_error, "[EmptyStatement]") -
-                             self.sum_of_line(list_before_error, "[EmptyStatement]"))
-
-        # 9 -EqualsHashCode
-        self.list_sum.append(self.sum_of_line(list_after_error, "[EqualsHashCode]") -
-                             self.sum_of_line(list_before_error, "[EqualsHashCode]"))
+        checkstyle_call_function(list_after_error, list_before_error, "[BooleanExpressionComplexity]",
+                                 self.sum_of_boolean_expression_complexity, MAX_BooleanExpression, before_list,
+                                 after_list)
 
         # 10 -CyclomaticComplexity
-        self.list_sum.append(self.sum_of_cyclomatic_complexity(list_after_error, "[CyclomaticComplexity]",
-                                                      MAX_CyclomaticComplexity) -
-                             self.sum_of_cyclomatic_complexity(list_before_error, "[CyclomaticComplexity]",
-                                                               MAX_CyclomaticComplexity))
-
-        # 11 - line length
-        self.list_sum.append(self.sum_of_line(list_after_error, "[LineLength]") -
-                             self.sum_of_line(list_before_error, "[LineLength]"))
+        checkstyle_call_function(list_after_error, list_before_error, "[CyclomaticComplexity]",
+                                 self.sum_of_cyclomatic_complexity, MAX_CyclomaticComplexity, before_list, after_list)
 
         # 12 -MethodLength
-        self.list_sum.append(self.sum_of_method_length(list_after_error, "[MethodLength]", MAX_MethodLength) -
-                             self.sum_of_method_length(list_before_error, "[MethodLength]", MAX_MethodLength))
 
-        # 13 - MissingSwitchDefault
-        self.list_sum.append(self.sum_of_line(list_after_error, "[MissingSwitchDefault]") -
-                             self.sum_of_line(list_before_error, "[MissingSwitchDefault]"))
+        checkstyle_call_function(list_after_error, list_before_error, "[MethodLength]",
+                                 self.sum_of_method_length, MAX_MethodLength, before_list, after_list)
 
         # 14 - ReturnCount
-        self.list_sum.append(self.sum_of_return_count(list_after_error, "[ReturnCount]", MAX_ReturnCount)
-                             - self.sum_of_return_count(list_before_error, "[ReturnCount]", MAX_ReturnCount))
-
-        # 15 - ReturnCount
-        self.list_sum.append(self.sum_of_line(list_after_error, "[StringLiteralEquality]") -
-                             self.sum_of_line(list_before_error, "[StringLiteralEquality]"))
-
-        # 16 - TodoComment
-        self.list_sum.append(self.sum_of_line(list_after_error, "[TodoComment]") -
-                             self.sum_of_line(list_before_error, "[TodoComment]"))
+        checkstyle_call_function(list_after_error, list_before_error, "[ReturnCount]",
+                                 self.sum_of_return_count, MAX_ReturnCount, before_list, after_list)
 
         # 17 - ClassFanOutComplexity
-        self.list_sum.append(self.sum_of_class_fan_out_complexity(list_after_error, "[ClassFanOutComplexity]",
-                                                         MAX_ClassFanOutComplexity)
-                             - self.sum_of_class_fan_out_complexity(list_before_error, "[ClassFanOutComplexity]",
-                                                          MAX_ClassFanOutComplexity))
+
+        checkstyle_call_function(list_after_error, list_before_error, "[ClassFanOutComplexity]",
+                                 self.sum_of_class_fan_out_complexity, MAX_ClassFanOutComplexity, before_list,
+                                 after_list)
+
+        return before_list, after_list
 
     @staticmethod
     def get_list_error():
@@ -268,75 +275,57 @@ class MeasureLab:
         return sum_line
 
     @staticmethod
-    def measure_lab_init():
+    def measure_lab_init(project, version):
         try:
             number = 0
-            cs = Checkstyle(Project("commons-lang", "Lang"), '', None)
+            cs = Checkstyle(project, version, None)
             cs.extract()
             number = 1
-            c = CK(Project("commons-lang", "Lang"), '', None)
+            c = CK(project, version, None)
             c.extract()
             number = 2
-            h = Halstead(Project("commons-lang", "Lang"), '', None)
+            h = Halstead(project, version, None)
             h.extract()
             number = 3
-            # TODO Wrong number of items passed 3, placement implies 1
-            d = Designite(Project("commons-lang", "Lang"), '', None)
+
+            d = Designite(project, version, None)
             d.extract()
             number = 4
-            # sm = SourceMonitor(Project("commons-lang", "Lang"), '', None)
+            # sm = SourceMonitor(Project("commons-math", "MATH"), '3', None)
             # sm.extract()
         except Exception as e:
             print("measure_lab ", number)
             print(e)
             pass
 
-    def measure_lab(self, list):
+    def measure_lab(self, list, version):
         # Designite Java
-        list.append(self.get_metric_sum_column("designite_implementation", "Long Parameter List"))
-        list.append(self.get_metric_sum_column("designite_implementation", "Complex Conditional"))
-        list.append(self.get_metric_sum_column("designite_implementation", "Complex Method"))
+        for i in parameter_designite:
+            list.append(self.get_metric_sum_column(string_designite, i, version))
 
         # checkstyle
-        list.append(self.get_metric_sum_column("checkstyle", "Nested_if-else_depth"))
-        list.append(self.get_metric_first_row("checkstyle", "NCSS_for_this_file"))
-        list.append(self.get_metric_first_row("checkstyle", "File_length"))
-        list.append(self.get_metric_sum_column("checkstyle", "NPath_Complexity"))
-        list.append( self.get_metric_first_row("checkstyle", "Number_of_public_methods"))
-        list.append(self.get_metric_first_row("checkstyle", "Total_number_of_methods"))
+        string_checkstyle = "checkstyle"
+        list.append(self.get_metric_sum_column(string_checkstyle, "Nested_if-else_depth", version))
+        list.append(self.get_metric_first_row(string_checkstyle, "NCSS_for_this_file", version))
+        list.append(self.get_metric_first_row(string_checkstyle, "File_length", version))
+        list.append(self.get_metric_sum_column(string_checkstyle, "NPath_Complexity", version))
+        list.append(self.get_metric_first_row(string_checkstyle, "Number_of_public_methods", version))
+        list.append(self.get_metric_first_row(string_checkstyle, "Total_number_of_methods", version))
 
         # CK
-        list.append(self.get_metric_sum_column("ck", "wmc"))
-        list.append(self.get_metric_sum_column("ck", "loopQty"))
-        list.append(self.get_metric_sum_column("ck", "comparisonsQty"))
-        list.append(self.get_metric_sum_column("ck", "maxNestedBlocks"))
-        list.append(self.get_metric_sum_column("ck", "lambdasQty"))
-        list.append(self.get_metric_sum_column("ck", "cbo"))
-        list.append(self.get_metric_sum_column("ck", "variables"))
-        list.append(self.get_metric_sum_column("ck", "tryCatchQty"))
-        list.append(self.get_metric_sum_column("ck", "parenthesizedExpsQty"))
-        list.append(self.get_metric_sum_column("ck", "stringLiteralsQty"))
-        list.append(self.get_metric_sum_column("ck", "numbersQty"))
-        list.append(self.get_metric_sum_column("ck", "assignmentsQty"))
-        list.append(self.get_metric_sum_column("ck", "mathOperationsQty"))
-        list.append(self.get_metric_sum_column("ck", "uniqueWordsQty"))
-        list.append(self.get_metric_sum_column("ck", "modifiers"))
-        list.append(self.get_metric_sum_column("ck", "logStatementsQty"))
+        for i in parameter_ck:
+            list.append(self.get_metric_sum_column(string_ck, i, version))
+
         # Halstead
-        list.append(self.get_metric_sum_column("halstead", "getDifficulty"))
-        list.append(self.get_metric_sum_column("halstead", "getVolume"))
-        list.append(self.get_metric_sum_column("halstead", "getDistinctOperandsCnt"))
-        list.append(self.get_metric_sum_column("halstead", "getDistinctOperatorsCnt"))
-        list.append(self.get_metric_sum_column("halstead", "getEffort"))
-        list.append(self.get_metric_sum_column("halstead", "getTotalOparandsCnt"))
-        list.append(self.get_metric_sum_column("halstead", "getTotalOperatorsCnt"))
-        list.append(self.get_metric_sum_column("halstead", "getVocabulary"))
+        for i in parameter_halstead:
+            list.append(self.get_metric_sum_column(string_halstead, i, version))
 
     @staticmethod
-    def get_metric_sum_column(name_tool, name_metric):
+    def get_metric_sum_column(name_tool, name_metric, version):
         try:
             df = pd.read_csv(
-                str(pathlib.Path().absolute()) + "/../Code_lab/repository_data/metrics/commons-lang/" + name_tool +
+                str(
+                    pathlib.Path().absolute()) + "/../Code_lab/repository_data/metrics/" + NAME_PROJECT + "/" + version + "/" + name_tool +
                 ".csv", delimiter=";")
             sum_column = df[name_metric].sum()
             return sum_column
@@ -344,10 +333,11 @@ class MeasureLab:
             return 0
 
     @staticmethod
-    def get_metric_first_row(name_tool, name_metric):
+    def get_metric_first_row(name_tool, name_metric, version):
         try:
             df = pd.read_csv(
-                str(pathlib.Path().absolute()) + "/../Code_lab/repository_data/metrics/commons-lang/" + name_tool +
+                str(
+                    pathlib.Path().absolute()) + "/../Code_lab/repository_data/metrics/" + NAME_PROJECT + "/" + version + "/" + name_tool +
                 ".csv", delimiter=";")
             first_row = df[name_metric].sum()
             return first_row
@@ -357,12 +347,10 @@ class MeasureLab:
     @staticmethod
     def clean_file_and_directory():
         # remove file.java
-        if os.path.exists(str(pathlib.Path().absolute()) + "/apache_repos/commons-lang/before.java"):
-            os.remove(str(pathlib.Path().absolute()) + "/apache_repos/commons-lang/before.java")
-        if os.path.exists(str(pathlib.Path().absolute()) + "/apache_repos/commons-lang/after.java"):
-            os.remove(str(pathlib.Path().absolute()) + "/apache_repos/commons-lang/after.java")
+        if os.path.exists(str(pathlib.Path().absolute()) + "/apache_repos/" + NAME_PROJECT + "/before.java"):
+            os.remove(str(pathlib.Path().absolute()) + "/apache_repos/" + NAME_PROJECT + "/before.java")
+        if os.path.exists(str(pathlib.Path().absolute()) + "/apache_repos/" + NAME_PROJECT + "/after.java"):
+            os.remove(str(pathlib.Path().absolute()) + "/apache_repos/" + NAME_PROJECT + "/after.java")
         # remove directory of metric
-        if os.path.exists(str(pathlib.Path().absolute()) + "/../Code_lab/repository_data/metrics/commons-lang"):
-            shutil.rmtree(str(pathlib.Path().absolute()) + "/../Code_lab/repository_data/metrics/commons-lang")
-
-
+        if os.path.exists(str(pathlib.Path().absolute()) + "/../Code_lab/repository_data/metrics/" + NAME_PROJECT):
+            shutil.rmtree(str(pathlib.Path().absolute()) + "/../Code_lab/repository_data/metrics/" + NAME_PROJECT)

@@ -1,53 +1,22 @@
 import difflib
 import os
 import pathlib
+import threading
+
 from git import Repo
 import csv
 import copy
 import pandas as pd
-import numpy as np
+from pandas.tests.io.excel.test_xlsxwriter import xlsxwriter
 
 from Commit.Filter import Filter
-from Commit.Refactor.Refactoring import Refactoring
+from Feature.Refactoring import Refactoring
 from Feature.MeasureDiff import MeasureDiff
 from Feature.MeasureMeaning import MeasureMeaning
 from Feature.MeasureLab import MeasureLab
 from Feature.MeasureTokens import MeasureTokens
 
-NAME_PROJECT = "MATH-"
-# FEATURE_LIST = ['commit', 'file', 'AnonInnerLength', 'AvoidInlineConditionals', 'BooleanExpressionComplexity',
-#                 'CovariantEquals', 'ClassTypeParameterName', 'CatchParameterName', 'EmptyBlock',
-#                 'EmptyStatement', 'EqualsHashCode', 'CyclomaticComplexity', 'LineLength', 'MethodLength',
-#                 'MissingSwitchDefault', 'ReturnCount', 'StringLiteralEquality', 'TodoComment',
-#                 'ClassFanOutComplexity', 'Long parameter list', 'Complex method', 'Complex conditional',
-#                 'nested_if_else_dept', 'NCSS', 'File_length', 'NPath_Complexity', 'Number_of_public_methods',
-#                 'Total_number_of_methods', 'wmc', 'loopQty',
-#                 'comparisonsQty', 'maxNestedBlocks', 'lambdasQty', 'cbo', 'variables', 'tryCatchQty',
-#                 'parenthesizedExpsQty', 'stringLiteralsQty', 'numbersQty', 'assignmentsQty', 'mathOperationsQty',
-#                 'uniqueWordsQty', 'modifiers', 'logStatementsQty',
-#                 'difficulty', 'volume', 'getDistinctOperandsCnt', 'getDistinctOperatorsCnt', 'getEffort',
-#                 'getTotalOparandsCnt', 'getTotalOperatorsCnt', 'getVocabulary',
-#                 'commit insert bug?']
-
-#
-# FEATURE_LIST = ['commit', 'file', "Member", "FieldDeclaration", "VariableDeclaration", "LocalVariableDeclaration",
-# "VariableDeclarator", "Literal", "This", "MemberReference",'AnonInnerLength', 'AvoidInlineConditionals',
-# 'BooleanExpressionComplexity', 'CovariantEquals', 'ClassTypeParameterName', 'CatchParameterName', 'EmptyBlock',
-# 'EmptyStatement', 'EqualsHashCode', 'CyclomaticComplexity', 'LineLength', 'MethodLength', 'MissingSwitchDefault',
-# 'ReturnCount', 'StringLiteralEquality', 'TodoComment', 'ClassFanOutComplexity', 'Long parameter list',
-# 'Complex method', 'Complex conditional', 'nested_if_else_dept', 'NCSS', 'File_length', 'NPath_Complexity',
-# 'Number_of_public_methods', 'Total_number_of_methods', 'wmc', 'loopQty', 'comparisonsQty', 'maxNestedBlocks',
-# 'lambdasQty', 'cbo', 'variables', 'tryCatchQty', 'parenthesizedExpsQty', 'stringLiteralsQty', 'numbersQty',
-# 'assignmentsQty', 'mathOperationsQty', 'uniqueWordsQty', 'modifiers', 'logStatementsQty', 'difficulty', 'volume',
-# 'getDistinctOperandsCnt', 'getDistinctOperatorsCnt', 'getEffort', 'getTotalOparandsCnt', 'getTotalOperatorsCnt',
-# 'getVocabulary', 'row add', 'row remove', "row add-row remove", "row add+row remove", "change block", "character
-# change", 'commit insert bug?']
-
-FEATURE_LIST = ['commit', 'file', "Member", "FieldDeclaration", "VariableDeclaration", "LocalVariableDeclaration",
-                "VariableDeclarator", "Literal",
-                "This", "MemberReference", 'row add', 'row remove', "row add-row remove", "row add+row remove",
-                "change block",
-                "character change", 'commit insert bug?']
+LOCATION_PROJECT = "C:/Users/shir0/camel"
 
 # This dictionary contain
 # dict_commit_filter[(str(commit),str(file)) ]=[[lines_before, lines_after], [number_lines_before, number_lines_after]]
@@ -56,13 +25,17 @@ dict_commit_filter = {}
 
 # -------------------------------------------Start feature of commit
 def find_feature_all_commit(list_of_commit, list_commit_bug):
-    with open('File/feature_of_commit_solve_issue.csv', 'w', newline='', encoding="utf-8") as file:
-        writer = csv.writer(file, delimiter=',')
+    with open('File/feature.csv', 'w', newline='', encoding="utf-8") as file:
+        writer = csv.writer(file, delimiter='!')
         measure_diff = MeasureDiff()
         measure_meaning = MeasureMeaning()
         measure_tokens = MeasureTokens()
-        measure_lab = MeasureLab()
-        writer.writerow(FEATURE_LIST)
+        measure_refactoring = Refactoring()
+
+        list_all = ["commit", "file"] + feature_header_parent("meaning_header") + feature_header("diff_header") + \
+                   feature_header_parent("token_header") + feature_header("refactoring_header")
+        list_all += ["commit insert bug?"]
+        writer.writerow(list_all)
         file.flush()
         # find all commit
         for commit in list_of_commit:
@@ -77,12 +50,7 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                         if diff.new_file or diff.deleted_file:
                             continue
                         if diff.b_path == file_change:
-
                             try:
-                                measure_refactoring = Refactoring()
-                                list_refactoring = measure_refactoring.feature_refactoring(commit, file_change)
-                                before_contents = []
-                                after_contents = []
                                 if not (str(commit), str(file_change)) in dict_commit_filter.keys():
                                     # filter the source file
                                     filter_obj = Filter()
@@ -102,35 +70,21 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                                     dict_commit_filter[(str(commit), str(file_change))] = [[lines_before, lines_after],
                                                                                            [number_lines_before,
                                                                                             number_lines_after]]
-                                list_feature_tokens = measure_tokens.get_feature(commit, file_change)
-                                if list_feature_tokens is None:
-                                    continue
-                                # todo merge measure_tokens and measure_meaning
-                                list_feature_meaning = measure_meaning.get_feature(commit, file_change)
-                                if list_feature_meaning is None:
-                                    continue
-                                # if after_contents == []:
-                                #     before_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
-                                #                                    diff.a_blob.data_stream.stream.readlines()))
-                                #     after_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
-                                #                               diff.b_blob.data_stream.stream.readlines()))
-                                # list_feature_lab = measure_lab.main_measure(before_contents, after_contents)
-                                # if list_feature_lab is None:
-                                #     continue
-                                list_feature_diff = measure_diff.measure_diff(dict_commit_filter[(str(commit),
-                                                                                                  str(file_change))][0])
-                                if list_feature_diff is None:
-                                    continue
-                                # todo all
-                                # list_feature = list_feature_meaning + list_feature_lab + list_feature_diff + list_feature_tokens + list_refactoring
-                                list_feature = list_feature_meaning + list_feature_diff + list_feature_tokens + list_refactoring
+
+                                list_feature_meaning = feature_meaning(measure_meaning, commit, file_change)
+                                list_feature_diff = feature_diff(measure_diff, commit, file_change)
+                                list_feature_tokens = feature_token(measure_tokens, commit, file_change)
+                                list_refactoring = feature_refactoring(measure_refactoring, commit, file_change)
+                                list_feature = list_feature_meaning + list_feature_diff + list_feature_tokens +\
+                                               list_refactoring
+
                                 file.write(str(commit))
-                                file.write(',')
+                                file.write('!')
                                 file.write(file_change)
-                                file.write(',')
+                                file.write('!')
                                 for feature in list_feature:
                                     file.write(str(feature))
-                                    file.write(',')
+                                    file.write('!')
                                 ans = 0
                                 df = list_commit_bug.loc[list_commit_bug["blame commit"] == str(commit)]
                                 df = df.loc[df["file"] == str(file_change)]
@@ -145,12 +99,73 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                             except Exception as e:
                                 print("find_feature_all_commit - error - ", e)
                                 print("commit ", commit)
-                                print("file ", file_change)
-
-                                # raise e
+                                import traceback
+                                traceback.print_exc()
+                                # print("file ", file_change)
                                 pass
         measure_meaning.close_connection()
         measure_tokens.close_connection()
+
+
+def feature_header_parent(name_header):
+    my_file = open(str(pathlib.Path().absolute()) + "/File/Header/" + name_header + ".txt", "r")
+    lines_delta = []
+    lines_parent = []
+    lines_current = []
+    for line in my_file:
+        line = line.replace("\n", "")
+        lines_parent.append('parent_' + str(line))
+        lines_current.append('current_' + str(line))
+        lines_delta.append('delta_' + str(line))
+    return lines_parent + lines_current + lines_delta
+
+
+def feature_header(name_header):
+    my_file = open(str(pathlib.Path().absolute()) + "/File/Header/" + name_header + ".txt", "r")
+    lines = my_file.read()
+    lines = lines.split("\n")
+    return lines
+
+
+def feature_diff(measure_diff, commit, file_change):
+    list_feature_diff = measure_diff.measure_diff(dict_commit_filter[(str(commit), str(file_change))][0])
+    if list_feature_diff is None:
+        raise Exception("None list_feature_diff")
+    return list_feature_diff
+
+
+def feature_refactoring(measure_refactoring, commit, file_change):
+    list_refactoring = measure_refactoring.feature_refactoring(commit, file_change)
+    if list_refactoring is None:
+        raise Exception("None list_refactoring")
+    return list_refactoring
+
+
+def feature_token(measure_tokens, commit, file_change):
+    list_feature_tokens = measure_tokens.get_feature(commit, file_change)
+    if list_feature_tokens is None:
+        raise Exception("None list_feature_tokens")
+    return list_feature_tokens
+
+
+def feature_meaning(measure_meaning, commit, file_change ):
+    list_feature_meaning = measure_meaning.get_feature(commit, file_change)
+    if list_feature_meaning is None:
+        raise Exception("None list_feature_meaning")
+    return list_feature_meaning
+
+
+def feature_lab(measure_lab, before_contents, after_contents, diff):
+    if not after_contents:
+        before_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
+                                       diff.a_blob.data_stream.stream.readlines()))
+        after_contents = list(map(lambda x: x.decode("utf-8", errors='ignore'),
+                                  diff.b_blob.data_stream.stream.readlines()))
+    list_feature_lab = measure_lab.main_measure(before_contents, after_contents)
+    if list_feature_lab is None:
+        raise Exception("None list_feature_lab")
+    return list_feature_lab
+
 
 # -------------------------------------------END feature of commit
 
@@ -330,7 +345,7 @@ def blame_add_line(list_diff, counter_line_number, list_line_blame, list_line_nu
         current_line_number(int) = number of line add
         list_line_blame(list) - list line blame
         list_line_number(list) - list line number for save number line
-    if line add we blame the line above line add (whiteout line that start with *, { , }, /*)
+    if line add we blame the line above line add (whiteout line that start with *, { , }, /*, +)
     """
     if i == 0:
         return
@@ -395,7 +410,7 @@ def describe_data_frame(path):
     """
       Print describe_data_frame of feature
     """
-    data_frame = pd.read_csv(path)
+    data_frame = pd.read_csv(path, delimiter='!')
     df_not_bug = data_frame[data_frame['commit insert bug?'] == 0]
     df_bug = data_frame[data_frame['commit insert bug?'] == 1]
 
@@ -406,8 +421,30 @@ def describe_data_frame(path):
     data_frame.describe().to_csv(str(pathlib.Path().absolute()) + "/../Commit/File/Describe/all_description.csv")
 
 
+def merge_feature(path, path_merge, name_column, new_path):
+    data_frame = pd.read_csv(path)
+    list_check = []
+    f = open(path_merge, "r")
+    while (True):
+        line = f.readline()
+        if not line:
+            break
+        list_check.append(line.strip())
+    f.close()
+    for index, line in data_frame.iterrows():
+        count = 0
+        for x in list_check:
+            if line[x] != 0:
+                count += 1
+        if count >= 1:
+            data_frame.loc[index, name_column] = count
+        else:
+            data_frame.loc[index, name_column] = 0
+    data_frame.to_csv(new_path, index=False)
+
+
 class GetCommit:
-    connect: Repo
+    # connect: Repo
 
     def __init__(self, url, feature_only=False):
         """
@@ -452,7 +489,7 @@ class GetCommit:
             writer = csv.writer(file)
             # need space
             writer.writerow([])
-            writer.writerow(['issue', 'commit', 'file', 'line change', 'blame commit', 'line number',
+            writer.writerow(['issue', 'commit fix', 'file', 'line change', 'blame commit', 'line number',
                              'number relevant line number'])
         # get list all issue that start with LANG-XXXX
         list_of_issue = read_issue_from_file()
@@ -465,6 +502,11 @@ class GetCommit:
                 if issue in commit_check.summary:
                     # quick fix for short issues
                     if commit_check.summary.index(issue) + len(issue) < len(commit_check.summary) and commit_check.summary[commit_check.summary.index(issue) + len(issue)].isnumeric():
+                        continue
+                    list_commit_sol_issue.append(commit_check)
+                elif issue in commit_check.message:
+                    if commit_check.message.index(issue) + len(issue) < len(commit_check.message) and \
+                            commit_check.message[commit_check.message.index(issue) + len(issue)].isnumeric():
                         continue
                     list_commit_sol_issue.append(commit_check)
             # operation_on_commit find all commit that insert bug of this issue
@@ -480,7 +522,7 @@ class GetCommit:
         """
         list_all_commit = list()
         commits = list(self.connect.iter_commits('master'))
-        for commit in commits:
+        for commit in commits[0:10]:
             list_all_commit.append(commit)
         return list_all_commit
 
@@ -490,34 +532,35 @@ class GetCommit:
 
 
 # TODO list for new programmer:
-# 1. TODO change path in line obj_git = Git('C:/Users/shir0/commons-lang') to path og commons-lang
+# 1. TODO change variable LOCATION_PROJECT to path of project in your computer
 # 2. TODO add directory name "Code_lab" from this URL https://github.com/amir9979/repository_mining.git
-# 2. TODO change line DB_PATH = r"C:\Users\shir0\Commits-Issues-DB\CommitIssueDB.db" (you need create DB in this name
-# TODO according to https://github.com/amir9979/Commits-Issues-DB.git
+# 3. TODO change line DB_PATH = r"C:\Users\shir0\Commits-Issues-DB\CommitIssueDB.db" (you need create DB in this name
+#  TODO according to https://github.com/amir9979/Commits-Issues-DB.git
 
 
 if __name__ == '__main__':
     # todo commit blame and feature
-    obj_git = GetCommit('C:/Users/shir0/commons-math')
-    # # get all commit insert bug
-    obj_git.main_function()
-    obj_git.read_commit_blame()
-    # feature
-    find_feature_all_commit(obj_git.list_of_commit, obj_git.dataset)
-
-    # todo run_only_feature
-    # obj_git = GetCommit('C:/Users/shir0/commons-math', True)
+    # obj_git = GetCommit(LOCATION_PROJECT)
+    # # # get all commit insert bug
+    # obj_git.main_function()
     # obj_git.read_commit_blame()
+    # feature
     # find_feature_all_commit(obj_git.list_of_commit, obj_git.dataset)
 
+    # todo run_only_feature
+    obj_git = GetCommit(LOCATION_PROJECT, True)
+    obj_git.read_commit_blame()
+    find_feature_all_commit(obj_git.list_of_commit, obj_git.dataset)
+
     # todo run one commit in feature
-    # obj_git = GetCommit('C:/Users/shir0/commons-math', True)
+    # obj_git = GetCommit(LOCATION_PROJECT, True)
     # obj_git.read_commit_blame()
-    # commit_check = GetCommit.get_commit_by_id('C:/Users/shir0/commons-math', '0207f15a49e4a1c74920d2d1cfc2a8ee6c67969c')
+    # commit_check = GetCommit.get_commit_by_id(LOCATION_PROJECT, '0207f15a49e4a1c74920d2d1cfc2a8ee6c67969c')
     # find_feature_all_commit([commit_check], obj_git.dataset)
 
     # todo describe_data_frame difference bug ot not bug
-    # describe_data_frame(str(pathlib.Path().absolute()) + '/File/feature_of_commit_solve_issue.csv')
+    # describe_data_frame(str(pathlib.Path().absolute()) + '/File/feature.csv')
+    # describe_data_frame(str(pathlib.Path().absolute()) + '/File/feature_change_label.csv')
 
 
     # todo get all unique meaning

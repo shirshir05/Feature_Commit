@@ -26,6 +26,7 @@ class Filter:
         return list_file
 
     # function from javadiff - https://github.com/amir9979/javadiff
+    # __init__ in FileDiff
     def get_relevant_lines(self, diff, first_commit=None, second_commit=None):
         self.before_contents = self.get_before_content_from_diff(diff, first_commit)
         self.after_contents = self.get_after_content_from_diff(diff, second_commit)
@@ -36,6 +37,7 @@ class Filter:
         return self.line_before_file, self.line_after_file
 
     def find_use_line(self, contents):
+        # __init__ in SourceFile
         """""
         This method return list of line that contain code of mathod
         :parameter:
@@ -47,58 +49,16 @@ class Filter:
         list_ans = self.get_methods_by_javalang(tokens, parsed_data)
         if list_ans:
             return [item for sublist in list_ans for item in sublist]
-        return None
+        else:
+            return []
 
-    # @staticmethod
-    # def get_methods_by_javalang(tokens, parsed_data):
-    #     def get_method_end_position(method, seperators):
-    #         method_seperators = seperators[list(map(id, sorted(seperators + [method],
-    #                                                            key=lambda x: (
-    #                                                                x.position.line, x.position.column)))).index(
-    #             id(method)):]
-    #         assert method_seperators[0].value == "{"
-    #         counter = 1
-    #         for seperator in method_seperators[1:]:
-    #             if seperator.value == "{":
-    #                 counter += 1
-    #             elif seperator.value == "}":
-    #                 counter -= 1
-    #             if counter == 0:
-    #                 return seperator.position
-    #
-    #     list_ans = list()
-    #     used_lines = set(map(lambda t: t.position.line - 1, tokens))
-    #     seperators = list(filter(lambda token: isinstance(token, javalang.tokenizer.Separator) and token.value in "{}",
-    #                              tokens))
-    #     classes_full = list(parsed_data.filter(javalang.tree.ClassDeclaration))  # tuple (position,class itself)
-    #     for full_class in classes_full:
-    #         class_path = full_class[0]
-    #         class_declaration = full_class[1]
-    #         if len(class_path) > 2:  # has parent class
-    #             index = class_path.find('.')
-    #             if index != -1:
-    #                 class_name = class_path[0:index]
-    #             class_name = class_name + "." + class_declaration.name
-    #         else:
-    #             class_name = class_declaration.name
-    #         methods = list(map(operator.itemgetter(1), class_declaration.filter(javalang.tree.MethodDeclaration)))
-    #         constructors = list(
-    #             map(operator.itemgetter(1), class_declaration.filter(javalang.tree.ConstructorDeclaration)))
-    #         for method in methods + constructors:
-    #             if not method.body:
-    #                 # skip abstract methods
-    #                 continue
-    #             method_start_position = method.position
-    #             method_end_position = get_method_end_position(method, seperators)
-    #             method_used_lines = list(
-    #                 filter(lambda line: method_start_position.line - 1 <= line <= method_end_position.line, used_lines))
-    #             list_ans.append(method_used_lines)
-    #     return list_ans
 
-    def get_methods_by_javalang(self, tokens, parsed_data, analyze_source_lines=True):
+    @staticmethod
+    def get_methods_by_javalang(tokens, parsed_data):
         def get_method_end_position(method, seperators):
             method_seperators = seperators[list(map(id, sorted(seperators + [method],
-                                                          key=lambda x: (x.position.line, x.position.column)))).index(
+                                                               key=lambda x: (
+                                                                   x.position.line, x.position.column)))).index(
                 id(method)):]
             assert method_seperators[0].value == "{"
             counter = 1
@@ -110,13 +70,15 @@ class Filter:
                 if counter == 0:
                     return seperator.position
 
-        used_lines = set(map(lambda t: t.position.line-1, tokens))
-        seperators = list(filter(lambda token: isinstance(token, javalang.tokenizer.Separator) and token.value in "{}",
-                            tokens))
         list_ans = list()
+        used_lines = set(map(lambda t: t.position.line - 1, tokens))
+        seperators = list(filter(lambda token: isinstance(token, javalang.tokenizer.Separator) and token.value in "{}",
+                                 tokens))
+        # classes_full = list(parsed_data.filter(javalang.tree.ClassDeclaration))  # tuple (position,class itself)
         for class_declaration in map(operator.itemgetter(1), parsed_data.filter(javalang.tree.ClassDeclaration)):
             methods = list(map(operator.itemgetter(1), class_declaration.filter(javalang.tree.MethodDeclaration)))
-            constructors = list(map(operator.itemgetter(1), class_declaration.filter(javalang.tree.ConstructorDeclaration)))
+            constructors = list(
+                map(operator.itemgetter(1), class_declaration.filter(javalang.tree.ConstructorDeclaration)))
             for method in methods + constructors:
                 if not method.body:
                     # skip abstract methods
@@ -124,9 +86,33 @@ class Filter:
                 method_start_position = method.position
                 method_end_position = get_method_end_position(method, seperators)
                 method_used_lines = list(
-                        filter(lambda line: method_start_position.line - 1 <= line <= method_end_position.line, used_lines))
+                    filter(lambda line: method_start_position.line - 1 <= line <= method_end_position.line, used_lines))
                 list_ans.append(method_used_lines)
-            return list_ans
+        return list_ans
+
+        # for full_class in classes_full:
+        #     class_path = full_class[0]
+        #     class_declaration = full_class[1]
+        #     if len(class_path) > 2:  # has parent class
+        #         index = class_path.find('.')
+        #         if index != -1:
+        #             class_name = class_path[0:index]
+        #         class_name = class_name + "." + class_declaration.name
+        #     else:
+        #         class_name = class_declaration.name
+        #     methods = list(map(operator.itemgetter(1), class_declaration.filter(javalang.tree.MethodDeclaration)))
+        #     constructors = list(
+        #         map(operator.itemgetter(1), class_declaration.filter(javalang.tree.ConstructorDeclaration)))
+        #     for method in methods + constructors:
+        #         if not method.body:
+        #             # skip abstract methods
+        #             continue
+        #         method_start_position = method.position
+        #         method_end_position = get_method_end_position(method, seperators)
+        #         method_used_lines = list(
+        #             filter(lambda line: method_start_position.line - 1 <= line <= method_end_position.line, used_lines))
+        #         list_ans.append(method_used_lines)
+        # return list_ans
 
     @staticmethod
     def get_before_content_from_diff(diff, first_commit):

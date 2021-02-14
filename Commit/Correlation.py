@@ -40,5 +40,5 @@ class Correlation:
 
 
 if __name__ == "__main__":
-    # cor = Correlation(str(pathlib.Path().absolute()) + '/File/feature_of_commit_solve_issue.csv')
+    # cor = Correlation(str(pathlib.Path().absolute()) + '/File/feature.csv')
     Correlation.T_test()

@@ -1,0 +1,1691 @@
+C:\Users\shir0\Anaconda3\python.exe C:/Users/shir0/Feature_Commit/Commit/GetCommit.py
+connection established
+connection established to token
+find_feature_all_commit - error -  None list_feature_meaning
+commit  735dbc79340d609318a339cf7b85cb542e969d0a
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/threed/FieldRotation.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  735dbc79340d609318a339cf7b85cb542e969d0a
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/threed/FieldVector3D.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  735dbc79340d609318a339cf7b85cb542e969d0a
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/threed/RotationOrder.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  735dbc79340d609318a339cf7b85cb542e969d0a
+file  src/test/java/org/apache/commons/math4/fitting/leastsquares/CircleVectorial.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  735dbc79340d609318a339cf7b85cb542e969d0a
+file  src/test/java/org/apache/commons/math4/fitting/leastsquares/RandomCirclePointGenerator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  735dbc79340d609318a339cf7b85cb542e969d0a
+file  src/test/java/org/apache/commons/math4/optim/nonlinear/scalar/gradient/CircleScalar.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  45db3da2f88a6a051fa66481e0e2869822e44cf1
+file  src/main/java/org/apache/commons/math4/analysis/integration/SimpsonIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  1b99b4583c552e0ece96349b4cb56b3584ad2b42
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/oned/SubOrientedPoint.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  1b99b4583c552e0ece96349b4cb56b3584ad2b42
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/twod/PolygonsSet.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  29c067466ed78c3e7948fcb8f0d25b3d984a1a93
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/twod/PolygonsSet.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  a61fde99657c1b9d11e8eaa682181ea59e65814b
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/oned/SubOrientedPoint.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  612a04d6b0ff8fa3060d5e943f4f72968ea71700
+file  src/main/java/org/apache/commons/math4/stat/interval/WilsonScoreInterval.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  1b80dc49658ce86375c6c3fd089d7dcd176f4ad8
+file  src/main/java/org/apache/commons/math4/linear/Array2DRowRealMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  221c843b8437e1c87a98a9a015b03b050dd08561
+file  src/main/java/org/apache/commons/math4/ode/ContinuousOutputModel.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  221c843b8437e1c87a98a9a015b03b050dd08561
+file  src/main/java/org/apache/commons/math4/ode/FirstOrderConverter.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  221c843b8437e1c87a98a9a015b03b050dd08561
+file  src/main/java/org/apache/commons/math4/ode/sampling/AbstractStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  221c843b8437e1c87a98a9a015b03b050dd08561
+file  src/test/java/org/apache/commons/math4/ode/TestProblemAbstract.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  221c843b8437e1c87a98a9a015b03b050dd08561
+file  src/test/java/org/apache/commons/math4/ode/TestProblemHandler.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  221c843b8437e1c87a98a9a015b03b050dd08561
+file  src/test/java/org/apache/commons/math4/ode/nonstiff/StepProblem.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  77c24aa92600598ee7994a1504b7bafc560b3809
+file  src/main/java/org/apache/commons/math4/distribution/ConstantRealDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  77c24aa92600598ee7994a1504b7bafc560b3809
+file  src/main/java/org/apache/commons/math4/distribution/EnumeratedRealDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  77c24aa92600598ee7994a1504b7bafc560b3809
+file  src/main/java/org/apache/commons/math4/distribution/ExponentialDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  77c24aa92600598ee7994a1504b7bafc560b3809
+file  src/main/java/org/apache/commons/math4/distribution/NormalDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  77c24aa92600598ee7994a1504b7bafc560b3809
+file  src/main/java/org/apache/commons/math4/distribution/ParetoDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  77c24aa92600598ee7994a1504b7bafc560b3809
+file  src/main/java/org/apache/commons/math4/distribution/UniformRealDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  df355deb13e42d161555505be9b1913af2afa602
+file  src/main/java/org/apache/commons/math4/ode/nonstiff/EulerFieldIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/analysis/differentiation/DerivativeStructure.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/analysis/interpolation/BicubicInterpolatingFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/analysis/interpolation/InterpolatingMicrosphere.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/analysis/interpolation/TricubicInterpolatingFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/analysis/polynomials/PolynomialsUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/oned/IntervalsSet.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/threed/OutlineExtractor.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/threed/PolyhedronsSet.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/threed/SphericalCoordinates.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/twod/Line.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/twod/NestedLoops.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/twod/PolygonsSet.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/partitioning/BoundaryProjector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/partitioning/BoundarySizeVisitor.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/partitioning/Characterization.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/partitioning/InsideFinder.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/partitioning/RegionFactory.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/spherical/oned/ArcsSet.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/spherical/twod/Circle.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/spherical/twod/EdgesBuilder.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/geometry/spherical/twod/PropertiesComputer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/linear/BiDiagonalTransformer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/linear/HessenbergTransformer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/linear/MatrixUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/linear/SchurTransformer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/linear/SymmLQ.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/linear/TriDiagonalTransformer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ml/neuralnet/MapUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/ExpandableStatefulODE.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/JacobianMatrices.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/MultistepIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/ParameterConfiguration.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/ParameterJacobianWrapper.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/ParameterizedWrapper.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/events/EventState.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/nonstiff/AdamsMoultonIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/nonstiff/ClassicalRungeKuttaStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/nonstiff/DormandPrince54StepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/nonstiff/DormandPrince853StepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/nonstiff/EulerStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/nonstiff/GillStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/nonstiff/GraggBulirschStoerStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/nonstiff/HighamHall54StepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/nonstiff/LutherStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/nonstiff/MidpointStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/nonstiff/RungeKuttaStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/ode/nonstiff/ThreeEighthesStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/optim/PointValuePair.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/optim/PointVectorValuePair.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/optim/nonlinear/scalar/MultivariateFunctionMappingAdapter.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/optim/nonlinear/scalar/noderiv/CMAESOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/random/EmpiricalDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/stat/correlation/StorelessBivariateCovariance.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/stat/descriptive/AggregateSummaryStatistics.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/stat/descriptive/moment/FirstMoment.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/stat/descriptive/moment/FourthMoment.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/stat/descriptive/moment/ThirdMoment.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/stat/descriptive/rank/PSquarePercentile.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/stat/descriptive/rank/Percentile.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/stat/ranking/NaturalRanking.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/transform/FastFourierTransformer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/util/Combinations.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/util/FastMath.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf7e9d505a75728fd69a51b1bee30e645c813c27
+file  src/main/java/org/apache/commons/math4/util/MathArrays.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2091cfbabc4e4940f70c2628cadc08da0baaedc8
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/oned/SubOrientedPoint.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2091cfbabc4e4940f70c2628cadc08da0baaedc8
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/threed/SubPlane.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2091cfbabc4e4940f70c2628cadc08da0baaedc8
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/twod/SubLine.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2091cfbabc4e4940f70c2628cadc08da0baaedc8
+file  src/main/java/org/apache/commons/math4/geometry/partitioning/AbstractRegion.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2091cfbabc4e4940f70c2628cadc08da0baaedc8
+file  src/main/java/org/apache/commons/math4/geometry/partitioning/BSPTree.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2091cfbabc4e4940f70c2628cadc08da0baaedc8
+file  src/main/java/org/apache/commons/math4/geometry/partitioning/Characterization.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2091cfbabc4e4940f70c2628cadc08da0baaedc8
+file  src/main/java/org/apache/commons/math4/geometry/partitioning/InsideFinder.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2091cfbabc4e4940f70c2628cadc08da0baaedc8
+file  src/main/java/org/apache/commons/math4/geometry/partitioning/RegionFactory.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2091cfbabc4e4940f70c2628cadc08da0baaedc8
+file  src/main/java/org/apache/commons/math4/geometry/partitioning/SubHyperplane.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2091cfbabc4e4940f70c2628cadc08da0baaedc8
+file  src/main/java/org/apache/commons/math4/geometry/spherical/oned/ArcsSet.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2091cfbabc4e4940f70c2628cadc08da0baaedc8
+file  src/main/java/org/apache/commons/math4/geometry/spherical/oned/SubLimitAngle.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2091cfbabc4e4940f70c2628cadc08da0baaedc8
+file  src/main/java/org/apache/commons/math4/geometry/spherical/twod/SubCircle.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  5d549fc352d26290386cda47cb35aea1239a4919
+file  src/main/java/org/apache/commons/math4/stat/regression/MillerUpdatingRegression.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  5d549fc352d26290386cda47cb35aea1239a4919
+file  src/main/java/org/apache/commons/math4/stat/regression/SimpleRegression.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  8937821b5fd47226ea10ee0297e8b0604a8fa11f
+file  src/main/java/org/apache/commons/math4/random/RandomDataGenerator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc467caf26e1ba94be02f27a349647c62dca6a7b
+file  src/main/java/org/apache/commons/math4/random/UncorrelatedRandomVectorGenerator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  e4e1ac23c734f65686be4bc0e503f82f941afd4d
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/threed/OutlineExtractor.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  e4e1ac23c734f65686be4bc0e503f82f941afd4d
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/threed/PolyhedronsSet.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  e4e1ac23c734f65686be4bc0e503f82f941afd4d
+file  src/main/java/org/apache/commons/math4/geometry/euclidean/threed/SubPlane.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  c7fcb448c99ae5fe9db9b217bea1233df3ee6e57
+file  src/main/java/org/apache/commons/math3/analysis/solvers/BaseAbstractUnivariateSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  e7bf6afe5052d30a2c448ae958058dd83410d076
+file  src/main/java/org/apache/commons/math3/util/FastMath.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  c4768568c9981ea4efc942d045d9349ef2596af8
+file  src/userguide/java/org/apache/commons/math3/userguide/genetics/HelloWorldExample.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  c4768568c9981ea4efc942d045d9349ef2596af8
+file  src/userguide/java/org/apache/commons/math3/userguide/sofm/ChineseRingsClassifier.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  9786ad4de8ef2f0aefcbe2bcb14889bb148eebd5
+file  src/main/java/org/apache/commons/math3/fitting/leastsquares/LeastSquaresFactory.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cd28a018fb327d38a30c502bedca66cffb26f271
+file  src/main/java/org/apache/commons/math3/fitting/leastsquares/LeastSquaresFactory.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  f44d4852ab758cdf0011efa028c85c68b8b36bee
+file  src/main/java/org/apache/commons/math3/analysis/interpolation/AkimaSplineInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  46b2ce2ee046ec3c35919ce72ce67262dfc37c5b
+file  src/main/java/org/apache/commons/math3/optim/AbstractOptimizationProblem.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cffd29da6b81c88539e82367cf51115189036a28
+file  src/main/java/org/apache/commons/math3/distribution/NormalDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  e5f5a2dbaa5cf4de1cb615d345b8ae554fa4f729
+file  src/main/java/org/apache/commons/math3/distribution/NormalDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4c7b801625726805c908cbdffa59097d2543411e
+file  src/main/java/org/apache/commons/math3/util/MathArrays.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  99db22a8df129a85be86869c06c2659580e3b294
+file  src/main/java/org/apache/commons/math3/analysis/integration/MidPointIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  a6dfb27d91f6a791d9ccb57aa54a538648fc0d84
+file  src/main/java/org/apache/commons/math3/analysis/integration/MidPointIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  8a25d709f50ce97d50c653dbb5897c01e6b5d9cb
+file  src/main/java/org/apache/commons/math3/util/FastMath.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6f3165670c9c1c6e383b283f390270968402e081
+file  src/main/java/org/apache/commons/math3/analysis/integration/BaseAbstractUnivariateIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  9a9b2d3153119ae30cfbcb2b4de45620725d50a5
+file  src/main/java/org/apache/commons/math3/optimization/univariate/BaseAbstractUnivariateOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bea6d09158d8d332860a0b8d052757d5d546177e
+file  src/main/java/org/apache/commons/math3/analysis/differentiation/DSCompiler.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  37f8de95424970b85adb179a008bc949202aa3b8
+file  src/main/java/org/apache/commons/math3/linear/RealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  1ac0c79080b1c47bf55d4068a37ecf5ad2cb76f8
+file  src/main/java/org/apache/commons/math3/analysis/function/Logit.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  1ac0c79080b1c47bf55d4068a37ecf5ad2cb76f8
+file  src/main/java/org/apache/commons/math3/analysis/solvers/BisectionSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  1ac0c79080b1c47bf55d4068a37ecf5ad2cb76f8
+file  src/main/java/org/apache/commons/math3/analysis/solvers/UnivariateSolverUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2ff6587c4e8afc1c92b3b6ce3b7ea0b470b74c76
+file  src/main/java/org/apache/commons/math3/linear/AbstractRealMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  7536672818ae9a4a036c98ed5be244c5ad20f257
+file  src/main/java/org/apache/commons/math3/transform/FastFourierTransformer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  75fe8b8b99ce0ef9c682f5b2d90727bab498e17a
+file  src/main/java/org/apache/commons/math3/optimization/linear/AbstractLinearOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  c8b8e612430cdc2f54d0bbb3f25f1c956963d99b
+file  src/main/java/org/apache/commons/math3/optimization/DifferentiableMultivariateMultiStartOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  e8e94f59360f776d638bc31abed86cc06a1d17a2
+file  src/main/java/org/apache/commons/math3/ode/nonstiff/AdamsIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  0af91ecfbe4deec846cd30fb32145d82b920a4ff
+file  src/main/java/org/apache/commons/math3/analysis/solvers/AbstractUnivariateSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  b6e62ab83aab52e53a29f8e547f1d934e73b2a9a
+file  src/main/java/org/apache/commons/math3/util/FastMath.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  db540a6b917f5693d3a58b4be8b9453310642187
+file  src/main/java/org/apache/commons/math3/analysis/FunctionUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  a201eaf582c1eef82851ebf6083647f8b6641490
+file  src/main/java/org/apache/commons/math3/optimization/PointVectorValuePair.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  607c9ec626ae23ac6bbca72afede4037ecb495d7
+file  src/main/java/org/apache/commons/math3/linear/RealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6eb4655543213e988ff01098d0954e70bc8699b2
+file  src/main/java/org/apache/commons/math3/linear/RealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  5e5cb5ec2fefdcd469cfdec9197746acdec46149
+file  src/main/java/org/apache/commons/math3/linear/RealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  52eb62e4dd78d7f75b44e37c245061d6506c93ae
+file  src/main/java/org/apache/commons/math3/analysis/interpolation/HermiteInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  52eb62e4dd78d7f75b44e37c245061d6506c93ae
+file  src/main/java/org/apache/commons/math3/geometry/euclidean/threed/Rotation.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  e790293f6ea56cd4455c880cd795d8fcfe972d17
+file  src/main/java/org/apache/commons/math3/linear/RealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  ddd5f1a5e951525c013077b8ec9b4c12c482eff4
+file  src/main/java/org/apache/commons/math3/linear/RealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  28a28399279c42e5613865dc720d81e4908929ae
+file  src/main/java/org/apache/commons/math3/linear/RealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  460839bd6110248e85a1a8927a0a060977b05e0b
+file  src/main/java/org/apache/commons/math3/optimization/univariate/UnivariatePointValuePair.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2f6a4f8456d4043e5492cf3e6c5c7dbb6606c102
+file  src/main/java/org/apache/commons/math3/optimization/SimpleValueChecker.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  99667c817a6097690cf2210b5549f299f771af18
+file  src/main/java/org/apache/commons/math3/util/FastMathCalc.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  af2c6693016ea2ecc7aba48050b924753ff7bdff
+file  src/main/java/org/apache/commons/math3/linear/Array2DRowRealMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  27dc50b397cfae42e347fa109fdfb79750c1ca89
+file  src/main/java/org/apache/commons/math/linear/QRDecomposition.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  399249653d7a5dd0a0ca3f1c615c0b44f7601a01
+file  src/test/java/org/apache/commons/math/ode/sampling/StepNormalizerOutputTestBase.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bf6a142540c15ad8ba37f4d7712395fcebec45c6
+file  src/main/java/org/apache/commons/math/linear/SymmLQ.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  db0ac031e78b2c2c63fe1a03512f4657a4eb35f5
+file  src/main/java/org/apache/commons/math/optimization/direct/BOBYQAOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  0be9aee8825fee918c941a2ae36ef1f370432182
+file  src/main/java/org/apache/commons/math/ode/MultistepIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  ef6e9008270fcb8775f5887c24fcc243031074aa
+file  src/main/java/org/apache/commons/math/linear/CholeskyDecomposition.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  265a435568d174aeb597049d86cdfec554ccf811
+file  src/main/java/org/apache/commons/math/linear/CholeskyDecomposition.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  724130fb7f92ad09b2414cf1b2a7b46c4918ae9a
+file  src/main/java/org/apache/commons/math/util/IterationEvent.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  724130fb7f92ad09b2414cf1b2a7b46c4918ae9a
+file  src/main/java/org/apache/commons/math/util/IterationManager.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dad0b0163b8e84cf10a7b868079a401c9274f797
+file  src/main/java/org/apache/commons/math/util/FastMath.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  13baf529444e9ccca1cd8fbf9701b08c22d42650
+file  src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  ca460b7c2272f6f8cef566abdacb8446d12ea25e
+file  src/main/java/org/apache/commons/math/linear/SingularValueDecompositionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  c0b4954297ce01b64487c09a1dcfcc0124f7053b
+file  src/main/java/org/apache/commons/math/analysis/solvers/IllinoisSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  c0b4954297ce01b64487c09a1dcfcc0124f7053b
+file  src/main/java/org/apache/commons/math/analysis/solvers/PegasusSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  37b22700d9992f0a40a46d1b70fed97891565163
+file  src/main/java/org/apache/commons/math/linear/EigenDecompositionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  760078b411fa3c0a2914574756ef458c3fc68d00
+file  src/main/java/org/apache/commons/math/linear/RealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f7b6d2d75597b20856d8476bf1c8697ce9d11ba
+file  src/main/java/org/apache/commons/math/linear/AbstractRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f7b6d2d75597b20856d8476bf1c8697ce9d11ba
+file  src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  bea7d3b97bcbac344d4069244687c72609a6badd
+file  src/main/java/org/apache/commons/math/complex/Complex.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  7ec3665fb99c98089c37a87d91f9d3dbaa060a3d
+file  src/main/java/org/apache/commons/math/geometry/euclidean/twod/Line.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  8a5f904b366d9aa02524283a4c01eb5989c52cae
+file  src/main/java/org/apache/commons/math/geometry/euclidean/twod/Line.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  8a5f904b366d9aa02524283a4c01eb5989c52cae
+file  src/main/java/org/apache/commons/math/geometry/euclidean/twod/NestedLoops.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  8a5f904b366d9aa02524283a4c01eb5989c52cae
+file  src/main/java/org/apache/commons/math/geometry/partitioning/AbstractRegion.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  8a5f904b366d9aa02524283a4c01eb5989c52cae
+file  src/main/java/org/apache/commons/math/geometry/partitioning/BoundarySizeVisitor.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6a14866cfcb0503b4f63819f05194e2cb83277a3
+file  src/main/java/org/apache/commons/math/geometry/partitioning/BSPTree.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6a14866cfcb0503b4f63819f05194e2cb83277a3
+file  src/main/java/org/apache/commons/math/geometry/partitioning/Characterization.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6a14866cfcb0503b4f63819f05194e2cb83277a3
+file  src/main/java/org/apache/commons/math/geometry/partitioning/Hyperplane.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6a14866cfcb0503b4f63819f05194e2cb83277a3
+file  src/main/java/org/apache/commons/math/geometry/partitioning/Region.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6a14866cfcb0503b4f63819f05194e2cb83277a3
+file  src/main/java/org/apache/commons/math/geometry/partitioning/SubHyperplane.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  47e0ef5d2e1d3b526db5996089f186918384ac43
+file  src/main/java/org/apache/commons/math/optimization/linear/SimplexSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  47e0ef5d2e1d3b526db5996089f186918384ac43
+file  src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  47e0ef5d2e1d3b526db5996089f186918384ac43
+file  src/main/java/org/apache/commons/math/stat/clustering/KMeansPlusPlusClusterer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  87a82127044cfd379c81b769fc588984328d6731
+file  src/main/java/org/apache/commons/math/linear/AbstractRealMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  566075ee5cb903fcf9ddf7c724c4a3f1598bb3fe
+file  src/main/java/org/apache/commons/math/linear/AbstractRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  e8e3d821bb412cdb84fb1503c55cd91ada50cfb2
+file  src/main/java/org/apache/commons/math/util/SerializablePair.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  1361211c4ec6f95c6c91feda287b5b3e7a9bbacf
+file  src/main/java/org/apache/commons/math/stat/Frequency.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  1361211c4ec6f95c6c91feda287b5b3e7a9bbacf
+file  src/main/java/org/apache/commons/math/stat/descriptive/DescriptiveStatistics.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6ad3d5edf1228825ec1ca6b77bf0fef42b396730
+file  src/main/java/org/apache/commons/math/distribution/AbstractDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6ad3d5edf1228825ec1ca6b77bf0fef42b396730
+file  src/main/java/org/apache/commons/math/distribution/AbstractIntegerDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6ad3d5edf1228825ec1ca6b77bf0fef42b396730
+file  src/main/java/org/apache/commons/math/distribution/BetaDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6ad3d5edf1228825ec1ca6b77bf0fef42b396730
+file  src/main/java/org/apache/commons/math/distribution/CauchyDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6ad3d5edf1228825ec1ca6b77bf0fef42b396730
+file  src/main/java/org/apache/commons/math/distribution/FDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6ad3d5edf1228825ec1ca6b77bf0fef42b396730
+file  src/main/java/org/apache/commons/math/distribution/GammaDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6ad3d5edf1228825ec1ca6b77bf0fef42b396730
+file  src/main/java/org/apache/commons/math/distribution/HypergeometricDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6ad3d5edf1228825ec1ca6b77bf0fef42b396730
+file  src/main/java/org/apache/commons/math/distribution/TDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6ad3d5edf1228825ec1ca6b77bf0fef42b396730
+file  src/main/java/org/apache/commons/math/distribution/WeibullDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6ad3d5edf1228825ec1ca6b77bf0fef42b396730
+file  src/main/java/org/apache/commons/math/distribution/ZipfDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  6ad3d5edf1228825ec1ca6b77bf0fef42b396730
+file  src/main/java/org/apache/commons/math/stat/inference/MannWhitneyUTestImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  0f004b25f755c6f334cec6ae27383c88ba34b9c1
+file  src/main/java/org/apache/commons/math/distribution/AbstractContinuousDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  142d2c918a2b1326f379ff5c824e4ae5f531426e
+file  src/main/java/org/apache/commons/math/linear/AbstractRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  d54330b9bc4fdc55603e947b87375c22d649dfcf
+file  src/main/java/org/apache/commons/math/distribution/AbstractContinuousDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  215cebe8df5e445db392a6db3c2509634ffb9cb5
+file  src/main/java/org/apache/commons/math/linear/AbstractRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  ae78e16c8b232a252e29f53cf33cd61899e0b80d
+file  src/main/java/org/apache/commons/math/linear/AbstractRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  ae78e16c8b232a252e29f53cf33cd61899e0b80d
+file  src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  b9559bfce972a8b079ebc5ac8b6326a524ce29f8
+file  src/main/java/org/apache/commons/math/optimization/fitting/HarmonicFitter.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  0b3c388aebe23cde0c7d3afbcd1171c4a8a3f5c5
+file  src/main/java/org/apache/commons/math/linear/DefaultFieldMatrixChangingVisitor.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  0b3c388aebe23cde0c7d3afbcd1171c4a8a3f5c5
+file  src/main/java/org/apache/commons/math/linear/DefaultFieldMatrixPreservingVisitor.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  0b3c388aebe23cde0c7d3afbcd1171c4a8a3f5c5
+file  src/main/java/org/apache/commons/math/linear/DefaultRealMatrixChangingVisitor.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  0b3c388aebe23cde0c7d3afbcd1171c4a8a3f5c5
+file  src/main/java/org/apache/commons/math/linear/DefaultRealMatrixPreservingVisitor.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/BinaryFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/ComposableFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/integration/LegendreGaussIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/integration/RombergIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/integration/SimpsonIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/integration/TrapezoidIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/solvers/BisectionSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/solvers/BrentSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/solvers/LaguerreSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/solvers/MullerSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/solvers/NewtonSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/solvers/RiddersSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/solvers/SecantSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/solvers/UnivariateRealSolverImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/analysis/solvers/UnivariateRealSolverUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/linear/AbstractRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/AbstractIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/ContinuousOutputModel.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/FirstOrderConverter.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/MultistepIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/events/CombinedEventsManager.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/events/EventState.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/jacobians/FirstOrderIntegratorWithJacobians.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/AdamsBashforthIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/AdamsMoultonIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/AdaptiveStepsizeIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/ClassicalRungeKuttaStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/DormandPrince54StepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/DormandPrince853StepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/EmbeddedRungeKuttaIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/EulerStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/GillStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/GraggBulirschStoerIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/GraggBulirschStoerStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/HighamHall54StepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/MidpointStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/RungeKuttaIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/nonstiff/ThreeEighthesStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/sampling/AbstractStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/sampling/DummyStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/sampling/NordsieckStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/ode/sampling/StepNormalizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/BaseMultiStartMultivariateRealOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/BaseMultiStartMultivariateVectorialOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/LeastSquaresConverter.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/direct/AbstractSimplex.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/direct/BaseAbstractScalarOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/direct/BaseAbstractVectorialOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/direct/MultiDirectionalSimplex.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/direct/NelderMeadSimplex.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/direct/PowellOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/direct/SimplexOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/fitting/CurveFitter.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/general/AbstractLeastSquaresOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/general/AbstractScalarDifferentiableOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/general/GaussNewtonOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/general/LevenbergMarquardtOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/general/NonLinearConjugateGradientOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/univariate/AbstractUnivariateRealOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/univariate/BracketFinder.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/univariate/BrentOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/optimization/univariate/MultiStartUnivariateRealOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/transform/FastCosineTransformer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/transform/FastFourierTransformer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/transform/FastHadamardTransformer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/main/java/org/apache/commons/math/transform/FastSineTransformer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/test/java/org/apache/commons/math/analysis/Expm1Function.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/test/java/org/apache/commons/math/analysis/MonitoredFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/test/java/org/apache/commons/math/analysis/QuinticFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/test/java/org/apache/commons/math/analysis/SinFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/test/java/org/apache/commons/math/analysis/SumSincFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/test/java/org/apache/commons/math/ode/TestProblemHandler.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4f05aa7d181a279ef82b268f9a441b16d5505d70
+file  src/test/java/org/apache/commons/math/ode/sampling/StepInterpolatorTestUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  634e51b50e2000d38498161afcdc7359bae61ce1
+file  src/main/java/org/apache/commons/math/analysis/interpolation/DividedDifferenceInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  634e51b50e2000d38498161afcdc7359bae61ce1
+file  src/main/java/org/apache/commons/math/analysis/polynomials/PolynomialFunctionLagrangeForm.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  634e51b50e2000d38498161afcdc7359bae61ce1
+file  src/main/java/org/apache/commons/math/analysis/polynomials/PolynomialSplineFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  634e51b50e2000d38498161afcdc7359bae61ce1
+file  src/main/java/org/apache/commons/math/util/MathUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  826fc64e968e5fd84dae5757537ab8ed815e2126
+file  src/main/java/org/apache/commons/math/linear/AbstractRealMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  826fc64e968e5fd84dae5757537ab8ed815e2126
+file  src/main/java/org/apache/commons/math/linear/AbstractRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  826fc64e968e5fd84dae5757537ab8ed815e2126
+file  src/main/java/org/apache/commons/math/linear/Array2DRowRealMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  826fc64e968e5fd84dae5757537ab8ed815e2126
+file  src/main/java/org/apache/commons/math/linear/ArrayFieldVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  826fc64e968e5fd84dae5757537ab8ed815e2126
+file  src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  826fc64e968e5fd84dae5757537ab8ed815e2126
+file  src/main/java/org/apache/commons/math/linear/BlockRealMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  826fc64e968e5fd84dae5757537ab8ed815e2126
+file  src/main/java/org/apache/commons/math/linear/MatrixUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  826fc64e968e5fd84dae5757537ab8ed815e2126
+file  src/main/java/org/apache/commons/math/linear/OpenMapRealMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  826fc64e968e5fd84dae5757537ab8ed815e2126
+file  src/main/java/org/apache/commons/math/linear/OpenMapRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  826fc64e968e5fd84dae5757537ab8ed815e2126
+file  src/main/java/org/apache/commons/math/linear/RealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  826fc64e968e5fd84dae5757537ab8ed815e2126
+file  src/main/java/org/apache/commons/math/linear/SparseFieldMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  826fc64e968e5fd84dae5757537ab8ed815e2126
+file  src/main/java/org/apache/commons/math/linear/SparseFieldVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  97c084f9404906949fc29cdd55993134764e4f94
+file  src/main/java/org/apache/commons/math/optimization/direct/PowellOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  97c084f9404906949fc29cdd55993134764e4f94
+file  src/main/java/org/apache/commons/math/util/MultidimensionalCounter.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  9714ffac6dbb6b478bfa777375100e32f05d284b
+file  src/main/java/org/apache/commons/math/analysis/interpolation/MicrosphereInterpolatingFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  5cb711fd8e3e336f61435179ab77fc68a98e36dd
+file  src/main/java/org/apache/commons/math/optimization/direct/MultiDirectional.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  5cb711fd8e3e336f61435179ab77fc68a98e36dd
+file  src/main/java/org/apache/commons/math/optimization/fitting/PolynomialFitter.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  5cb711fd8e3e336f61435179ab77fc68a98e36dd
+file  src/main/java/org/apache/commons/math/optimization/general/LevenbergMarquardtOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  0cb5c9ae58c6606c95a2a9d70a436ec164b4d378
+file  src/main/java/org/apache/commons/math/stat/descriptive/AbstractUnivariateStatistic.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  0ec92a0fc205fb0704d3b9032b88ebb0d4e561a9
+file  src/main/java/org/apache/commons/math/analysis/ComposableFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  ad63c1629dea162273b3448407545cdd3cb6b586
+file  src/main/java/org/apache/commons/math/util/MathUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  ede256b235a78521e8a6bdf035271b755f118d31
+file  src/main/java/org/apache/commons/math/optimization/general/LevenbergMarquardtOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  ede256b235a78521e8a6bdf035271b755f118d31
+file  src/main/java/org/apache/commons/math/util/MathUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  c640932de203b33683679879cdf4b1b637d473d3
+file  src/main/java/org/apache/commons/math/linear/SingularValueDecompositionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  730e17083e45c6fa8015d47a79263aee416035ca
+file  src/main/java/org/apache/commons/math/optimization/SimpleScalarValueChecker.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  92a9c20dc56dddc8710226d40c079fc13ab5331d
+file  src/main/java/org/apache/commons/math/ode/MultistepIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2e75b28336f3ae4d219ebdad44cc1dfadb8a3fd2
+file  src/main/java/org/apache/commons/math/analysis/interpolation/TricubicSplineInterpolatingFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2e75b28336f3ae4d219ebdad44cc1dfadb8a3fd2
+file  src/main/java/org/apache/commons/math/optimization/general/LevenbergMarquardtOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  9695c5ca0198a0c7cca75a5988f69784de302b70
+file  src/main/java/org/apache/commons/math/distribution/SaddlePointExpansion.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  b2fc89b01c23b3b32bfb2ecda352bb77f545c1dd
+file  src/main/java/org/apache/commons/math/util/BigReal.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  71819532ac59cb3f9947a09e193e5f1c683a8dd5
+file  src/main/java/org/apache/commons/math/analysis/solvers/BrentSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  42a5482d7a265fe3c1cb538dfb7465588aeadaa6
+file  src/test/java/org/apache/commons/math/ode/TestProblem1.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  42a5482d7a265fe3c1cb538dfb7465588aeadaa6
+file  src/test/java/org/apache/commons/math/ode/TestProblem2.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  42a5482d7a265fe3c1cb538dfb7465588aeadaa6
+file  src/test/java/org/apache/commons/math/ode/TestProblem3.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  42a5482d7a265fe3c1cb538dfb7465588aeadaa6
+file  src/test/java/org/apache/commons/math/ode/TestProblem4.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  b26de3b0aab46ca316bd469e2e9344fc2077c395
+file  src/main/java/org/apache/commons/math/analysis/ComposableFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  06c388acc99292bc44948dfd71311efc8f616233
+file  src/main/java/org/apache/commons/math/linear/OpenMapRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  9e9048ccb582546ba54a5e92c3ab97d508884858
+file  src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  9e9048ccb582546ba54a5e92c3ab97d508884858
+file  src/main/java/org/apache/commons/math/linear/OpenMapRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  9e9048ccb582546ba54a5e92c3ab97d508884858
+file  src/main/java/org/apache/commons/math/linear/RealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  f8254ebbd3ce543854e93539eb0a3375e8e406b6
+file  src/main/java/org/apache/commons/math/MathException.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  f8254ebbd3ce543854e93539eb0a3375e8e406b6
+file  src/main/java/org/apache/commons/math/estimation/EstimatedParameter.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  f8254ebbd3ce543854e93539eb0a3375e8e406b6
+file  src/main/java/org/apache/commons/math/fraction/BigFraction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  f8254ebbd3ce543854e93539eb0a3375e8e406b6
+file  src/main/java/org/apache/commons/math/genetics/GeneticAlgorithm.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  f8254ebbd3ce543854e93539eb0a3375e8e406b6
+file  src/main/java/org/apache/commons/math/geometry/CardanEulerSingularityException.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  f8254ebbd3ce543854e93539eb0a3375e8e406b6
+file  src/main/java/org/apache/commons/math/geometry/NotARotationMatrixException.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  f8254ebbd3ce543854e93539eb0a3375e8e406b6
+file  src/main/java/org/apache/commons/math/linear/ArrayFieldVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  f8254ebbd3ce543854e93539eb0a3375e8e406b6
+file  src/main/java/org/apache/commons/math/ode/nonstiff/GraggBulirschStoerStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/MathException.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/MathRuntimeException.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/analysis/integration/RombergIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/analysis/integration/SimpsonIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/analysis/integration/TrapezoidIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/analysis/integration/UnivariateRealIntegratorImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/analysis/interpolation/SplineInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/analysis/polynomials/PolynomialSplineFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/analysis/solvers/BrentSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/analysis/solvers/NewtonSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/analysis/solvers/SecantSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/analysis/solvers/UnivariateRealSolverImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/analysis/solvers/UnivariateRealSolverUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/complex/Complex.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/complex/ComplexField.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/complex/ComplexFormat.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/distribution/AbstractContinuousDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/distribution/AbstractIntegerDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/distribution/BinomialDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/distribution/CauchyDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/distribution/FDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/distribution/GammaDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/distribution/HypergeometricDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/distribution/NormalDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/distribution/PoissonDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/distribution/TDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/distribution/WeibullDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/estimation/GaussNewtonEstimator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/estimation/LevenbergMarquardtEstimator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/fraction/BigFractionField.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/fraction/BigFractionFormat.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/fraction/Fraction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/fraction/FractionField.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/fraction/FractionFormat.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/genetics/BinaryMutation.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/genetics/ChromosomePair.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/genetics/FixedGenerationCount.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/genetics/GeneticAlgorithm.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/genetics/ListPopulation.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/genetics/OnePointCrossover.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/geometry/Vector3D.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/linear/AbstractFieldMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/linear/AbstractRealMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/linear/Array2DRowFieldMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/linear/Array2DRowRealMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/linear/ArrayFieldVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/linear/ArrayRealVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/linear/BigMatrixImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/linear/BlockFieldMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/linear/BlockRealMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/linear/EigenDecompositionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/linear/MatrixUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/linear/QRDecompositionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/linear/RealMatrixImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/linear/SparseFieldVector.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/ode/nonstiff/GraggBulirschStoerIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/optimization/general/LevenbergMarquardtOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/optimization/general/NonLinearConjugateGradientOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/optimization/linear/LinearConstraint.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/optimization/linear/LinearObjectiveFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/optimization/linear/SimplexSolver.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/random/AbstractRandomGenerator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/random/BitsStreamGenerator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/random/EmpiricalDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/random/MersenneTwister.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/random/RandomAdaptor.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/random/UncorrelatedRandomVectorGenerator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/special/Gamma.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/Frequency.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/StatUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/clustering/KMeansPlusPlusClusterer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/correlation/Covariance.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/correlation/PearsonsCorrelation.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/correlation/SpearmansCorrelation.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/AbstractStorelessUnivariateStatistic.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/AggregateSummaryStatistics.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/DescriptiveStatistics.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/MultivariateSummaryStatistics.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/StatisticalSummaryValues.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/SummaryStatistics.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/SynchronizedDescriptiveStatistics.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/SynchronizedSummaryStatistics.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/moment/FirstMoment.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/moment/FourthMoment.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/moment/Kurtosis.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/moment/SecondMoment.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/moment/Skewness.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/moment/ThirdMoment.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/rank/Median.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/descriptive/rank/Percentile.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/inference/ChiSquareTestImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/inference/OneWayAnovaImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/inference/TTestImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/inference/TestUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/ranking/NaturalRanking.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/regression/OLSMultipleLinearRegression.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/stat/regression/SimpleRegression.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/transform/FastFourierTransformer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/transform/FastHadamardTransformer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/util/BigRealField.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/util/DefaultTransformer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/util/MathUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/util/ResizableDoubleArray.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/main/java/org/apache/commons/math/util/TransformerMap.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/test/java/org/apache/commons/math/RetryTestCase.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/test/java/org/apache/commons/math/TestUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/test/java/org/apache/commons/math/genetics/GeneticAlgorithmTestBinary.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/test/java/org/apache/commons/math/genetics/GeneticAlgorithmTestPermutations.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  dc9278a2aa4e5c307a46dd1b1d33d93bf536c8bc
+file  src/test/java/org/apache/commons/math/ode/TestProblemAbstract.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  b22b39f46beadf531abc0bdfb3f2bec2bcb64b93
+file  src/main/java/org/apache/commons/math/optimization/linear/SimplexTableau.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  253c7d3b9425681d61b781ecd388c9ec198c310b
+file  src/java/org/apache/commons/math/util/OpenIntToFieldHashMap.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  852a75dfe4d1bb3e7dcabf847f062c8ff85ed135
+file  src/java/org/apache/commons/math/stat/descriptive/AggregateSummaryStatistics.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  f0ad546c7fdd5be8b9e4368e1aacba2a96fae3a8
+file  src/java/org/apache/commons/math/ode/sampling/NordsieckStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  1a303e82dbe1452af69643c70a3b3c09abc396ca
+file  src/java/org/apache/commons/math/util/ResizableDoubleArray.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  ecaeaadb713204009c13c0df988ad80c34da20a3
+file  src/java/org/apache/commons/math/linear/DenseFieldMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  169271dd31cc1156da367f5ceae7d5b88ec1f88b
+file  src/java/org/apache/commons/math/random/RandomDataImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  39647f7f304a1e35999d28304f4bf485aee9bddd
+file  src/java/org/apache/commons/math/optimization/ScalarPointValuePair.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  8ce2128585be00b451355dd616fc995ddb0be741
+file  src/java/org/apache/commons/math/fraction/Fraction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  58e8113ee04996a35cca9ad914df9d4f612ee4e9
+file  src/java/org/apache/commons/math/linear/QRDecompositionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  f4c984a31bffd7e1d6d88dd3b603f9b19a998ef2
+file  src/java/org/apache/commons/math/ode/nonstiff/AdaptiveStepsizeIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  edbf81119460f61d3f606c73913b139d60c36911
+file  src/java/org/apache/commons/math/genetics/ChromosomePair.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  edbf81119460f61d3f606c73913b139d60c36911
+file  src/java/org/apache/commons/math/genetics/GeneticAlgorithm.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  08fa79c0f5f6c5cd2a4a66c9c866705493dd60d8
+file  src/java/org/apache/commons/math/stat/descriptive/MultivariateSummaryStatistics.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  28e9474e0628de9f67a8ae2f037db0fa227d89a8
+file  src/java/org/apache/commons/math/util/MathUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  c84d037e93b52fbf873eedc4e3ead7a94c75845c
+file  src/java/org/apache/commons/math/stat/descriptive/SynchronizedDescriptiveStatistics.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  404971c56a39380fbef5ca34cbe1943d7b57e542
+file  src/java/org/apache/commons/math/stat/inference/TestFactoryImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2b25d6352a21521ac12a1bb66755854340dda1af
+file  src/java/org/apache/commons/math/analysis/NevilleInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2b25d6352a21521ac12a1bb66755854340dda1af
+file  src/java/org/apache/commons/math/analysis/PolynomialFunctionNewtonForm.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2b25d6352a21521ac12a1bb66755854340dda1af
+file  src/java/org/apache/commons/math/distribution/CauchyDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2b25d6352a21521ac12a1bb66755854340dda1af
+file  src/java/org/apache/commons/math/distribution/WeibullDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2b25d6352a21521ac12a1bb66755854340dda1af
+file  src/java/org/apache/commons/math/fraction/FractionFormat.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2b25d6352a21521ac12a1bb66755854340dda1af
+file  src/java/org/apache/commons/math/fraction/ProperFractionFormat.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2b25d6352a21521ac12a1bb66755854340dda1af
+file  src/test/org/apache/commons/math/analysis/Expm1Function.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/MessagesResources.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/MessagesResources_fr.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/algebra/Chebyshev.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/algebra/Hermite.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/algebra/Laguerre.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/algebra/Legendre.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/algebra/OrthogonalPolynomial.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/algebra/Polynomial.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/algebra/PolynomialFraction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/algebra/RationalNumber.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/fitting/AbstractCurveFitter.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/fitting/F2FP2Iterator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/fitting/HarmonicCoefficientsGuesser.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/fitting/HarmonicFitter.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/fitting/PolynomialFitter.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/functions/vectorial/VectorialValuedPair.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/geometry/Rotation.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/geometry/RotationOrder.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/geometry/Vector3D.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/linalg/GeneralSquareMatrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/linalg/Matrix.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/ode/AbstractStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/ode/DormandPrince54StepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/ode/DummyStepInterpolator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/ode/GraggBulirschStoerIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/ode/StepNormalizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/optimization/DirectSearchOptimizer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/optimization/MultiDirectional.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/optimization/NelderMead.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/optimization/PointCostPair.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/quadrature/vectorial/EnhancedSimpsonIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/quadrature/vectorial/EnhancedSimpsonIntegratorSampler.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/quadrature/vectorial/RiemannIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/quadrature/vectorial/RiemannIntegratorSampler.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/quadrature/vectorial/TrapezoidIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/quadrature/vectorial/TrapezoidIntegratorSampler.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/random/CorrelatedRandomVectorGenerator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/random/UncorrelatedRandomVectorGenerator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/random/VectorialSampleStatistics.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/utilities/ArrayMapper.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/src/org/spaceroots/mantissa/utilities/MappableArray.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/tests-src/org/spaceroots/mantissa/estimation/AllTests.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/tests-src/org/spaceroots/mantissa/ode/TestProblem1.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/tests-src/org/spaceroots/mantissa/ode/TestProblem2.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/tests-src/org/spaceroots/mantissa/ode/TestProblem3.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/tests-src/org/spaceroots/mantissa/ode/TestProblem4.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/tests-src/org/spaceroots/mantissa/ode/TestProblemAbstract.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cc73bfb42fa86c01e37a1b7021b1ab41e0f0cb63
+file  src/mantissa/tests-src/org/spaceroots/mantissa/roots/TestProblem.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  47f3a2fd9e89dec2b41b764657ba5db7652d2c33
+file  src/experimental/org/apache/commons/math/function/Variable.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  47f3a2fd9e89dec2b41b764657ba5db7652d2c33
+file  src/experimental/org/apache/commons/math/function/simple/Multiply.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  47f3a2fd9e89dec2b41b764657ba5db7652d2c33
+file  src/experimental/org/apache/commons/math/function/simple/Power.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  47f3a2fd9e89dec2b41b764657ba5db7652d2c33
+file  src/experimental/org/apache/commons/math/function/simple/Subtract.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  b209e197b3310c4463cb8203098da89edd279773
+file  src/mantissa/src/org/spaceroots/mantissa/geometry/Rotation.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  b209e197b3310c4463cb8203098da89edd279773
+file  src/mantissa/src/org/spaceroots/mantissa/geometry/Vector3D.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  445d94e08d2e81d972f2ecbf85aaa52304f36e4d
+file  src/java/org/apache/commons/math/linear/QRDecompositionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  c5768f0660d4b26e222dbcc1ad3bc4019f59c7dd
+file  src/java/org/apache/commons/math/analysis/UnivariateRealSolverImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  c5768f0660d4b26e222dbcc1ad3bc4019f59c7dd
+file  src/java/org/apache/commons/math/distribution/HypergeometricDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  c5768f0660d4b26e222dbcc1ad3bc4019f59c7dd
+file  src/java/org/apache/commons/math/util/ContinuedFraction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  71fb92ebd4599c9e13d61f8e56cf1d9e473bb7f6
+file  src/java/org/apache/commons/math/analysis/RombergIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  71fb92ebd4599c9e13d61f8e56cf1d9e473bb7f6
+file  src/java/org/apache/commons/math/analysis/SimpsonIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  71fb92ebd4599c9e13d61f8e56cf1d9e473bb7f6
+file  src/java/org/apache/commons/math/analysis/TrapezoidIntegrator.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  71fb92ebd4599c9e13d61f8e56cf1d9e473bb7f6
+file  src/java/org/apache/commons/math/analysis/UnivariateRealIntegratorImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  837fb724fb0ff8c77c2c3b52d5beee88e73d33a4
+file  src/test/org/apache/commons/math/TestUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  837fb724fb0ff8c77c2c3b52d5beee88e73d33a4
+file  src/test/org/apache/commons/math/stat/descriptive/ListUnivariateImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  540caa1add9fe595a8c1a18d4d0c7518daef6706
+file  src/java/org/apache/commons/math/analysis/PolynomialSplineFunction.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  540caa1add9fe595a8c1a18d4d0c7518daef6706
+file  src/java/org/apache/commons/math/complex/ComplexFormat.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  540caa1add9fe595a8c1a18d4d0c7518daef6706
+file  src/java/org/apache/commons/math/distribution/AbstractIntegerDistribution.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  540caa1add9fe595a8c1a18d4d0c7518daef6706
+file  src/java/org/apache/commons/math/distribution/BinomialDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  540caa1add9fe595a8c1a18d4d0c7518daef6706
+file  src/java/org/apache/commons/math/distribution/CauchyDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  540caa1add9fe595a8c1a18d4d0c7518daef6706
+file  src/java/org/apache/commons/math/distribution/DistributionFactoryImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  540caa1add9fe595a8c1a18d4d0c7518daef6706
+file  src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  540caa1add9fe595a8c1a18d4d0c7518daef6706
+file  src/java/org/apache/commons/math/fraction/FractionFormat.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  c28fd51e88929afa64e3888b48fcde1771ff0c97
+file  src/java/org/apache/commons/math/linear/BigMatrixImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4a92f7c65efbc2bd4ce2f0bfd6f502d3ed514ca0
+file  src/java/org/apache/commons/math/util/DefaultTransformer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  4a92f7c65efbc2bd4ce2f0bfd6f502d3ed514ca0
+file  src/java/org/apache/commons/math/util/TransformerMap.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  a6b433d2571ac4eef2e36faa4893b92bfeb974e2
+file  src/java/org/apache/commons/math/stat/StatUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  a6b433d2571ac4eef2e36faa4893b92bfeb974e2
+file  src/java/org/apache/commons/math/stat/inference/ChiSquareTestImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  a6b433d2571ac4eef2e36faa4893b92bfeb974e2
+file  src/java/org/apache/commons/math/stat/inference/TTestImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  a6b433d2571ac4eef2e36faa4893b92bfeb974e2
+file  src/java/org/apache/commons/math/stat/univariate/DescriptiveStatistics.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  a6b433d2571ac4eef2e36faa4893b92bfeb974e2
+file  src/java/org/apache/commons/math/stat/univariate/DescriptiveStatisticsImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  a6b433d2571ac4eef2e36faa4893b92bfeb974e2
+file  src/java/org/apache/commons/math/stat/univariate/SummaryStatistics.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  a6b433d2571ac4eef2e36faa4893b92bfeb974e2
+file  src/java/org/apache/commons/math/stat/univariate/SummaryStatisticsImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  fc266424806307c17658b316982dda185da87bd9
+file  src/java/org/apache/commons/math/random/EmpiricalDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  fc266424806307c17658b316982dda185da87bd9
+file  src/java/org/apache/commons/math/random/RandomDataImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  fc266424806307c17658b316982dda185da87bd9
+file  src/java/org/apache/commons/math/random/ValueServer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  1af2a2a253dc64b266de37d951d3deb182eb1fc8
+file  src/java/org/apache/commons/math/linear/RealMatrixImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  cce3fc85c604b155da38c4668699feb694a2bb32
+file  src/java/org/apache/commons/math/linear/RealMatrixImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  b98f50b1c93e159b1b701984a8fb2692d272404a
+file  src/java/org/apache/commons/math/distribution/NormalDistributionImpl.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  b6d8e5669e5b7ac2cda5e02a6a26e6eede6d0d05
+file  src/java/org/apache/commons/math/stat/StatUtils.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  2898b78067842006d74986af6813e8d18dc233e3
+file  src/java/org/apache/commons/math/ConvergenceException.java
+find_feature_all_commit - error -
+commit  04094833d5f1368927d1a768c7a4349680c55eda
+file  src/experimental/org/apache/commons/math/linear/Decomposer.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  233420ee6bbf318859e04b0dc5d7a47b66008c02
+file  src/java/org/apache/commons/math/MathConfigurationException.java
+find_feature_all_commit - error -  None list_feature_meaning
+commit  16c19dcec036ef933bcc6a46ef9b4bea3267546f
+file  src/java/org/apache/commons/math/ConvergenceException.java
+
+Process finished with exit code 0

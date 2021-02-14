@@ -83,12 +83,11 @@ Operator_>=
 Operator_>>=
 Separator_(
 Separator_)
-Separator_,
 Separator_.
+Separator_,
 Separator_;
 Separator_[
 Separator_]
 Separator_{
 Separator_}
 String
-
