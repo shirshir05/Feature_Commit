@@ -10,6 +10,7 @@ import pandas as pd
 from pandas.tests.io.excel.test_xlsxwriter import xlsxwriter
 
 from Commit.Filter import Filter
+from Feature.MeasureMeaningToken import MeasureMeaningToken
 from Feature.Refactoring import Refactoring
 from Feature.MeasureDiff import MeasureDiff
 from Feature.MeasureMeaning import MeasureMeaning
@@ -28,8 +29,7 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
     with open('File/feature.csv', 'w', newline='', encoding="utf-8") as file:
         writer = csv.writer(file, delimiter='!')
         measure_diff = MeasureDiff()
-        measure_meaning = MeasureMeaning()
-        measure_tokens = MeasureTokens()
+        measure_meaning_token = MeasureMeaningToken()
         measure_refactoring = Refactoring()
 
         list_all = ["commit", "file"] + feature_header_parent("meaning_header") + feature_header("diff_header") + \
@@ -71,9 +71,8 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                                                                                            [number_lines_before,
                                                                                             number_lines_after]]
 
-                                list_feature_meaning = feature_meaning(measure_meaning, commit, file_change)
+                                list_feature_tokens, list_feature_meaning = feature_meaning_token(measure_meaning_token, commit, file_change)
                                 list_feature_diff = feature_diff(measure_diff, commit, file_change)
-                                list_feature_tokens = feature_token(measure_tokens, commit, file_change)
                                 list_refactoring = feature_refactoring(measure_refactoring, commit, file_change)
                                 list_feature = list_feature_meaning + list_feature_diff + list_feature_tokens +\
                                                list_refactoring
@@ -101,10 +100,9 @@ def find_feature_all_commit(list_of_commit, list_commit_bug):
                                 print("commit ", commit)
                                 import traceback
                                 traceback.print_exc()
-                                # print("file ", file_change)
+                                print("file ", file_change)
                                 pass
-        measure_meaning.close_connection()
-        measure_tokens.close_connection()
+        measure_meaning_token.close_connection()
 
 
 def feature_header_parent(name_header):
@@ -141,18 +139,14 @@ def feature_refactoring(measure_refactoring, commit, file_change):
     return list_refactoring
 
 
-def feature_token(measure_tokens, commit, file_change):
-    list_feature_tokens = measure_tokens.get_feature(commit, file_change)
+def feature_meaning_token(measure_meaning_tokens, commit, file_change):
+    list_feature_tokens = measure_meaning_tokens.get_feature(commit, file_change)
     if list_feature_tokens is None:
-        raise Exception("None list_feature_tokens")
+        raise Exception("None list_feature meaning tokens")
     return list_feature_tokens
 
 
-def feature_meaning(measure_meaning, commit, file_change ):
-    list_feature_meaning = measure_meaning.get_feature(commit, file_change)
-    if list_feature_meaning is None:
-        raise Exception("None list_feature_meaning")
-    return list_feature_meaning
+
 
 
 def feature_lab(measure_lab, before_contents, after_contents, diff):
